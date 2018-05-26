@@ -111,6 +111,51 @@
         </td>
     </tr>
     <tr>
+        <td>Post topic message</td>
+        <td>0x6d0C</td>
+        <td>topic(variable), message(74 - topic length)</td>
+        <td>Implemented</td>
+        <td>
+            <a class="btn btn-leave" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/30b38902b9e5e5f79845e15ad56e2d7b8d6b88101a5fbd297d8cc2442eb55260">
+                Block Explorer
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Create poll</td>
+        <td>0x6d10</td>
+        <td>type(0x01=CodePollTypeSingle| 0x02=CodePollTypeMulti), question(209)</td>
+        <td>Implemented</td>
+        <td>
+            <a class="btn btn-leave" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/46ec15e84f72310966faf8c1ce7ae38bb06e5ed514a095c436891c377c8062b7">
+                Block Explorer
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Create poll option</td>
+        <td>0x6d13</td>
+        <td>pollTxHash(32), option(184)</td>
+        <td>Implemented</td>
+        <td>
+            
+        </td>
+    </tr>
+    <tr>
+        <td>Poll vote</td>
+        <td>0x6d14</td>
+        <td>optionTxHash(32), comment(184)</td>
+        <td>Implemented</td>
+        <td>
+            <a class="btn btn-leave" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/e002b92bde0b5db408b8a7bff2b51440b80d1310e01e3cef63770de7a672185f">
+                Block Explorer
+            </a>
+        </td>
+    </tr>
+    <tr>
         <td>Set image base url</td>
         <td>0x6d08</td>
         <td>url(77)</td>
@@ -138,18 +183,6 @@
         <td>Planned</td>
         <td></td>
     </tr>
-    <tr>
-        <td>Post topic message</td>
-        <td>0x6d0C</td>
-        <td>topic(variable), message(74 - topic length)</td>
-        <td>Implemented</td>
-        <td>
-            <a class="btn btn-leave" target="_blank"
-               href="https://explorer.bitcoin.com/bch/tx/30b38902b9e5e5f79845e15ad56e2d7b8d6b88101a5fbd297d8cc2442eb55260">
-                Block Explorer
-            </a>
-        </td>
-    </tr>
     <!--
     <tr>
         <td>Testing</td>
@@ -168,7 +201,6 @@
 
 <ul>
     <li>Tagging users in posts</li>
-    <li>Voting</li>
     <li>Issue and revoke delegated addresses</li>
     <li>Dislike and/or flag posts/users</li>
 </ul>
