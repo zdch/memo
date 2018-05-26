@@ -1,15 +1,15 @@
 [
   {
     "id": "home",
-    "translation": "Home"
+    "translation": "Accueil"
   },
   {
     "id": "dashboard",
-    "translation": "Dashboard"
+    "translation": "Tableau de bord"
   },
   {
     "id": "new_memo",
-    "translation": "New Memo"
+    "translation": "Nouveau Memo"
   },
   {
     "id": "posts",
@@ -17,39 +17,39 @@
   },
   {
     "id": "profiles",
-    "translation": "Profiles"
+    "translation": "Profils"
   },
   {
     "id": "login",
-    "translation": "Login"
+    "translation": "Connexion"
   },
   {
     "id": "logout",
-    "translation": "Logout <b>{{.Username}}</b>"
+    "translation": "Déconnexion <b>{{.Username}}</b>"
   },
   {
     "id": "about",
-    "translation": "About"
+    "translation": "À-propos"
   },
   {
     "id": "protocol",
-    "translation": "Protocol"
+    "translation": "Protocole"
   },
   {
     "id": "disclaimer",
-    "translation": "Disclaimer"
+    "translation": "Avertissement"
   },
   {
     "id": "statistics",
-    "translation": "Statistics"
+    "translation": "Statistiques"
   },
   {
     "id": "name",
-    "translation": "Name"
+    "translation": "Nom"
   },
   {
     "id": "address",
-    "translation": "Address"
+    "translation": "Adresse"
   },
   {
     "id": "followers",
@@ -61,11 +61,11 @@
   },
   {
     "id": "balance",
-    "translation": "Balance"
+    "translation": "Solde"
   },
   {
     "id": "profile",
-    "translation": "Profile"
+    "translation": "Profil"
   },
   {
     "id": "actions",
@@ -73,7 +73,7 @@
   },
   {
     "id": "view_your_profile",
-    "translation": "View Your Profile"
+    "translation": "Voir mon Profil"
   },
   {
     "id": "set_name",
@@ -85,15 +85,15 @@
   },
   {
     "id": "export_key",
-    "translation": "Export Key"
+    "translation": "Exporter ma clé"
   },
   {
     "id": "change_password",
-    "translation": "Change Password"
+    "translation": "Changer de Mot de Passe"
   },
   {
     "id": "reply",
-    "translation": "Reply"
+    "translation": "Répondre"
   },
   {
     "id": "like",
@@ -104,7 +104,7 @@
   },
   {
     "id": "replies",
-    "translation": "replies"
+    "translation": "réponses"
   },
   {
     "id": "likes",
@@ -116,31 +116,31 @@
   },
   {
     "id": "personalized",
-    "translation": "Personalized"
+    "translation": "Personnalisé"
   },
   {
     "id": "new",
-    "translation": "new"
+    "translation": "Nouveau"
   },
   {
     "id": "archive",
-    "translation": "Archive"
+    "translation": "Archiver"
   },
   {
     "id": "last_hour",
-    "translation": "Last hour"
+    "translation": "Dernière heure"
   },
   {
     "id": "last_24_hours",
-    "translation": "Last 24 hours"
+    "translation": "Dernières 24 heures"
   },
   {
     "id": "last_7_days",
-    "translation": "Last 7 days"
+    "translation": "Cette semaine"
   },
   {
     "id": "all_time",
-    "translation": "All time"
+    "translation": "Tout"
   },
   {
     "id": "message",
@@ -148,19 +148,19 @@
   },
   {
     "id": "password",
-    "translation": "Password"
+    "translation": "Mot de passe"
   },
   {
     "id": "save_password",
-    "translation": "Save password"
+    "translation": "Enregistrer le mot de passe"
   },
   {
     "id": "post",
-    "translation": "Post"
+    "translation": "Poster"
   },
   {
     "id": "profile_text",
-    "translation": "Profile text"
+    "translation": "Texte de Profil"
   },
   {
     "id": "feed",
@@ -168,23 +168,23 @@
   },
   {
     "id": "posted_at",
-    "translation": "posted at"
+    "translation": "posté a"
   },
   {
     "id": "posted",
-    "translation": "posted"
+    "translation": "posté"
   },
   {
     "id": "view_on_block_explorer",
-    "translation": "View on Block Explorer"
+    "translation": "Voir sur le Block Explorer"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": "View Address on Block Explorer"
+    "translation": "Voir l'Adresse sur le Block Explorer"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": "View Name on Block Explorer"
+    "translation": "Voir le Nom sur le Block Explorer"
   },
   {
     "id": "page",
@@ -192,15 +192,15 @@
   },
   {
     "id": "previous",
-    "translation": "Previous"
+    "translation": "Précédent"
   },
   {
     "id": "next",
-    "translation": "Next"
+    "translation": "Suivant"
   },
   {
     "id": "connections",
-    "translation": "Connections"
+    "translation": "Connexions"
   },
   {
     "id": "follow",
@@ -211,15 +211,15 @@
   },
   {
     "id": "unfollow",
-    "translation": "Unfollow"
+    "translation": "Ne plus suivre"
   },
   {
     "id": "next_day",
-    "translation": "Next Day"
+    "translation": "Jour Suivant"
   },
   {
     "id": "previous_day",
-    "translation": "Previous Day"
+    "translation": "Jour Précédent"
   },
   {
     "id": "Topic",
@@ -231,19 +231,19 @@
   },
   {
     "id": "Send",
-    "translation": "Send"
+    "translation": "Envoyer"
   },
   {
     "id": "Existing_Topics",
-    "translation": "Existing Topics"
+    "translation": "Topics Existants"
   },
   {
     "id": "Create_new_topic",
-    "translation": "Create new topic"
+    "translation": "Créer un nouveau topic"
   },
   {
     "id": "Most_recent_post",
-    "translation": "Most recent post"
+    "translation": "Post le plus récent"
   },
   {
     "id": "Total_posts",
@@ -251,11 +251,11 @@
   },
   {
     "id": "Back_to_topics",
-    "translation": "Back to topics"
+    "translation": "Revenir aux topics"
   },
   {
     "id": "Forget_password",
-    "translation": "Uncache password"
+    "translation": "Enlever mon mot de passe du cache"
   },
   {
     "id": "Names_set",
@@ -267,7 +267,7 @@
   },
   {
     "id": "Delete_Account",
-    "translation": "Delete Account"
+    "translation": "Supprimer mon compte"
   },
   {
     "id": "Guides",
@@ -275,7 +275,7 @@
   },
   {
     "id": "Signup",
-    "translation": "Signup"
+    "translation": "S'inscrire"
   },
   {
     "id": "Memo",
@@ -283,7 +283,7 @@
   },
   {
     "id": "Poll",
-    "translation": "Poll"
+    "translation": "Sondage"
   },
   {
     "id": "Notifications",
@@ -291,23 +291,23 @@
   },
   {
     "id": "Settings",
-    "translation": "Settings"
+    "translation": "Paramètres"
   },
   {
     "id": "new_poll",
-    "translation": "new poll"
+    "translation": "nouveau sondage"
   },
   {
     "id": "type",
-    "translation": "type"
+    "translation": "genre"
   },
   {
     "id": "select_one_option",
-    "translation": "One option can be selected"
+    "translation": "Un vote par adresse"
   },
   {
     "id": "select_multiple_options",
-    "translation": "Many options can be selected"
+    "translation": "Beaucoup de votes par adresse"
   },
   {
     "id": "question",
@@ -322,10 +322,10 @@
   },
   {
     "id": "add_option",
-    "translation": "add option"
+    "translation": "ajouter une option"
   },
   {
     "id": "create_poll",
-    "translation": "create poll"
+    "translation": "créer un sondage"
   }
 ]
