@@ -52,6 +52,16 @@
                 return;
             }
 
+            if (topicName.search('%') >= 0) {
+                alert("The % character is not allowed in a topic name. Sorry for the inconvenience.");
+                return;
+            }
+
+            if (topicName.search('/') === 0) {
+                alert("The / character can't be the first character of the topic name. Sorry for the inconvenience.");
+                return;
+            }
+
             if (topicName.length === 0) {
                 alert("Must enter a topic name.");
                 return;
