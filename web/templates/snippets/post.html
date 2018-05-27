@@ -23,7 +23,9 @@
                 </span>
             </span>
         {{ end }}
-        {{ if .Post.Memo.ParentTxHash }}
+        {{ if and .Post.Memo.RootTxHash .Post.Memo.ParentTxHash }}
+            replied to <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Memo.GetTransactionHashString }}">post</a>
+        {{ else if .Post.Memo.ParentTxHash }}
             replied to <a href="post/{{ .Post.Memo.GetParentTransactionHashString }}">post</a>
         {{ else if .Post.Memo.IsVote }}
             voted in <a href="post/{{ .Post.VoteQuestion.GetTransactionHashString }}">poll</a>
@@ -43,8 +45,11 @@
         <span class="identicon-{{ .Post.Parent.Memo.GetAddressString }}">
                 <img class="identicon"/>
             </span>
-        <a href="post/{{ .Post.Parent.Memo.GetTransactionHashString }}">{{ .Post.Parent.Name }}'s
-            post</a>
+        {{ if .Post.Memo.RootTxHash }}
+            <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Parent.Memo.GetTransactionHashString }}">{{ .Post.Parent.Name }}'s post</a>
+        {{ else }}
+            <a href="post/{{ .Post.Parent.Memo.GetTransactionHashString }}">{{ .Post.Parent.Name }}'s post</a>
+        {{ end }}
         <p>{{ .Post.Parent.GetMessage }}</p>
     </div>
 {{ end }}

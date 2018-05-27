@@ -25,7 +25,9 @@
                 </span>
             </span>
         {{ end }}
-        {{ if .Post.Memo.ParentTxHash }}
+        {{ if and .Post.Memo.RootTxHash .Post.Memo.ParentTxHash }}
+            replied to <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Memo.GetTransactionHashString }}">post</a>
+        {{ else if .Post.Memo.ParentTxHash }}
             replied to <a href="post/{{ .Post.Memo.GetParentTransactionHashString }}">post</a>
         {{ else if .Post.Memo.IsVote }}
             voted in <a href="post/{{ .Post.VoteQuestion.GetTransactionHashString }}">poll</a>
