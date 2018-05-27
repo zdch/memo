@@ -1,331 +1,331 @@
 [
   {
     "id": "home",
-    "translation": ""
+    "translation": "홈"
   },
   {
     "id": "dashboard",
-    "translation": ""
+    "translation": "대시보드"
   },
   {
     "id": "new_memo",
-    "translation": ""
+    "translation": "새 메모 작성"
   },
   {
     "id": "posts",
-    "translation": ""
+    "translation": "올라온 글들"
   },
   {
     "id": "profiles",
-    "translation": ""
+    "translation": "프로필"
   },
   {
     "id": "login",
-    "translation": ""
+    "translation": "로그인"
   },
   {
     "id": "logout",
-    "translation": " <b>{{.Username}}</b>"
+    "translation": "로그아웃 {{.Username}}"
   },
   {
     "id": "about",
-    "translation": ""
+    "translation": "소개글"
   },
   {
     "id": "protocol",
-    "translation": ""
+    "translation": "프로토콜"
   },
   {
     "id": "disclaimer",
-    "translation": ""
+    "translation": "주의사항"
   },
   {
     "id": "statistics",
-    "translation": ""
+    "translation": "통계수치들"
   },
   {
     "id": "name",
-    "translation": ""
+    "translation": "이름"
   },
   {
     "id": "address",
-    "translation": ""
+    "translation": "주소"
   },
   {
     "id": "followers",
-    "translation": ""
+    "translation": "팔로워"
   },
   {
     "id": "following",
-    "translation": ""
+    "translation": "팔로잉"
   },
   {
     "id": "balance",
-    "translation": ""
+    "translation": "잔고"
   },
   {
     "id": "profile",
-    "translation": ""
+    "translation": "프로필"
   },
   {
     "id": "actions",
-    "translation": ""
+    "translation": "기타메뉴들"
   },
   {
     "id": "view_your_profile",
-    "translation": ""
+    "translation": "내 프로필 보기"
   },
   {
     "id": "set_name",
-    "translation": ""
+    "translation": "이름 변경"
   },
   {
     "id": "set_profile",
-    "translation": ""
+    "translation": "프로필 작성"
   },
   {
     "id": "export_key",
-    "translation": ""
+    "translation": "키 추출하기"
   },
   {
     "id": "change_password",
-    "translation": ""
+    "translation": "비밀번호 변경"
   },
   {
     "id": "reply",
-    "translation": ""
+    "translation": "답글"
   },
   {
     "id": "like",
     "translation": {
-      "one": "",
-      "other": ""
+      "one": "좋아요",
+      "other": "좋아요"
     }
   },
   {
     "id": "replies",
-    "translation": ""
+    "translation": "답글들"
   },
   {
     "id": "likes",
-    "translation": ""
+    "translation": "좋아요"
   },
   {
     "id": "top",
-    "translation": ""
+    "translation": "대세글"
   },
   {
     "id": "personalized",
-    "translation": ""
+    "translation": "맞춤형 글"
   },
   {
     "id": "new",
-    "translation": ""
+    "translation": "새로운 글"
   },
   {
     "id": "archive",
-    "translation": ""
+    "translation": "지난 글 모음"
   },
   {
     "id": "last_hour",
-    "translation": ""
+    "translation": "지난 한시간"
   },
   {
     "id": "last_24_hours",
-    "translation": ""
+    "translation": "지난 24시간"
   },
   {
     "id": "last_7_days",
-    "translation": ""
+    "translation": "지난 7일"
   },
   {
     "id": "all_time",
-    "translation": ""
+    "translation": "모두"
   },
   {
     "id": "message",
-    "translation": ""
+    "translation": "메세지"
   },
   {
     "id": "password",
-    "translation": ""
+    "translation": "비밀번호"
   },
   {
     "id": "save_password",
-    "translation": ""
+    "translation": "비밀번호 저장하기"
   },
   {
     "id": "post",
-    "translation": ""
+    "translation": "작성 글"
   },
   {
     "id": "profile_text",
-    "translation": ""
+    "translation": "프로필 문구"
   },
   {
     "id": "feed",
-    "translation": ""
+    "translation": "피드글"
   },
   {
     "id": "posted_at",
-    "translation": ""
+    "translation": "작성함"
   },
   {
     "id": "posted",
-    "translation": ""
+    "translation": "작성함"
   },
   {
     "id": "view_on_block_explorer",
-    "translation": ""
+    "translation": "블럭탐색기에서 보기"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": ""
+    "translation": "블럭탐색기로 주소 보기"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": ""
+    "translation": "블럭 탐색기에서 이름 보기"
   },
   {
     "id": "page",
-    "translation": ""
+    "translation": "페이지"
   },
   {
     "id": "previous",
-    "translation": ""
+    "translation": "이전 페이지"
   },
   {
     "id": "next",
-    "translation": ""
+    "translation": "다음페이지"
   },
   {
     "id": "connections",
-    "translation": ""
+    "translation": "connections"
   },
   {
     "id": "follow",
     "translation": {
-      "one": "",
-      "other": ""
+      "one": "팔로우",
+      "other": "팔로우"
     }
   },
   {
     "id": "unfollow",
-    "translation": ""
+    "translation": "언 팔로우"
   },
   {
     "id": "next_day",
-    "translation": ""
+    "translation": "다음날자"
   },
   {
     "id": "previous_day",
-    "translation": ""
+    "translation": "이전 날자"
   },
   {
     "id": "Topic",
-    "translation": ""
+    "translation": "주제글"
   },
   {
     "id": "Topics",
-    "translation": ""
+    "translation": "주제글들"
   },
   {
     "id": "Send",
-    "translation": ""
+    "translation": "전송"
   },
   {
     "id": "Existing_Topics",
-    "translation": ""
+    "translation": "개설된 주제들"
   },
   {
     "id": "Create_new_topic",
-    "translation": ""
+    "translation": "새로운 주제 만들기"
   },
   {
     "id": "Most_recent_post",
-    "translation": ""
+    "translation": "가장 최신 글"
   },
   {
     "id": "Total_posts",
-    "translation": ""
+    "translation": "총 작성된 글"
   },
   {
     "id": "Back_to_topics",
-    "translation": ""
+    "translation": "주제들로 돌아가기"
   },
   {
     "id": "Forget_password",
-    "translation": ""
+    "translation": "비밀번호 지우기"
   },
   {
     "id": "Names_set",
-    "translation": ""
+    "translation": "이름 설정"
   },
   {
     "id": "Total",
-    "translation": ""
+    "translation": "총"
   },
   {
     "id": "Delete_Account",
-    "translation": ""
+    "translation": "계정 지우기"
   },
   {
     "id": "Guides",
-    "translation": ""
+    "translation": "안내글"
   },
   {
     "id": "Signup",
-    "translation": ""
+    "translation": "가입하기"
   },
   {
     "id": "Memo",
-    "translation": ""
+    "translation": "메모"
   },
   {
     "id": "Poll",
-    "translation": ""
+    "translation": "투표글"
   },
   {
     "id": "Notifications",
-    "translation": ""
+    "translation": "알림들"
   },
   {
     "id": "Settings",
-    "translation": ""
+    "translation": "설정"
   },
   {
     "id": "new_poll",
-    "translation": ""
+    "translation": "새 투표 작성"
   },
   {
     "id": "type",
-    "translation": ""
+    "translation": "유형"
   },
   {
     "id": "select_one_option",
-    "translation": ""
+    "translation": "한가지만 선택가능"
   },
   {
     "id": "select_multiple_options",
-    "translation": ""
+    "translation": "여러가지를 선택가능"
   },
   {
     "id": "question",
-    "translation": ""
+    "translation": "질문"
   },
   {
     "id": "option",
     "translation": {
-      "one": "",
-      "other": ""
+      "one": "선택지",
+      "other": "선택지들"
     }
   },
   {
     "id": "add_option",
-    "translation": ""
+    "translation": "선택지 추가"
   },
   {
     "id": "create_poll",
-    "translation": ""
+    "translation": "투표 작성"
   }
 ]
