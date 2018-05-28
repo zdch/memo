@@ -10,7 +10,7 @@
                 {{- if $isMulti }}
                     ({{ .UniqueVotes }} unique)
                 {{- end -}}
-                    , {{ .Satoshis }} satoshis
+                    , {{ formatBigInt .Satoshis }} satoshis
                 </td>
             </tr>
             {{ end }}
