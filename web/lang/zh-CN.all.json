@@ -283,7 +283,7 @@
   },
   {
     "id": "Poll",
-    "translation": "轮询"
+    "translation": "投票"
   },
   {
     "id": "Notifications",
@@ -326,6 +326,6 @@
   },
   {
     "id": "create_poll",
-    "translation": "创建投票"
+    "translation": "创造"
   }
 ]
