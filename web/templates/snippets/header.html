@@ -78,8 +78,8 @@
             {{ end }}
             </ul>
         {{ if .Username }}
-            <ul class="hidden-xs nav navbar-nav navbar-right">
-                <li class="nav-item notifications"><a href="notifications">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden-xs nav-item notifications"><a href="notifications">
                 {{ formatUInt .UnreadNotifications }}
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                 </a></li>
