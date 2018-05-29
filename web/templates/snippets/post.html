@@ -70,6 +70,7 @@
             &middot;
             <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
         {{ else if not .Post.Memo.Topic }}
+            &middot;
             <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
         {{ end }}
         </i>
