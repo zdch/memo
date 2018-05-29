@@ -6,8 +6,8 @@
 
     <p>
         Memo team profiles:
-        <a href="/profile/1F5GrRezwGokQhxmF4fYaBbbNrPPaeBqMm">@memo</a>
-        (<a href="/profile/1QCBiyfwdjXDsHghBEr5U2KxUpM2BmmJVt">@jason</a>),
+        <a href="/profile/1F5GrRezwGokQhxmF4fYaBbbNrPPaeBqMm">@memo</a>,
+        <a href="/profile/1QCBiyfwdjXDsHghBEr5U2KxUpM2BmmJVt">@jason</a>,
         <a href="/profile/13MuoY8fLzES35bNsMveiQR7eR93LtxBmy">@eric</a>
     </p>
 
@@ -20,18 +20,18 @@
 
     <div>
         <h3>Where can I report a bug or feature request?</h3>
-        Post a memo about it!
-        You can also send me a message on Reddit (/u/arnold2040)
-        or Telegram (@arnold2040).
+        We monitor the <a href="https://memo.cash/topic/memo">memo topic</a> and file tickets
+        based on feedback.
+        You can also send me a message to Jason on Reddit (<a href="https://www.reddit.com/user/arnold2040">/u/arnold2040</a>)
+        or Telegram (@arnold2040). Eric is also on Reddit (<a href="https://www.reddit.com/user/eric_memo">eric_memo</a>).
     </div>
 
     <div>
         <h3>Does Memo have access to my private keys?</h3>
-        Private keys are stored encrypted with the user's password.
-        The key needs to be unencrypted to sign transactions,
-        which is why it is required each time an action is performed.
-        We do not have access to private keys.
-        Users should make sure they make backups of keys in case the password is lost.
+        Private keys are stored encrypted with the user's Memo password.
+        The key needs to be unencrypted to sign transactions. Memo does not have
+        access to the private keys, so it is critical for users to keep a backup in
+        case the Memo password is lost.
     </div>
 
     <div>
@@ -40,14 +40,18 @@
         <h3>What is Shared Connections?</h3>
         Shared Connections represents how connected a Memo account is from the perspective of your account.
         Currently it is the percentage of those you follow who follow the account.
-        In other words, it's the number of shared 1st degree connections.
-        We expect the calculation and meaning
-        of connectivity to evolve into a reputation system over time as we identify additional useful inputs.
+        In other words, it's the number of shared first-degree connections.
+        We have a goal to increase the value of the reputation system over time as we identify additional useful inputs.
     </div>
 
     <div>
-        <h3>How is the Personalized view determined?</h3>
-        Memos in this view are sorted by how many of those you follow Like the memo in the time period selected.
+        <h3>How are the Ranked, Personalized, and Top views determined?</h3>
+        <ul>
+            <li><i>Ranked</i>: smart sort using Score, Time, and Gravity (<a href="https://medium.com/hacking-and-gonzo/how-hacker-news-ranking-algorithm-works-1d9b0cf2c08d">more info</a>).</li>
+            <li><i>Personalized</i>: sorted by how many of those you follow Like the memo in the time period selected.</li>
+            <li><i>Top</i>: sorted by how many total Likes the memo received in the time period selected. Note
+                that old memos can appear in this view if they recently received a Like.</li>
+        </ul>
     </div>
 
     <div>
@@ -57,17 +61,14 @@
 
     <div>
         <h3>Is there an open source client for Memo?</h3>
-        Our plan is to create an open source client eventually.
+        No, but the <a href="protocol">Memo protocol</a> and <a href="https://github.com/memocash/memo">the website</a>
+        are open source. Anyone can build a new client using the specification.
         We're currently focused on improving the site and then building a mobile app.
-        The protocol is <a href="protocol">published</a>. Any developer can write a client using the specification.
     </div>
 
     <div>
-        <h3>Why does the UI look like it's from the 90's?</h3>
-        One of our philosophies is to keep things clean and simple.
-        Right now we're probably in more of the Craiglist camp as far as design goes,
-        but our goal is to be more along the lines of Google.
-        We're working on it.
+        <h3>Where can I make translation contributions and corrections?</h3>
+        Please post to the <a href="https://memo.cash/topic/Memo+Languages">Memo Languages topic</a>. For Github users, <a href="https://github.com/memocash/memo/issues/new">create a new issue</a> with the details.
     </div>
 
 </div>
