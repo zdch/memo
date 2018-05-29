@@ -76,8 +76,11 @@ const (
 	UrlPostsNew          = "/posts/new"
 	UrlPostsTop          = "/posts/top"
 	UrlPostsRanked       = "/posts/ranked"
+	UrlPostsPolls        = "/polls"
 	UrlPostsArchive      = "/posts/archive"
 	UrlPostsPersonalized = "/posts/personalized"
+
+	TmplPostsPolls = "/posts/polls"
 )
 
 const (
