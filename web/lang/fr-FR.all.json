@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "créer un sondage"
+  },
+  {
+    "id": "view_topic",
+    "translation": "aller au sujet"
   }
 ]

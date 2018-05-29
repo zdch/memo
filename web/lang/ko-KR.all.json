@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "투표 작성"
+  },
+  {
+    "id": "view_topic",
+    "translation": "주제보기"
   }
 ]

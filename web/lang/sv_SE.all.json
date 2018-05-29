@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "skapa röstning"
+  },
+  {
+    "id": "view_topic",
+    "translation": "visa ämne"
   }
 ]

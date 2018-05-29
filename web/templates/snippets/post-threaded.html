@@ -107,7 +107,7 @@
     {{ if .Post.Memo.Topic }}
         <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
            href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">
-            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "view_topic" | Title }}
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "view_topic" | UcFirst }}
         </a>
     {{ end }}
     {{ if .Post.IsLoggedIn }}
