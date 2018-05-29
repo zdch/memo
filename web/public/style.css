@@ -130,6 +130,11 @@ a.disabled {
     padding: 10px 15px 20px;
     font-weight: bold;
 }
+.navbar .mobile-notifs-link {
+    border: 0;
+    padding: 0;
+    margin:5px 5px 0;
+}
 .nav-item.notifications span {
     top: 3px;
 }

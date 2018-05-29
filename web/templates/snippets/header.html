@@ -44,6 +44,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <ul class="nav navbar-nav navbar-toggle mobile-notifs-link">
+                <li class="nav-item notifications"><a href="notifications">
+                {{ formatUInt .UnreadNotifications }}
+                    <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                </a></li>
+            </ul>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -73,7 +79,7 @@
             </ul>
         {{ if .Username }}
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item notifications"><a href="notifications">
+                <li class="hidden-xs nav-item notifications"><a href="notifications">
                 {{ formatUInt .UnreadNotifications }}
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                 </a></li>
