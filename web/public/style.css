@@ -325,6 +325,7 @@ span.page {
 
 #guides img {
     margin-top: 5px;
+    width: 100%;
 }
 #guides li {
     margin-bottom: 3px;
