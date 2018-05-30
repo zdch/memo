@@ -113,6 +113,7 @@ func addLinks(msg string) string {
 	var re = regexp.MustCompile(`(^|\s)(http[s]?://[^\s]*)`)
 	s := re.ReplaceAllString(msg, `$1<a href="$2" target="_blank">$2</a>`)
 	// Don't allow a '.' as the last character of a link.
+	s = strings.Replace(s, ".\" target", "\" target", -1)
 	s = strings.Replace(s, ".</a>", "</a>.", -1)
 	return strings.Replace(s, "\n", "<br/>", -1)
 }
