@@ -32,7 +32,8 @@
     <tr>
         <th>{{ T "Topic" }}</th>
         <th>{{ T "Most_recent_post" }}</th>
-        <th>{{ T "Total_posts" }}</th>
+        <th>{{ T "Posts" }}</th>
+        <th>{{ T "Followers" }}</th>
     </tr>
     </thead>
     <tbody>
@@ -40,7 +41,8 @@
     <tr>
         <td><a href="topic/{{ .GetUrlEncoded }}">{{ .Name }}</a></td>
         <td>{{ .GetTimeAgo }}</td>
-        <td>{{ .Count }}</td>
+        <td>{{ .CountPosts }}</td>
+        <td>{{ .CountFollows }}</td>
     </tr>
     {{ end }}
     </tbody>

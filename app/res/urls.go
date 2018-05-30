@@ -86,6 +86,8 @@ const (
 const (
 	UrlTopics             = "/topics"
 	UrlTopicsAll          = "/topics/all"
+	UrlTopicsMostFollowed = "/topics/most-followed"
+	UrlTopicsMostPosts    = "/topics/most-posts"
 	UrlTopicsFollowing    = "/topics/following"
 	UrlTopicsCreate       = "/topics/create"
 	UrlTopicsCreateSubmit = "/topics/create-submit"
