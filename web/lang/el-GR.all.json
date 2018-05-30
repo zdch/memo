@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "δημιουργία δημοσκόπησης"
+  },
+  {
+    "id": "view_topic",
+    "translation": "πηγαίνετε στο θέμα"
   }
 ]
