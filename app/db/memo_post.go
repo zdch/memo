@@ -493,7 +493,7 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 		query = query.Where("memo_posts.topic IS NOT NULL AND memo_posts.topic != ''")
 	}
 	if len(pkHash) > 0 {
-		query = query.Where("memo_topic_follows.pk_hash = ?", pkHash)
+		query = query.Where("memo_topic_follows.pk_hash = ? AND memo_topic_follows.unfollow = 0", pkHash)
 	}
 	switch orderType {
 	case TopicOrderTypeFollowers:
