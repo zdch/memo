@@ -56,6 +56,7 @@ var dbInterfaces = []interface{}{
 	MemoPollQuestion{},
 	MemoPollOption{},
 	MemoPollVote{},
+	MemoTopicFollow{},
 }
 
 func getDb() (*gorm.DB, error) {

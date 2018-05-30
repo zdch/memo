@@ -91,6 +91,7 @@ const (
 	UrlTopicsSocket       = "/topics/socket"
 	UrlTopicsMorePosts    = "/topics/more-posts"
 	UrlTopicsPostAjax     = "/topics/post-ajax"
+	UrlTopicsFollowSubmit = "/topics/follow-submit"
 
 	TmplTopicView = "/topics/view"
 	TmplTopicPost = "/topics/post"

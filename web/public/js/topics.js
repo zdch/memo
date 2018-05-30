@@ -3,6 +3,95 @@
     var maxNewTopicBytes = 204;
 
     /**
+     * @param {jQuery} $ele
+     * @param {string} topic
+     * @param {boolean} unfollow
+     */
+    MemoApp.Form.FollowTopic = function ($ele, topic, unfollow) {
+        var $followTopicButton = $ele.find("#follow-topic-button");
+        var $followTopicConfirm = $ele.find("#follow-topic-confirm");
+        var $followTopicCancel = $ele.find("#follow-topic-cancel");
+        var $followTopicCreating = $ele.find("#follow-topic-creating");
+        var $followTopicBroadcasting = $ele.find("#follow-topic-broadcasting");
+        $followTopicButton.click(function (e) {
+            e.preventDefault();
+            $followTopicButton.addClass("hidden");
+            $followTopicConfirm.removeClass("hidden");
+            $followTopicCancel.removeClass("hidden");
+        });
+        $followTopicCancel.click(function (e) {
+            e.preventDefault();
+            $followTopicButton.removeClass("hidden");
+            $followTopicConfirm.addClass("hidden");
+            $followTopicCancel.addClass("hidden");
+        });
+        var submitting = false;
+        $followTopicConfirm.click(function (e) {
+            e.preventDefault();
+
+            var password = MemoApp.GetPassword();
+            if (!password.length) {
+                console.log("Password not set. Please try logging in again.");
+                return;
+            }
+
+            $followTopicConfirm.addClass("hidden");
+            $followTopicCancel.addClass("hidden");
+            $followTopicCreating.removeClass("hidden");
+
+            submitting = true;
+            $.ajax({
+                type: "POST",
+                url: MemoApp.GetBaseUrl() + MemoApp.URL.TopicsFollowSubmit,
+                data: {
+                    topic: topic,
+                    unfollow: unfollow,
+                    password: password
+                },
+                success: function (txHash) {
+                    submitting = false;
+                    if (!txHash || txHash.length === 0) {
+                        alert("Server error. Please try refreshing the page.");
+                        return
+                    }
+                    $followTopicCreating.addClass("hidden");
+                    $followTopicBroadcasting.removeClass("hidden");
+                    $.ajax({
+                        type: "POST",
+                        url: MemoApp.GetBaseUrl() + MemoApp.URL.MemoWaitSubmit,
+                        data: {
+                            txHash: txHash
+                        },
+                        success: function () {
+                            submitting = false;
+                            window.location.reload();
+                        },
+                        error: function () {
+                            submitting = false;
+                            $followTopicBroadcasting.addClass("hidden");
+                            console.log("Error waiting for transaction to broadcast.");
+                        }
+                    });
+                },
+                error: function (xhr) {
+                    submitting = false;
+                    if (xhr.status === 401) {
+                        alert("Error unlocking key. " +
+                            "Please verify your password is correct. " +
+                            "If this problem persists, please try refreshing the page.");
+                        return;
+                    }
+                    var errorMessage =
+                        "Error with request (response code " + xhr.status + "):\n" +
+                        (xhr.responseText !== "" ? xhr.responseText + "\n" : "") +
+                        "If this problem persists, try refreshing the page.";
+                    alert(errorMessage);
+                }
+            });
+        });
+    };
+
+    /**
      * @param {jQuery} $form
      */
     MemoApp.Form.NewTopic = function ($form) {
