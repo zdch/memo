@@ -468,26 +468,23 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 	if err != nil {
 		return nil, jerr.Get("error getting db", err)
 	}
-	joinSelect := "JOIN (" +
+	joinSelect := "LEFT JOIN (" +
 		"	SELECT MAX(id) AS id" +
 		"	FROM memo_topic_follows" +
 		"	GROUP BY pk_hash, topic" +
 		") sq ON (sq.id = memo_topic_follows.id) "
-	if len(pkHash) == 0 {
-		joinSelect = "LEFT OUTER " + joinSelect
-	}
 	query := db.
 		Table("memo_posts").
 		Select("" +
 		"memo_posts.topic, " +
 		"MAX(IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)) AS max_time, " +
-		"COUNT(DISTINCT memo_posts.id), " +
-		"COUNT(DISTINCT memo_topic_follows.id)").
+		"COUNT(DISTINCT memo_posts.id) AS post_count, " +
+		"COUNT(DISTINCT case memo_topic_follows.unfollow when 0 then memo_topic_follows.id else null end) AS follower_count").
 		Joins("LEFT JOIN memo_topic_follows ON (memo_posts.topic = memo_topic_follows.topic)").
 		Joins(joinSelect).
 		Joins("LEFT JOIN blocks ON (memo_posts.block_id = blocks.id)").
 		Group("memo_posts.topic").
-		Where("COALESCE(memo_topic_follows.unfollow, 0) = 0").
+		Where("(memo_topic_follows.id IS NULL OR sq.id IS NOT NULL)").
 		Limit(25).
 		Offset(offset)
 	if searchString != "" {
@@ -496,13 +493,13 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 		query = query.Where("memo_posts.topic IS NOT NULL AND memo_posts.topic != ''")
 	}
 	if len(pkHash) > 0 {
-		query = query.Where("memo_topic_follows.pk_hash = ?", pkHash)
+		query = query.Where("memo_topic_follows.pk_hash = ? AND memo_topic_follows.unfollow = 0", pkHash)
 	}
 	switch orderType {
 	case TopicOrderTypeFollowers:
-		query = query.Order("COUNT(DISTINCT memo_topic_follows.id) DESC")
+		query = query.Order("follower_count DESC")
 	case TopicOrderTypePosts:
-		query = query.Order("COUNT(DISTINCT memo_posts.id) DESC")
+		query = query.Order("post_count DESC")
 	}
 	query = query.Order("max_time DESC")
 	rows, err := query.Rows()
