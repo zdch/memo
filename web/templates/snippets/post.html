@@ -66,10 +66,7 @@
         {{- if .Post.Likes }}
             (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
         {{- end }}
-        {{ if and .Post.Memo.Topic (gt .Post.ReplyCount 0) }}
-            &middot;
-            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
-        {{ else if not .Post.Memo.Topic }}
+        {{ if or (and .Post.Memo.Topic (gt .Post.ReplyCount 0)) (not .Post.Memo.Topic) }}
             &middot;
             <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
         {{ end }}

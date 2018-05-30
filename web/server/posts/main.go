@@ -9,6 +9,7 @@ func GetRoutes() []web.Route {
 		rankedRoute,
 		archiveRoute,
 		personalizedRoute,
+		pollsRoute,
 	}
 }
 

@@ -352,7 +352,7 @@ func GetTopPosts(offset uint, timeStart time.Time, timeEnd time.Time) ([]*MemoPo
 
 const (
 	RankCountBoost int     = 60
-	RankGravity    float32 = 0.75
+	RankGravity    float32 = 2
 )
 
 func GetRankedPosts(offset uint) ([]*MemoPost, error) {
@@ -361,7 +361,7 @@ func GetRankedPosts(offset uint) ([]*MemoPost, error) {
 		return nil, jerr.Get("error getting db", err)
 	}
 	var coalescedTimestamp = "IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)"
-	var scoreQuery = fmt.Sprintf("(COUNT(DISTINCT memo_likes.pk_hash)*%d-1)/POW(TIMESTAMPDIFF(MINUTE, "+coalescedTimestamp+", NOW())+2,%0.2f)", RankCountBoost, RankGravity)
+	var scoreQuery = fmt.Sprintf("((COUNT(DISTINCT memo_likes.pk_hash)-1)*%d)/POW(TIMESTAMPDIFF(MINUTE, "+coalescedTimestamp+", NOW())+2,%0.2f)", RankCountBoost, RankGravity)
 
 	var memoPosts []*MemoPost
 	result := db.
@@ -372,6 +372,33 @@ func GetRankedPosts(offset uint) ([]*MemoPost, error) {
 		Order(scoreQuery + " DESC").
 		Limit(25).
 		Offset(offset).
+		Preload(BlockTable).
+		Find(&memoPosts)
+	if result.Error != nil {
+		return nil, jerr.Get("error running query", result.Error)
+	}
+	return memoPosts, nil
+}
+
+func GetPollsPosts(offset uint) ([]*MemoPost, error) {
+	db, err := getDb()
+	if err != nil {
+		return nil, jerr.Get("error getting db", err)
+	}
+	var coalescedTimestamp = "IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)"
+	var scoreQuery = fmt.Sprintf("((COUNT(DISTINCT memo_poll_votes.tx_hash)-1)*%d)/POW(TIMESTAMPDIFF(MINUTE, "+coalescedTimestamp+", NOW())+2,%0.2f)", RankCountBoost, RankGravity)
+
+	var memoPosts []*MemoPost
+	result := db.
+		Joins("LEFT OUTER JOIN memo_poll_options ON (memo_posts.tx_hash = memo_poll_options.poll_tx_hash) ").
+		Joins("LEFT OUTER JOIN memo_poll_votes ON (memo_poll_options.tx_hash = memo_poll_votes.option_tx_hash)").
+		Joins("LEFT OUTER JOIN blocks ON (memo_posts.block_id = blocks.id)").
+		Where("is_poll = 1").
+		Group("memo_posts.tx_hash").
+		Order(scoreQuery + " DESC").
+		Limit(25).
+		Offset(offset).
+		Preload(BlockTable).
 		Find(&memoPosts)
 	if result.Error != nil {
 		return nil, jerr.Get("error running query", result.Error)

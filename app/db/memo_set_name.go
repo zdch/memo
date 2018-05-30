@@ -125,9 +125,15 @@ func GetNamesForPkHashes(pkHashes [][]byte) ([]*MemoSetName, error) {
 	if err != nil {
 		return nil, jerr.Get("error getting db", err)
 	}
+	joinSelect := "JOIN (" +
+		"	SELECT MAX(id) AS id" +
+		"	FROM memo_set_names" +
+		"	GROUP BY pk_hash" +
+		") sq ON (sq.id = memo_set_names.id)"
 	query := db.
 		Table("memo_set_names").
 		Select("memo_set_names.*, blocks.*").
+		Joins(joinSelect).
 		Joins("JOIN blocks ON (memo_set_names.block_id = blocks.id)").
 		Order("blocks.timestamp DESC").
 		Where("pk_hash IN (?)", pkHashes)

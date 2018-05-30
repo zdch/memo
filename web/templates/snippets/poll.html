@@ -9,8 +9,8 @@
                 <td>{{ .Votes }} votes
                 {{- if $isMulti }}
                     ({{ .UniqueVotes }} unique)
-                {{- end -}}
-                    , {{ .Satoshis }} satoshis
+                {{- end }}
+                    &middot; {{ formatBigInt .Satoshis }} satoshis
                 </td>
             </tr>
             {{ end }}
