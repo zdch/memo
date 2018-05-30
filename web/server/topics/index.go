@@ -40,11 +40,11 @@ var allRoute = web.Route{
 		r.Helper["SearchString"] = searchString
 		res.SetPageAndOffset(r, offset)
 		if searchString != "" {
-			r.Helper["OffsetLink"] = fmt.Sprintf("%s?s=%s", strings.TrimLeft(res.UrlTopics, "/"), searchString)
+			r.Helper["OffsetLink"] = fmt.Sprintf("%s?s=%s", strings.TrimLeft(res.UrlTopicsAll, "/"), searchString)
 		} else {
-			r.Helper["OffsetLink"] = fmt.Sprintf("%s?", res.UrlTopics)
+			r.Helper["OffsetLink"] = fmt.Sprintf("%s?", res.UrlTopicsAll)
 		}
-		r.Helper["Page"] = "all"
+		r.Helper["TopicPage"] = "all"
 		r.RenderTemplate(res.UrlTopics)
 	},
 }
@@ -75,11 +75,11 @@ var followingRoute = web.Route{
 		r.Helper["SearchString"] = searchString
 		res.SetPageAndOffset(r, offset)
 		if searchString != "" {
-			r.Helper["OffsetLink"] = fmt.Sprintf("%s?s=%s", strings.TrimLeft(res.UrlTopics, "/"), searchString)
+			r.Helper["OffsetLink"] = fmt.Sprintf("%s?s=%s", strings.TrimLeft(res.UrlTopicsFollowing, "/"), searchString)
 		} else {
-			r.Helper["OffsetLink"] = fmt.Sprintf("%s?", res.UrlTopics)
+			r.Helper["OffsetLink"] = fmt.Sprintf("%s?", res.UrlTopicsFollowing)
 		}
-		r.Helper["Page"] = "following"
+		r.Helper["TopicPage"] = "following"
 		r.RenderTemplate(res.UrlTopics)
 	},
 }
