@@ -468,11 +468,14 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 	if err != nil {
 		return nil, jerr.Get("error getting db", err)
 	}
-	joinSelect := "LEFT OUTER JOIN (" +
+	joinSelect := "JOIN (" +
 		"	SELECT MAX(id) AS id" +
 		"	FROM memo_topic_follows" +
 		"	GROUP BY pk_hash, topic" +
 		") sq ON (sq.id = memo_topic_follows.id) "
+	if len(pkHash) == 0 {
+		joinSelect = "LEFT OUTER " + joinSelect
+	}
 	query := db.
 		Table("memo_posts").
 		Select("" +
@@ -480,9 +483,9 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 		"MAX(IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)) AS max_time, " +
 		"COUNT(DISTINCT memo_posts.id), " +
 		"COUNT(DISTINCT memo_topic_follows.id)").
-		Joins("LEFT OUTER JOIN memo_topic_follows ON (memo_posts.topic = memo_topic_follows.topic)").
+		Joins("LEFT JOIN memo_topic_follows ON (memo_posts.topic = memo_topic_follows.topic)").
 		Joins(joinSelect).
-		Joins("LEFT OUTER JOIN blocks ON (memo_posts.block_id = blocks.id)").
+		Joins("LEFT JOIN blocks ON (memo_posts.block_id = blocks.id)").
 		Group("memo_posts.topic").
 		Where("COALESCE(memo_topic_follows.unfollow, 0) = 0").
 		Limit(25).
@@ -493,7 +496,7 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 		query = query.Where("memo_posts.topic IS NOT NULL AND memo_posts.topic != ''")
 	}
 	if len(pkHash) > 0 {
-		query = query.Where("memo_topic_follows.pk_hash = ? AND memo_topic_follows.unfollow = 0", pkHash)
+		query = query.Where("memo_topic_follows.pk_hash = ?", pkHash)
 	}
 	switch orderType {
 	case TopicOrderTypeFollowers:
