@@ -61,6 +61,35 @@ func GetMemoTopicFollow(txHash []byte) (*MemoTopicFollow, error) {
 	return &memoFollowTopic, nil
 }
 
+func GetMemoTopicFollowCountForUser(pkHash []byte) (uint, error) {
+	if len(pkHash) == 0 {
+		return 0, nil
+	}
+	db, err := getDb()
+	if err != nil {
+		return 0, jerr.Get("error getting db", err)
+	}
+	sql := "" +
+		"SELECT COALESCE(SUM(IF(unfollow, 0, 1)), 0) AS following_count " +
+		"FROM memo_topic_follows " +
+		"JOIN (" +
+		"	SELECT MAX(id) AS id" +
+		"	FROM memo_topic_follows" +
+		"	WHERE pk_hash = ?" +
+		") sq ON (sq.id = memo_topic_follows.id)"
+	query := db.Raw(sql, pkHash)
+	var cnt uint
+	row := query.Row()
+	err = row.Scan(&cnt)
+	if err != nil {
+		if IsNoRowsInResultSetError(err) {
+			return 0, nil
+		}
+		return 0, jerr.Get("error in topic is following query", err)
+	}
+	return cnt, nil
+}
+
 func IsFollowingTopic(pkHash []byte, topic string) (bool, error) {
 	if len(pkHash) == 0 || topic == "" {
 		return false, nil

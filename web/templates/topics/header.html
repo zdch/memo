@@ -1,7 +1,9 @@
 <br/>
 {{ if .IsLoggedIn }}
 <p class="posts-nav">
+{{ if gt .TopicFollowCount 0 }}
     <a {{ if eq .TopicPage "following" }}class="sel"{{ end }} href="topics">{{ T "Following" }}</a>
+{{ end }}
     <a {{ if eq .TopicPage "all" }}class="sel"{{ end }} href="topics/all">{{ T "All" }}</a>
 </p>
 {{ end }}
