@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "skapa röstning"
+  },
+  {
+    "id": "search",
+    "translation": "söka"
   }
 ]

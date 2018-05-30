@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "create poll"
+  },
+  {
+    "id": "search",
+    "translation": "search"
   }
 ]

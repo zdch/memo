@@ -331,5 +331,9 @@
   {
     "id": "view_topic",
     "translation": "πηγαίνετε στο θέμα"
+  },
+  {
+    "id": "search",
+    "translation": "ψάχνω"
   }
 ]

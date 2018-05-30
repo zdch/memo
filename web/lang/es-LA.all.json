@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "crear encuesta"
+  },
+  {
+    "id": "search",
+    "translation": "buscar"
   }
 ]

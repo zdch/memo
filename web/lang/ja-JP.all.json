@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "作成する"
+  },
+  {
+    "id": "search",
+    "translation": "サーチ"
   }
 ]

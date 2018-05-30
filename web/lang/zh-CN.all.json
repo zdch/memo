@@ -327,5 +327,9 @@
   {
     "id": "create_poll",
     "translation": "创建"
+  },
+  {
+    "id": "search",
+    "translation": "寻找"
   }
 ]
