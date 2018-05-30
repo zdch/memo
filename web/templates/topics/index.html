@@ -1,24 +1,30 @@
 {{ template "snippets/header.html" . }}
 
+{{ template "topics/header.html" . }}
+
 <br/>
 
 <div class="topics-index-head center">
     <form id="topic-search-form" class="form-inline search-form">
-            <input id="topic-search" class="form-control" type="text" name="s" placeholder="Topic name" value="{{ .SearchString }}"/>
-            <input class="btn btn-primary" type="submit" value="Search"/>
+        <input id="topic-search" class="form-control" type="text" name="s" placeholder="Topic name"
+               value="{{ .SearchString }}"/>
+        <input class="btn btn-primary" type="submit" value="Search"/>
     </form>
     &nbsp;
     <a class="btn btn-default" href="topics/create">{{ T "Create_new_topic" }}</a>
 </div>
 
-{{ if and (eq .NextOffset 25) (lt (len .Topics) 25) }}{{ else }}
+{{ if not (and (eq .NextOffset 25) (lt (len .Topics) 25)) }}
 <p class="pagination">
     <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}"
        href="{{ .OffsetLink }}&offset={{ .PrevOffset }}">&lt; {{ T "previous" }}</a>
     <span class="page">{{ T "page" }} {{ .Page }}</span>
-    <a class="{{ if lt (len .Topics) 25 }}disabled{{ end }}" href="{{ .OffsetLink }}&offset={{ .NextOffset }}">{{ T "next" }}
+    <a class="{{ if lt (len .Topics) 25 }}disabled{{ end }}"
+       href="{{ .OffsetLink }}&offset={{ .NextOffset }}">{{ T "next" }}
         &gt;</a>
 </p>
+{{ else }}
+<br/>
 {{ end }}
 
 <table class="table left topics-table table-striped">
@@ -42,12 +48,13 @@
 
 <br/>
 
-{{ if and (eq .NextOffset 25) (lt (len .Topics) 25) }}{{ else }}
+{{ if not (and (eq .NextOffset 25) (lt (len .Topics) 25)) }}
 <p class="pagination">
     <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}"
        href="{{ .OffsetLink }}&offset={{ .PrevOffset }}">&lt; {{ T "previous" }}</a>
     <span class="page">{{ T "page" }} {{ .Page }}</span>
-    <a class="{{ if lt (len .Topics) 25 }}disabled{{ end }}" href="{{ .OffsetLink }}&offset={{ .NextOffset }}">{{ T "next" }}
+    <a class="{{ if lt (len .Topics) 25 }}disabled{{ end }}"
+       href="{{ .OffsetLink }}&offset={{ .NextOffset }}">{{ T "next" }}
         &gt;</a>
 </p>
 {{ end }}

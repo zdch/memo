@@ -454,23 +454,28 @@ func (t Topic) GetTimeAgo() string {
 	return util.GetTimeAgo(t.RecentTime)
 }
 
-func GetUniqueTopics(offset uint, searchString string) ([]*Topic, error) {
+func GetUniqueTopics(offset uint, searchString string, pkHash []byte) ([]*Topic, error) {
 	db, err := getDb()
 	if err != nil {
 		return nil, jerr.Get("error getting db", err)
 	}
 	query := db.
 		Table("memo_posts").
-		Select("topic, MAX(IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)) AS max_time, COUNT(*)").
+		Select("memo_posts.topic, MAX(IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)) AS max_time, COUNT(DISTINCT memo_posts.id)").
 		Joins("LEFT OUTER JOIN blocks ON (memo_posts.block_id = blocks.id)").
-		Group("topic").
+		Group("memo_posts.topic").
 		Order("max_time DESC").
 		Limit(25).
 		Offset(offset)
 	if searchString != "" {
-		query = query.Where("topic LIKE ?", fmt.Sprintf("%%%s%%", searchString))
+		query = query.Where("memo_posts.topic LIKE ?", fmt.Sprintf("%%%s%%", searchString))
 	} else {
-		query = query.Where("topic IS NOT NULL AND topic != ''")
+		query = query.Where("memo_posts.topic IS NOT NULL AND memo_posts.topic != ''")
+	}
+	if len(pkHash) > 0 {
+		query = query.
+			Joins("JOIN memo_topic_follows ON (memo_posts.topic = memo_topic_follows.topic)").
+			Where("memo_topic_follows.pk_hash = ?", pkHash)
 	}
 	rows, err := query.Rows()
 	if err != nil {
