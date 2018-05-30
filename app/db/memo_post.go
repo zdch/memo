@@ -484,7 +484,6 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 		Joins(joinSelect).
 		Joins("LEFT JOIN blocks ON (memo_posts.block_id = blocks.id)").
 		Group("memo_posts.topic").
-		Where("COALESCE(memo_topic_follows.unfollow, 0) = 0").
 		Where("(memo_topic_follows.id IS NULL OR sq.id IS NOT NULL)").
 		Limit(25).
 		Offset(offset)
