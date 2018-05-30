@@ -17,7 +17,7 @@
   },
   {
     "id": "profiles",
-    "translation": "档案"
+    "translation": "所有用户"
   },
   {
     "id": "login",
@@ -156,7 +156,7 @@
   },
   {
     "id": "post",
-    "translation": "回复"
+    "translation": "发布"
   },
   {
     "id": "profile_text",
@@ -239,7 +239,7 @@
   },
   {
     "id": "Create_new_topic",
-    "translation": "新话题"
+    "translation": "发布新话题"
   },
   {
     "id": "Most_recent_post",
@@ -271,7 +271,7 @@
   },
   {
     "id": "Guides",
-    "translation": "导游"
+    "translation": "使用说明"
   },
   {
     "id": "Signup",
@@ -303,15 +303,15 @@
   },
   {
     "id": "select_one_option",
-    "translation": "一票"
+    "translation": "单选"
   },
   {
     "id": "select_multiple_options",
-    "translation": "多票"
+    "translation": "多选"
   },
   {
     "id": "question",
-    "translation": "题"
+    "translation": "问题描述"
   },
   {
     "id": "option",
