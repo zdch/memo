@@ -1,23 +1,23 @@
 [
   {
     "id": "home",
-    "translation": "σπίτι"
+    "translation": "Σπίτι"
   },
   {
     "id": "dashboard",
-    "translation": "πίνακας_ελέγχου"
+    "translation": "Πίνακας ελέγχου"
   },
   {
     "id": "new_memo",
-    "translation": "νέο_μεμο"
+    "translation": "Νέο μεμο"
   },
   {
     "id": "posts",
-    "translation": "αναρτήσεις"
+    "translation": "Αναρτήσεις"
   },
   {
     "id": "profiles",
-    "translation": "προφίλ"
+    "translation": "Προφίλ"
   },
   {
     "id": "login",
@@ -29,67 +29,67 @@
   },
   {
     "id": "about",
-    "translation": "σχετικά_με"
+    "translation": "σχετικά με μας"
   },
   {
     "id": "protocol",
-    "translation": "προτόκολο"
+    "translation": "Πρωτόκολλο"
   },
   {
     "id": "disclaimer",
-    "translation": "αποποίηση"
+    "translation": "Αποποίηση"
   },
   {
     "id": "statistics",
-    "translation": "στατιστικά"
+    "translation": "Στατιστικά"
   },
   {
     "id": "name",
-    "translation": "όνομα"
+    "translation": "Όνομα"
   },
   {
     "id": "address",
-    "translation": "διεύθυνση"
+    "translation": "Διεύθυνση"
   },
   {
     "id": "followers",
-    "translation": "ακόλουθοι"
+    "translation": "Με ακολουθούν"
   },
   {
     "id": "following",
-    "translation": "σε_ακολουθεί"
+    "translation": "Ακολουθώ"
   },
   {
     "id": "balance",
-    "translation": "ισοζύγιο"
+    "translation": "Ποσό"
   },
   {
     "id": "profile",
-    "translation": "προφίλ"
+    "translation": "Προφίλ"
   },
   {
     "id": "actions",
-    "translation": "ενέργειες"
+    "translation": "Ενέργειες"
   },
   {
     "id": "view_your_profile",
-    "translation": "δες_το_προφίλ_σου"
+    "translation": "Δείξε το προφίλ μου"
   },
   {
     "id": "set_name",
-    "translation": ", όρισε_όνομα"
+    "translation": ", Επεξεργασία ονόματος"
   },
   {
     "id": "set_profile",
-    "translation": "όρισε_προφίλ"
+    "translation": "Επεξεργασία προφίλ"
   },
   {
     "id": "export_key",
-    "translation": "εξαγωγή_κλειδιού"
+    "translation": "Εξαγωγή κλειδιού"
   },
   {
     "id": "change_password",
-    "translation": "αλλαγή κωδικού"
+    "translation": "Αλλαγή κωδικού"
   },
   {
     "id": "reply",
@@ -98,8 +98,8 @@
   {
     "id": "like",
     "translation": {
-      "one": "άρεσε",
-      "other": "άρεσε"
+      "one": "μου αρέσει",
+      "other": "μου αρέσει"
     }
   },
   {
@@ -108,7 +108,7 @@
   },
   {
     "id": "likes",
-    "translation": "καρδούλες"
+    "translation": "καρδιές"
   },
   {
     "id": "top",
@@ -128,23 +128,23 @@
   },
   {
     "id": "last_hour",
-    "translation": "τελευταία_ώρα"
+    "translation": "τελευταία ώρα"
   },
   {
     "id": "last_24_hours",
-    "translation": "τελευταίες_24_ώρες"
+    "translation": "τελευταίες 24 ώρες"
   },
   {
     "id": "last_7_days",
-    "translation": "τελευταίες_7_ημέρες"
+    "translation": "τελευταίες 7 ημέρες"
   },
   {
     "id": "all_time",
-    "translation": "από_την_αρχή"
+    "translation": "από την αρχή"
   },
   {
     "id": "message",
-    "translation": "μήνυμα"
+    "translation": "Μήνυμα"
   },
   {
     "id": "password",
@@ -152,7 +152,7 @@
   },
   {
     "id": "save_password",
-    "translation": "αποθήκευση_κωδικού"
+    "translation": "Αποθήκευση κωδικού"
   },
   {
     "id": "post",
@@ -160,7 +160,7 @@
   },
   {
     "id": "profile_text",
-    "translation": "κείμενο_προφίλ"
+    "translation": "κείμενο προφίλ"
   },
   {
     "id": "feed",
@@ -168,7 +168,7 @@
   },
   {
     "id": "posted_at",
-    "translation": "αναρτήθηκε_στις"
+    "translation": "αναρτήθηκε στις"
   },
   {
     "id": "posted",
@@ -176,15 +176,15 @@
   },
   {
     "id": "view_on_block_explorer",
-    "translation": "δες_στον_block_explorer"
+    "translation": "κοίταξε στον block explorer"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": "δες_διεύθυνση_στον_block_explorer"
+    "translation": "κοίταξε την διεύθυνση στον block explorer"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": "δες_όνομα_στον_block_explorer"
+    "translation": "κοίταξε το όνομα στον block explorer"
   },
   {
     "id": "page",
@@ -211,7 +211,7 @@
   },
   {
     "id": "unfollow",
-    "translation": "σταματώ_να_ακολουθώ"
+    "translation": "σταματώ να ακολουθώ"
   },
   {
     "id": "next_day",
@@ -219,7 +219,7 @@
   },
   {
     "id": "previous_day",
-    "translation": "προηγούμενη_ημέρα"
+    "translation": "προηγούμενη ημέρα"
   },
   {
     "id": "Topic",
@@ -235,31 +235,31 @@
   },
   {
     "id": "Existing_Topics",
-    "translation": "Υπάρχοντες_Συζητήσεις"
+    "translation": "Υπάρχοντες Συζητήσεις"
   },
   {
     "id": "Create_new_topic",
-    "translation": "Δημιουργία_νέας_Συζήτησης"
+    "translation": "Δημιουργία νέας Συζήτησης"
   },
   {
     "id": "Most_recent_post",
-    "translation": "Πιο_πρόσφατες_αναρτήσεις"
+    "translation": "Πιο πρόσφατη ανάρτηση"
   },
   {
     "id": "Total_posts",
-    "translation": "Όλες_οι_αναρτήσεις"
+    "translation": "Σύνολο αναρτήσεων"
   },
   {
     "id": "Back_to_topics",
-    "translation": "Πίσω_στις_συζητήσεις"
+    "translation": "Πίσω στις Συζητήσεις"
   },
   {
     "id": "Forget_password",
-    "translation": "Ξέχασα_τον_κωδικό_μου"
+    "translation": "Ξέχασα τον κωδικό μου"
   },
   {
     "id": "Names_set",
-    "translation": "Όνομα_ορίστηκε"
+    "translation": "Όνομα ορίστηκε"
   },
   {
     "id": "Total",
@@ -267,7 +267,7 @@
   },
   {
     "id": "Delete_Account",
-    "translation": "Διαγραφή_λογαριασμού"
+    "translation": "Διαγραφή λογαριασμού"
   },
   {
     "id": "Guides",
@@ -295,7 +295,7 @@
   },
   {
     "id": "new_poll",
-    "translation": "νέα_δημοσκόπηση"
+    "translation": "Νέα δημοσκόπηση"
   },
   {
     "id": "type",
@@ -303,11 +303,11 @@
   },
   {
     "id": "select_one_option",
-    "translation": "Επιλέξτε_μια_επιλογή"
+    "translation": "Επιλέξτε μια επιλογή"
   },
   {
     "id": "select_multiple_options",
-    "translation": "Επιλέξτε_περισσότερες_επιλογές"
+    "translation": "Επιλέξετε περισσότερες επιλογές"
   },
   {
     "id": "question",
@@ -322,14 +322,10 @@
   },
   {
     "id": "add_option",
-    "translation": "προσθήκη_επιλογής"
+    "translation": "προσθήκη επιλογής"
   },
   {
     "id": "create_poll",
-    "translation": "δημιουργία_δημοσκόπηση ς"
-  },
-  {
-    "id": "view_topic",
-    "translation": "πηγαίνετε στο θέμα"
+    "translation": "δημιουργία δημοσκόπησης"
   }
 ]
