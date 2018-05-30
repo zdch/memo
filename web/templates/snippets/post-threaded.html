@@ -111,7 +111,7 @@
         </a>
     {{ end }}
     {{ if .Post.IsLoggedIn }}
-        {{ if not .Post.Memo.Topic }}
+        {{ if or (.ShowReply) (not .Post.Memo.Topic) }}
         <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" }}

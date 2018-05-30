@@ -8,6 +8,6 @@
 <br/>
 {{ end }}
 
-{{ template "snippets/post-threaded.html" dict "Post" .Post "Compress" false "TimeZone" .TimeZone "Offset" .Offset "UserSettings" .UserSettings }}
+{{ template "snippets/post-threaded.html" dict "Post" .Post "Compress" false "TimeZone" .TimeZone "Offset" .Offset "UserSettings" .UserSettings "ShowReply" true }}
 
 {{ template "snippets/footer.html" . }}
