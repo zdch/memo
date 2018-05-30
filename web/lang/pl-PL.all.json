@@ -1,0 +1,335 @@
+[
+  {
+    "id": "home",
+    "translation": "Strona główna"
+  },
+  {
+    "id": "dashboard",
+    "translation": "Pulpit"
+  },
+  {
+    "id": "new_memo",
+    "translation": "Nowe Memo"
+  },
+  {
+    "id": "posts",
+    "translation": "Posty"
+  },
+  {
+    "id": "profiles",
+    "translation": "Profile"
+  },
+  {
+    "id": "login",
+    "translation": "Zaloguj"
+  },
+  {
+    "id": "logout",
+    "translation": "Wyloguj <b>{{.Username}}</b>"
+  },
+  {
+    "id": "about",
+    "translation": "O nas"
+  },
+  {
+    "id": "protocol",
+    "translation": "Protokół"
+  },
+  {
+    "id": "disclaimer",
+    "translation": "Zastrzeżenie"
+  },
+  {
+    "id": "statistics",
+    "translation": "Statystyki"
+  },
+  {
+    "id": "name",
+    "translation": "Nazwa"
+  },
+  {
+    "id": "address",
+    "translation": "Adres"
+  },
+  {
+    "id": "followers",
+    "translation": "Obserwujący"
+  },
+  {
+    "id": "following",
+    "translation": "Obserwowani"
+  },
+  {
+    "id": "balance",
+    "translation": "Saldo"
+  },
+  {
+    "id": "profile",
+    "translation": "Profil"
+  },
+  {
+    "id": "actions",
+    "translation": "Akcje"
+  },
+  {
+    "id": "view_your_profile",
+    "translation": "Wyświetl swój profil"
+  },
+  {
+    "id": "set_name",
+    "translation": "Ustaw nazwę"
+  },
+  {
+    "id": "set_profile",
+    "translation": "Ustaw opis profilu"
+  },
+  {
+    "id": "export_key",
+    "translation": "Eksportuj klucz"
+  },
+  {
+    "id": "change_password",
+    "translation": "Zmień hasło"
+  },
+  {
+    "id": "reply",
+    "translation": "Odpowiedz"
+  },
+  {
+    "id": "like",
+    "translation": {
+      "one": "Polubienie",
+      "other": "Polubienia"
+    }
+  },
+  {
+    "id": "replies",
+    "translation": "odpowiedzi"
+  },
+  {
+    "id": "likes",
+    "translation": "polubienia"
+  },
+  {
+    "id": "top",
+    "translation": "Najpopularniejsze"
+  },
+  {
+    "id": "personalized",
+    "translation": "Spersonalizowane"
+  },
+  {
+    "id": "new",
+    "translation": "nowe"
+  },
+  {
+    "id": "archive",
+    "translation": "archiwalne"
+  },
+  {
+    "id": "last_hour",
+    "translation": "Ostatnia godzina"
+  },
+  {
+    "id": "last_24_hours",
+    "translation": "Ostatnie 24 godziny"
+  },
+  {
+    "id": "last_7_days",
+    "translation": "Ostatnie 7 dni"
+  },
+  {
+    "id": "all_time",
+    "translation": "Wszystkie"
+  },
+  {
+    "id": "message",
+    "translation": "Wiadomość"
+  },
+  {
+    "id": "password",
+    "translation": "Hasło"
+  },
+  {
+    "id": "save_password",
+    "translation": "Zapisz hasło"
+  },
+  {
+    "id": "post",
+    "translation": "Wyślij"
+  },
+  {
+    "id": "profile_text",
+    "translation": "Opis profilu"
+  },
+  {
+    "id": "feed",
+    "translation": "Aktualności"
+  },
+  {
+    "id": "posted_at",
+    "translation": "wysłano o"
+  },
+  {
+    "id": "posted",
+    "translation": "wysłano"
+  },
+  {
+    "id": "view_on_block_explorer",
+    "translation": "Sprawdź w eksploratorze bloków"
+  },
+  {
+    "id": "view_address_on_block_explorer",
+    "translation": "Sprawdź adres w eksploratorze bloków"
+  },
+  {
+    "id": "view_name_on_block_explorer",
+    "translation": "Sprawdź nazwę w eksploratorze bloków"
+  },
+  {
+    "id": "page",
+    "translation": "Strona"
+  },
+  {
+    "id": "previous",
+    "translation": "Poprzednie"
+  },
+  {
+    "id": "next",
+    "translation": "Następne"
+  },
+  {
+    "id": "connections",
+    "translation": "Powiązania"
+  },
+  {
+    "id": "follow",
+    "translation": {
+      "one": "Obserwuj",
+      "other": "Obserwuje"
+    }
+  },
+  {
+    "id": "unfollow",
+    "translation": "Przestań obserwować"
+  },
+  {
+    "id": "next_day",
+    "translation": "Następny dzień"
+  },
+  {
+    "id": "previous_day",
+    "translation": "Poprzedni dzień"
+  },
+  {
+    "id": "Topic",
+    "translation": "Temat"
+  },
+  {
+    "id": "Topics",
+    "translation": "Tematy"
+  },
+  {
+    "id": "Send",
+    "translation": "Wyślij"
+  },
+  {
+    "id": "Existing_Topics",
+    "translation": "Istniejące tematy"
+  },
+  {
+    "id": "Create_new_topic",
+    "translation": "Utwórz nowy temat"
+  },
+  {
+    "id": "Most_recent_post",
+    "translation": "Najnowszy post"
+  },
+  {
+    "id": "Total_posts",
+    "translation": "Wszystkie posty"
+  },
+  {
+    "id": "Back_to_topics",
+    "translation": "Wróć do tematów"
+  },
+  {
+    "id": "Forget_password",
+    "translation": "Usuń hasło z pamięci"
+  },
+  {
+    "id": "Names_set",
+    "translation": "Nadanych nazw"
+  },
+  {
+    "id": "Total",
+    "translation": "Łącznie"
+  },
+  {
+    "id": "Delete_Account",
+    "translation": "Usuń konto"
+  },
+  {
+    "id": "Guides",
+    "translation": "Poradniki"
+  },
+  {
+    "id": "Signup",
+    "translation": "Zarejestruj się"
+  },
+  {
+    "id": "Memo",
+    "translation": "Memo"
+  },
+  {
+    "id": "Poll",
+    "translation": "Ankieta"
+  },
+  {
+    "id": "Notifications",
+    "translation": "Powiadomienia"
+  },
+  {
+    "id": "Settings",
+    "translation": "Ustawienia"
+  },
+  {
+    "id": "new_poll",
+    "translation": "nowa ankieta"
+  },
+  {
+    "id": "type",
+    "translation": "typ"
+  },
+  {
+    "id": "select_one_option",
+    "translation": "Jednokrotnego wyboru"
+  },
+  {
+    "id": "select_multiple_options",
+    "translation": "Wielokrotnego wyboru"
+  },
+  {
+    "id": "question",
+    "translation": "pytanie"
+  },
+  {
+    "id": "option",
+    "translation": {
+      "one": "opcja",
+      "other": "opcje"
+    }
+  },
+  {
+    "id": "add_option",
+    "translation": "dodaj opcję"
+  },
+  {
+    "id": "create_poll",
+    "translation": "utwórz ankietę"
+  },
+  {
+    "id": "view_topic",
+    "translation": "przejdź do tematu"
+  }
+]
