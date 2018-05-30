@@ -110,7 +110,8 @@ func addGiphyImages(msg string) string {
 }
 
 func addLinks(msg string) string {
-	var re = regexp.MustCompile(`(^|\s)(http[s]?://[^\s]*)`)
+	// Explanation: https://github.com/jchavannes/memo/pull/57
+	var re = regexp.MustCompile(`(^|[\s(])(http[s]?://[^\s]*[^.?!,)\s])`)
 	s := re.ReplaceAllString(msg, `$1<a href="$2" target="_blank">$2</a>`)
 	return strings.Replace(s, "\n", "<br/>", -1)
 }
