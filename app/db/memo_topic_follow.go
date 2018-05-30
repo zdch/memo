@@ -76,6 +76,7 @@ func GetMemoTopicFollowCountForUser(pkHash []byte) (uint, error) {
 		"	SELECT MAX(id) AS id" +
 		"	FROM memo_topic_follows" +
 		"	WHERE pk_hash = ?" +
+		"	GROUP BY memo_topic_follows.topic" +
 		") sq ON (sq.id = memo_topic_follows.id)"
 	query := db.Raw(sql, pkHash)
 	var cnt uint
