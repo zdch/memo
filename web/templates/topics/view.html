@@ -13,7 +13,7 @@
     <input type="hidden" name="topic" value="{{ .Topic }}"/>
     <p>
         <label for="message">{{ T "message" }} <span class="message-byte-count byte-count"></span></label>
-        <input id="message" type="text" name="message" class="form-control" placeholder="{{ T "message" }}"
+        <input id="message" type="text" name="message" class="form-control" autocomplete="off" value="" placeholder="{{ T "message" }}"
                required/>
     </p>
     <p>
