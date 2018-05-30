@@ -52,8 +52,8 @@
                 return;
             }
 
-            if (topicName.search('%') >= 0) {
-                alert("The % character is not allowed in a topic name. Sorry for the inconvenience.");
+            if (topicName.match(/[%+]+/)) {
+                alert("Characters %,+ are not allowed in a topic name. Sorry for the inconvenience.");
                 return;
             }
 
