@@ -331,5 +331,17 @@
   {
     "id": "search",
     "translation": "寻找"
+  },
+  {
+    "id": "all",
+    "translation": "all"
+  },
+  {
+    "id": "most_posts",
+    "translation": "most posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most followed"
   }
 ]
