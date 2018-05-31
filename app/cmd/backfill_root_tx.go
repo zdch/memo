@@ -24,6 +24,9 @@ var backfillRootTx = &cobra.Command{
 				}
 				log.Fatal(jerr.Get("error getting memo posts", err))
 			}
+			if len(memoPosts) == 0 {
+				break
+			}
 			for _, memoPost := range memoPosts {
 				if len(memoPost.ParentTxHash) == 0 {
 					continue
