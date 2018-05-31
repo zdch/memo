@@ -5,7 +5,7 @@
     <p class="topic-view-nav">
         <a href="topics{{ if .LastTopicList }}/{{ .LastTopicList }}{{ end }}" class="btn btn-default">{{ T "Back_to_topics" }}</a>
     {{ if gt .FollowerCount 0 }}
-        <a class="btn btn-default" href="topics/followers/{{ .Topic }}">View {{ .FollowerCount }} followers</a>
+        <a class="btn btn-default" href="topics/followers/{{ .TopicEncoded }}">View {{ .FollowerCount }} followers</a>
     {{ end }}
     {{ if .IsLoggedIn }}
         <span id="follow-topic">

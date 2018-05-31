@@ -117,6 +117,7 @@ var viewRoute = web.Route{
 		}
 		r.Helper["Title"] = "Memo Topic - " + topicPosts[0].Memo.Topic
 		r.Helper["Topic"] = topicPosts[0].Memo.Topic
+		r.Helper["TopicEncoded"] = topicPosts[0].Memo.GetUrlEncodedTopic()
 		r.Helper["Posts"] = topicPosts
 		r.Helper["FollowerCount"] = followerCount
 		r.Helper["FirstPostId"] = topicPosts[0].Memo.Id
