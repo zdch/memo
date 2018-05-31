@@ -6,6 +6,7 @@ import (
 	"github.com/memocash/memo/app/bitcoin/memo"
 	"github.com/memocash/memo/app/cache"
 	"github.com/memocash/memo/app/db"
+	"github.com/memocash/memo/app/obj/rep"
 	"github.com/memocash/memo/app/util"
 	"regexp"
 	"strings"
@@ -21,7 +22,7 @@ type Post struct {
 	SelfPkHash   []byte
 	ReplyCount   uint
 	Replies      []*Post
-	Reputation   *Reputation
+	Reputation   *rep.Reputation
 	ShowMedia    bool
 	Poll         *Poll
 	VoteQuestion *db.MemoPost

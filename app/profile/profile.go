@@ -11,6 +11,7 @@ import (
 	"github.com/memocash/memo/app/bitcoin/wallet"
 	"github.com/memocash/memo/app/cache"
 	"github.com/memocash/memo/app/db"
+	"github.com/memocash/memo/app/obj/rep"
 	"github.com/skip2/go-qrcode"
 	"regexp"
 	"strings"
@@ -31,7 +32,7 @@ type Profile struct {
 	FollowingCount uint
 	Followers      []*Follower
 	Following      []*Follower
-	Reputation     *Reputation
+	Reputation     *rep.Reputation
 	CanFollow      bool
 	CanUnfollow    bool
 	Qr             string
@@ -141,7 +142,7 @@ func (p *Profile) SetCanFollow() error {
 }
 
 func (p *Profile) SetReputation() error {
-	reputation, err := GetReputation(p.SelfPkHash, p.PkHash)
+	reputation, err := rep.GetReputation(p.SelfPkHash, p.PkHash)
 	if err != nil {
 		return jerr.Get("error getting reputation", err)
 	}

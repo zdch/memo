@@ -76,9 +76,23 @@ var viewRoute = web.Route{
 			r.Error(jerr.Get("error setting show media for posts", err), http.StatusInternalServerError)
 			return
 		}
+		if len(userPkHash) > 0 {
+			isFollowing, err := db.IsFollowingTopic(userPkHash, unescaped)
+			if err != nil {
+				r.Error(jerr.Get("error checking if user is following topic", err), http.StatusInternalServerError)
+				return
+			}
+			r.Helper["IsFollowingTopic"] = isFollowing
+		}
+		followerCount, err := db.GetFollowerCountForTopic(unescaped)
+		if err != nil {
+			r.Error(jerr.Get("error getting follower count for topic", err), http.StatusInternalServerError)
+			return
+		}
 		r.Helper["Title"] = "Memo Topic - " + topicPosts[0].Memo.Topic
 		r.Helper["Topic"] = topicPosts[0].Memo.Topic
 		r.Helper["Posts"] = topicPosts
+		r.Helper["FollowerCount"] = followerCount
 		r.Helper["FirstPostId"] = topicPosts[0].Memo.Id
 		r.Helper["LastPostId"] = topicPosts[len(topicPosts)-1].Memo.Id
 		r.Helper["LastLikeId"] = lastLikeId

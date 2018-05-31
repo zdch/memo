@@ -1,0 +1,64 @@
+{{ template "snippets/header.html" . }}
+
+<br/>
+
+<p>
+    <a class="btn btn-default" href="topic/{{ .Topic }}">Back to topic <b>{{ .Topic }}</b></a>
+</p>
+
+{{ if and (eq .NextOffset 25) (lt (len .TopicFollowers) 25) }}{{ else }}
+<p class="pagination">
+    <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}" href="{{ .OffsetLink }}?offset={{ .PrevOffset }}">
+        &lt; {{ T "previous" }}</a>
+    <span class="page">{{ T "page" }} {{ .Page }}</span>
+    <a class="{{ if lt (len .TopicFollowers) 25 }}disabled{{ end }}" href="{{ .OffsetLink }}?offset={{ .NextOffset }}">
+    {{ T "next" }} &gt;</a>
+</p>
+{{ end }}
+
+<br/>
+<table class="table">
+    <thead>
+    <tr>
+        <th>{{ T "name" }}</th>
+        <th>{{ T "address" }}</th>
+        <th>{{ T "connections" }}</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {{ range .TopicFollowers }}
+    <tr>
+        <td>
+            <a href="/profile/{{ .GetAddressString }}">
+            {{ .Name }}
+            </a>
+        </td>
+        <td>
+            <a href="/profile/{{ .GetAddressString }}">
+            {{ .GetAddressString }}
+            </a>
+        </td>
+        <td>
+        {{ if .Reputation }}
+        {{ .Reputation.GetPercentStringIncludingDirect }}
+        {{ end }}
+        </td>
+        </a>
+    </tr>
+    {{ end }}
+    </tbody>
+</table>
+<br/>
+
+{{ if and (eq .NextOffset 25) (lt (len .TopicFollowers) 25) }}{{ else }}
+<p class="pagination">
+    <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}" href="{{ .OffsetLink }}?offset={{ .PrevOffset }}">
+        &lt; {{ T "previous" }}</a>
+    <span class="page">{{ T "page" }} {{ .Page }}</span>
+    <a class="{{ if lt (len .TopicFollowers) 25 }}disabled{{ end }}" href="{{ .OffsetLink }}?offset={{ .NextOffset }}">
+    {{ T "next" }} &gt;</a>
+</p>
+{{ end }}
+
+{{ template "snippets/footer.html" . }}

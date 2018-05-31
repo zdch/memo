@@ -327,5 +327,21 @@
   {
     "id": "create_poll",
     "translation": "투표 작성"
+  },
+  {
+    "id": "search",
+    "translation": "찾다"
+  },
+  {
+    "id": "all",
+    "translation": "all"
+  },
+  {
+    "id": "most_posts",
+    "translation": "most posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most followed"
   }
 ]
