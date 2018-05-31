@@ -6,6 +6,7 @@ import (
 	"github.com/jchavannes/jgo/jerr"
 	"github.com/memocash/memo/app/bitcoin/wallet"
 	"github.com/memocash/memo/app/db"
+	"github.com/memocash/memo/app/obj/rep"
 	"time"
 )
 
@@ -94,7 +95,7 @@ func AttachLikesToPosts(posts []*Post) error {
 
 func AttachReputationToPosts(posts []*Post) error {
 	for _, post := range posts {
-		reputation, err := GetReputation(post.SelfPkHash, post.Memo.PkHash)
+		reputation, err := rep.GetReputation(post.SelfPkHash, post.Memo.PkHash)
 		if err != nil {
 			return jerr.Get("error getting reputation", err)
 		}
