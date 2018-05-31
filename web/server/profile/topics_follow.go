@@ -41,7 +41,7 @@ var topicsFollowingRoute = web.Route{
 			return
 		}
 		r.Helper["Profile"] = pf
-		topics, err := db.GetUniqueTopics(uint(offset), "", userPkHash, db.TopicOrderTypeRecent)
+		topics, err := db.GetUniqueTopics(uint(offset), "", pf.PkHash, db.TopicOrderTypeRecent)
 		if err != nil {
 			r.Error(jerr.Get("error setting following for hash", err), http.StatusInternalServerError)
 			return
