@@ -93,7 +93,10 @@
   },
   {
     "id": "reply",
-    "translation": "Svar"
+    "translation": {
+      "one": "svar",
+      "other": "svar"
+    }
   },
   {
     "id": "like",
@@ -101,10 +104,6 @@
       "one": "Gilla",
       "other": "Gillar"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "svar"
   },
   {
     "id": "likes",

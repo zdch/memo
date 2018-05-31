@@ -93,7 +93,10 @@
   },
   {
     "id": "reply",
-    "translation": "返信する"
+    "translation": {
+      "one": "返信する",
+      "other": "返信"
+    }
   },
   {
     "id": "like",
@@ -101,10 +104,6 @@
       "one": "いいね",
       "other": "いいね"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "返信"
   },
   {
     "id": "likes",

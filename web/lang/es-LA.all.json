@@ -93,7 +93,10 @@
   },
   {
     "id": "reply",
-    "translation": "Respuesta"
+    "translation": {
+      "one": "respuesta",
+      "other": "respuestas"
+    }
   },
   {
     "id": "like",
@@ -101,10 +104,6 @@
       "one": "Me gusta",
       "other": "Me gustas"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "respuestas"
   },
   {
     "id": "likes",

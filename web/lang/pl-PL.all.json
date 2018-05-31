@@ -93,7 +93,10 @@
   },
   {
     "id": "reply",
-    "translation": "Odpowiedz"
+    "translation": {
+      "one": "odpowiedz",
+      "other": "odpowiedzi"
+    }
   },
   {
     "id": "like",
@@ -101,10 +104,6 @@
       "one": "Polubienie",
       "other": "Polubienia"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "odpowiedzi"
   },
   {
     "id": "likes",

@@ -93,7 +93,10 @@
   },
   {
     "id": "reply",
-    "translation": "απάντηση"
+    "translation": {
+      "one": "απάντηση",
+      "other": "απαντήσεις"
+    }
   },
   {
     "id": "like",
@@ -101,10 +104,6 @@
       "one": "μου αρέσει",
       "other": "μου αρέσει"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "απαντήσεις"
   },
   {
     "id": "likes",

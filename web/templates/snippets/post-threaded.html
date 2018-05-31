@@ -70,7 +70,7 @@
     <p>
     {{ len .Post.Likes }} likes -
         <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">Show</a>
-        (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis) &middot; {{ .Post.ReplyCount }} {{ T "replies" }}
+        (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis) &middot; {{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}
     </p>
 
     <div id="likes-{{ .Post.Memo.GetTransactionHashString }}" style="display:none">
@@ -101,7 +101,7 @@
     <p class="likes">
         <i>
             <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "likes" }}</a>
-            &middot; <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
+            &middot; <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}</a>
         </i>
     </p>
 {{ end }}
@@ -116,7 +116,7 @@
         {{ if or (.ShowReply) (not .Post.Memo.Topic) }}
         <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
-            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" }}
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" 1 | Title }}
         </a>
        {{ end }}
         <span class="creating hidden btn btn-warning">Creating...</span>

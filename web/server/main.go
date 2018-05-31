@@ -21,6 +21,7 @@ import (
 	"net/http"
 	"strings"
 	"unicode"
+	"strconv"
 )
 
 var UseMinJS bool
@@ -121,6 +122,18 @@ func preHandler(r *web.Response) {
 				}
 			}
 			return ""
+		},
+		"ToInt": func(value interface{}) int64 {
+			switch v := value.(type){
+				case string:
+					converted, err := strconv.ParseInt(v, 10, 64)
+					if err != nil {
+						log.Fatal(jerr.Get("error casting to int in template", err))
+					}
+					return converted
+				default:
+					return 0
+				}
 		},
 	})
 }
