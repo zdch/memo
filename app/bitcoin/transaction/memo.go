@@ -170,7 +170,6 @@ func saveMemoPost(txn *db.Transaction, out *db.TransactionOut, blockId uint, inp
 	var message = string(pushData[1])
 	memoPost = &db.MemoPost{
 		TxHash:     txn.Hash,
-		RootTxHash: txn.Hash,
 		PkHash:     inputAddress.ScriptAddress(),
 		PkScript:   out.PkScript,
 		ParentHash: parentHash,
