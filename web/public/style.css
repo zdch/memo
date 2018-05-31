@@ -389,15 +389,24 @@ span.page {
         height: 50%;
     }
 }
-.topics-table tr td:nth-child(1) {
+.topics-table>thead>tr>th,
+.topics-table>tbody>tr>td {
+    vertical-align: middle;
+}
+.topics-table tr td:nth-of-type(1) {
     max-width: 400px;
+    padding-left: 22px;
+    position: relative;
 }
 .topics-table a {
     color: #000;
 }
 .topics-table .glyphicon {
     color: #487521;
-    top: -1px;
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    left: 5px;
     font-size: 9px;
     margin-right: 2px;
 }
