@@ -6,7 +6,7 @@ import (
 	"github.com/jchavannes/jgo/web"
 	"github.com/memocash/memo/app/auth"
 	"github.com/memocash/memo/app/db"
-	"github.com/memocash/memo/app/obj/topic_followers"
+	"github.com/memocash/memo/app/obj/top"
 	"github.com/memocash/memo/app/res"
 	"net/http"
 	"net/url"
@@ -34,7 +34,7 @@ var followersRoute = web.Route{
 			}
 			userPkHash = key.PkHash
 		}
-		topicFollowers, err := topic_followers.GetFollowersForTopic(unescaped, userPkHash)
+		topicFollowers, err := top.GetFollowersForTopic(unescaped, userPkHash)
 		if err != nil {
 			r.Error(jerr.Get("error getting followers for topic", err), http.StatusInternalServerError)
 			return

@@ -59,13 +59,14 @@ const (
 )
 
 const (
-	UrlProfiles              = "/profiles"
-	UrlProfileView           = "/profile"
-	UrlProfileFollowers      = "/profile/followers"
-	UrlProfileFollowing      = "/profile/following"
-	UrlProfileSettings       = "/settings"
-	UrlProfileSettingsSubmit = "/settings-submit"
-	UrlProfileNotifications  = "/notifications"
+	UrlProfiles               = "/profiles"
+	UrlProfileView            = "/profile"
+	UrlProfileFollowers       = "/profile/followers"
+	UrlProfileFollowing       = "/profile/following"
+	UrlProfileSettings        = "/settings"
+	UrlProfileSettingsSubmit  = "/settings-submit"
+	UrlProfileNotifications   = "/notifications"
+	UrlProfileTopicsFollowing = "/profile/topics-following"
 
 	TmplProfiles             = "/profile/all"
 	TmplProfileSettings      = "/profile/settings"

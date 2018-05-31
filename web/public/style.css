@@ -713,7 +713,9 @@ table.poll-results td:nth-of-type(2) {
     width: 150px;
     min-width: 150px;
 }
-
+.topic-view-nav a.btn {
+    margin: 5px 0;
+}
 
 body.dark #new-poll-form .glyphicon-remove {
     color: rgba(255,50,50,0.75);

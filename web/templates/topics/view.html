@@ -2,7 +2,7 @@
 
 <div class="center">
     <h2>{{ T "Topic" }} - {{ .Topic }}</h2>
-    <p>
+    <p class="topic-view-nav">
         <a href="topics" class="btn btn-default">{{ T "Back_to_topics" }}</a>
     {{ if gt .FollowerCount 0 }}
         <a class="btn btn-default" href="topics/followers/{{ .Topic }}">View {{ .FollowerCount }} followers</a>

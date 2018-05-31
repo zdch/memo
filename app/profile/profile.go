@@ -18,24 +18,25 @@ import (
 )
 
 type Profile struct {
-	Name           string
-	PkHash         []byte
-	NameTx         []byte
-	Profile        string
-	ProfileTx      []byte
-	Self           bool
-	SelfPkHash     []byte
-	Balance        int64
-	BalanceBCH     float64
-	hasBalance     bool
-	FollowerCount  uint
-	FollowingCount uint
-	Followers      []*Follower
-	Following      []*Follower
-	Reputation     *rep.Reputation
-	CanFollow      bool
-	CanUnfollow    bool
-	Qr             string
+	Name                 string
+	PkHash               []byte
+	NameTx               []byte
+	Profile              string
+	ProfileTx            []byte
+	Self                 bool
+	SelfPkHash           []byte
+	Balance              int64
+	BalanceBCH           float64
+	hasBalance           bool
+	FollowerCount        uint
+	FollowingCount       uint
+	TopicsFollowingCount uint
+	Followers            []*Follower
+	Following            []*Follower
+	Reputation           *rep.Reputation
+	CanFollow            bool
+	CanUnfollow          bool
+	Qr                   string
 }
 
 func (p Profile) IsSelf() bool {
@@ -131,13 +132,22 @@ func (p *Profile) SetFollowingCount() error {
 	return nil
 }
 
+func (p *Profile) SetTopicsFollowingCount() error {
+	cnt, err := db.GetMemoTopicFollowCountForUser(p.PkHash)
+	if err != nil {
+		return jerr.Get("error getting topic following count for hash", err)
+	}
+	p.TopicsFollowingCount = cnt
+	return nil
+}
+
 func (p *Profile) SetCanFollow() error {
 	canFollow, err := CanFollow(p.PkHash, p.SelfPkHash)
 	if err != nil {
 		return jerr.Get("error getting can follow", err)
 	}
 	p.CanFollow = canFollow
-	p.CanUnfollow = !canFollow && bytes.Compare(p.PkHash, p.SelfPkHash) !=0
+	p.CanUnfollow = !canFollow && bytes.Compare(p.PkHash, p.SelfPkHash) != 0
 	return nil
 }
 
@@ -244,5 +254,5 @@ func CanFollow(pkHash []byte, selfPkHash []byte) (bool, error) {
 	if err != nil {
 		return false, jerr.Get("error determining is follower from db", err)
 	}
-	return !isFollowing && bytes.Compare(pkHash, selfPkHash) !=0, nil
+	return !isFollowing && bytes.Compare(pkHash, selfPkHash) != 0, nil
 }

@@ -16,6 +16,7 @@ func GetRoutes() []web.Route {
 		settingsRoute,
 		settingsSubmitRoute,
 		notificationsRoute,
+		topicsFollowingRoute,
 	}
 }
 

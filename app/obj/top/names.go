@@ -1,4 +1,4 @@
-package topic_followers
+package top
 
 import (
 	"bytes"
