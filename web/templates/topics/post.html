@@ -46,8 +46,11 @@
                 {{- else }}
                     <a class="like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}" href="#">{{ T "like" 1 }}</a>
                 {{- end }}
+                    &middot;
                 {{- if not (eq .Post.ReplyCount 0) }}
                     <a class="reply-count" href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
+                {{ else }}
+                    <a class="reply-count" href="post/{{ .Post.Memo.GetTransactionHashString }}">Start thread</a>
                 {{ end }}
                 </span>
                 <form class="like-form" id="like-form-{{ .Post.Memo.GetTransactionHashString }}">
