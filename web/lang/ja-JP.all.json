@@ -329,6 +329,10 @@
     "translation": "作成する"
   },
   {
+    "id": "view_topic",
+    "translation": "トピックを表示"
+  },
+  {
     "id": "search",
     "translation": "サーチ"
   },
@@ -343,5 +347,9 @@
   {
     "id": "most_followed",
     "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]

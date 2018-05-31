@@ -105,6 +105,7 @@ var postThreadedAjaxRoute = web.Route{
 			return
 		}
 		r.Helper["Post"] = post
+		r.Helper["ShowReply"] = true
 		r.Helper["Offset"] = 0
 		r.RenderTemplate(res.TmplSnippetsPostThreaded)
 	},

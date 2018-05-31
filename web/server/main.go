@@ -20,6 +20,7 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"unicode"
 )
 
 var UseMinJS bool
@@ -113,6 +114,14 @@ func preHandler(r *web.Response) {
 	r.SetFuncMap(map[string]interface{}{
 		"T": i18n.MustTfunc(lang),
 		"Title": strings.Title,
+		"UcFirst": func(str string) string { // UC first character only
+			if len(str) > 0 {
+				for _, c := range str {
+					return string(unicode.ToUpper(c)) + string([]rune(str)[1:])
+				}
+			}
+			return ""
+		},
 	})
 }
 

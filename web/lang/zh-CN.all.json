@@ -329,6 +329,10 @@
     "translation": "创建"
   },
   {
+    "id": "view_topic",
+    "translation": "主题"
+  },
+  {
     "id": "search",
     "translation": "寻找"
   },
@@ -343,5 +347,9 @@
   {
     "id": "most_followed",
     "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]

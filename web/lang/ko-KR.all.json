@@ -329,6 +329,10 @@
     "translation": "투표 작성"
   },
   {
+    "id": "view_topic",
+    "translation": "주제보기"
+  },
+  {
     "id": "search",
     "translation": "찾다"
   },
@@ -343,5 +347,9 @@
   {
     "id": "most_followed",
     "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]

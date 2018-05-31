@@ -65,17 +65,28 @@
             <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "likes" }}</a>
         {{- if .Post.Likes }}
             (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
-        {{- end }} &middot;
+        {{- end }}
+        {{ if or (and .Post.Memo.Topic (gt .Post.ReplyCount 0)) (not .Post.Memo.Topic) }}
+            &middot;
             <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
+        {{ end }}
         </i>
     </p>
 {{ if not .Compress }}
     <div class="actions">
+    {{ if .Post.Memo.Topic }}
+        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
+           href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>{{ T "view_topic" | UcFirst }}
+        </a>
+     {{ end }}
     {{ if .Post.IsLoggedIn }}
+        {{ if not .Post.Memo.Topic }}
         <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" }}
         </a>
+        {{ end }}
         <span class="creating hidden btn btn-warning">Creating...</span>
         <span class="broadcasting hidden btn btn-warning">Broadcasting...</span>
         <div class="like" id="like-{{ .Post.Memo.GetTransactionHashString }}">

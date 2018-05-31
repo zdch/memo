@@ -329,6 +329,10 @@
     "translation": "créer un sondage"
   },
   {
+    "id": "view_topic",
+    "translation": "aller au sujet"
+  },
+  {
     "id": "search",
     "translation": "chercher"
   },
@@ -343,5 +347,9 @@
   {
     "id": "most_followed",
     "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]

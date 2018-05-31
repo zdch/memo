@@ -104,11 +104,19 @@
     </p>
 {{ end }}
     <div class="actions">
+    {{ if .Post.Memo.Topic }}
+        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
+           href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>{{ T "view_topic" | UcFirst }}
+        </a>
+    {{ end }}
     {{ if .Post.IsLoggedIn }}
+        {{ if or (.ShowReply) (not .Post.Memo.Topic) }}
         <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" }}
         </a>
+       {{ end }}
         <span class="creating hidden btn btn-warning">Creating...</span>
         <span class="broadcasting hidden btn btn-warning">Broadcasting...</span>
         <div class="like" id="like-{{ .Post.Memo.GetTransactionHashString }}">

@@ -329,6 +329,10 @@
     "translation": ""
   },
   {
+    "id": "view_topic",
+    "translation": ""
+  },
+  {
     "id": "search",
     "translation": ""
   },
@@ -343,5 +347,9 @@
   {
     "id": "most_followed",
     "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]
