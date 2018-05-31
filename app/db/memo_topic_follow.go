@@ -173,3 +173,11 @@ func GetFollowerCountForTopic(topic string) (uint, error) {
 	}
 	return cnt, nil
 }
+
+func GetCountMemoTopicFollow() (uint, error) {
+	cnt, err := count(&MemoTopicFollow{})
+	if err != nil {
+		return 0, jerr.Get("error getting total count", err)
+	}
+	return cnt, nil
+}

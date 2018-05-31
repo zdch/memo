@@ -41,18 +41,25 @@ var statsRoute = web.Route{
 			r.Error(jerr.Get("error getting memo poll vote count", err), http.StatusInternalServerError)
 			return
 		}
+		memoTopicFollowCount, err := db.GetCountMemoTopicFollow()
+		if err != nil {
+			r.Error(jerr.Get("error getting memo topic follow count", err), http.StatusInternalServerError)
+			return
+		}
 		r.Helper["MemoFollowCount"] = int64(memoFollowCount)
 		r.Helper["MemoLikeCount"] = int64(memoLikeCount)
 		r.Helper["MemoPostCount"] = int64(memoPostCount)
 		r.Helper["MemoSetNameCount"] = int64(memoSetNameCount)
 		r.Helper["MemoPollQuestionCount"] = int64(memoPollQuestionCount)
 		r.Helper["MemoPollVoteCount"] = int64(memoPollVoteCount)
+		r.Helper["MemoTopicFollowCount"] = int64(memoTopicFollowCount)
 		r.Helper["MemoTotalActionCount"] = int64(memoFollowCount +
 			memoLikeCount +
 			memoPostCount +
 			memoSetNameCount +
 			memoPollQuestionCount +
-			memoPollVoteCount)
+			memoPollVoteCount +
+			memoTopicFollowCount)
 
 		r.Render()
 	},
