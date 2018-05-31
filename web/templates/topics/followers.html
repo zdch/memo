@@ -3,7 +3,7 @@
 <br/>
 
 <p>
-    <a class="btn btn-default" href="topic/{{ .Topic }}">Back to topic <b>{{ .Topic }}</b></a>
+    <a class="btn btn-default" href="topic/{{ .TopicEncoded }}">Back to topic <b>{{ .Topic }}</b></a>
 </p>
 
 {{ if and (eq .NextOffset 25) (lt (len .TopicFollowers) 25) }}{{ else }}
