@@ -44,7 +44,8 @@ var viewRoute = web.Route{
 			return
 		}
 		if len(topicPosts) == 0 {
-			r.Error(jerr.New("no posts for topic"), http.StatusInternalServerError)
+			jerr.New("no posts for topic").Print()
+			r.SetRedirect(res.UrlTopics)
 			return
 		}
 		if len(userPkHash) > 0 {

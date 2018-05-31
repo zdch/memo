@@ -6,6 +6,7 @@ import (
 	"github.com/jchavannes/jgo/web"
 	"github.com/memocash/memo/app/auth"
 	"github.com/memocash/memo/app/db"
+	"github.com/memocash/memo/app/html-parser"
 	"github.com/memocash/memo/app/obj/top"
 	"github.com/memocash/memo/app/res"
 	"net/http"
@@ -39,11 +40,12 @@ var followersRoute = web.Route{
 			r.Error(jerr.Get("error getting followers for topic", err), http.StatusInternalServerError)
 			return
 		}
-		r.Helper["Title"] = fmt.Sprintf("Memo Topic Followers - %s", topicFollowers[0].MemoTopicFollow.Topic)
-		r.Helper["Topic"] = topicFollowers[0].MemoTopicFollow.Topic
+		var topicName = html_parser.EscapeWithEmojis(unescaped)
+		r.Helper["Title"] = fmt.Sprintf("Memo Topic Followers - %s", topicName)
+		r.Helper["Topic"] = topicName
 		r.Helper["TopicFollowers"] = topicFollowers
 		res.SetPageAndOffset(r, offset)
-		r.Helper["OffsetLink"] = fmt.Sprintf("%s/%s?", strings.TrimLeft(res.UrlTopicsFollowers, "/"), topicFollowers[0].MemoTopicFollow.Topic)
+		r.Helper["OffsetLink"] = fmt.Sprintf("%s/%s?", strings.TrimLeft(res.UrlTopicsFollowers, "/"), topicName)
 		r.RenderTemplate(res.UrlTopicsFollowers)
 	},
 }
