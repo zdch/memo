@@ -327,5 +327,29 @@
   {
     "id": "create_poll",
     "translation": "作成する"
+  },
+  {
+    "id": "view_topic",
+    "translation": "トピックを表示"
+  },
+  {
+    "id": "search",
+    "translation": "サーチ"
+  },
+  {
+    "id": "all",
+    "translation": "all"
+  },
+  {
+    "id": "most_posts",
+    "translation": "most posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]

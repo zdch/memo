@@ -327,5 +327,29 @@
   {
     "id": "create_poll",
     "translation": "create poll"
+  },
+  {
+    "id": "view_topic",
+    "translation": "view topic"
+  },
+  {
+    "id": "search",
+    "translation": "search"
+  },
+  {
+    "id": "all",
+    "translation": "all"
+  },
+  {
+    "id": "most_posts",
+    "translation": "most posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]

@@ -1,0 +1,66 @@
+{{ template "snippets/header.html" . }}
+
+<br/>
+
+<p>
+    <a class="btn btn-default" href="profile/{{ .Profile.GetAddressString }}">Back to {{ .Profile.Name }}'s Profile</a>
+</p>
+
+{{ if not .Topics }}
+<h3>{{ .Profile.Name }} is not following any topics yet</h3>
+{{ else }}
+<h3>Topics {{ .Profile.Name }} is following</h3>
+{{ end }}
+
+{{ if and (eq .NextOffset 25) (lt (len .Topics) 25) }}{{ else }}
+<p class="pagination">
+    <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}" href="{{ .OffsetLink }}?offset={{ .PrevOffset }}">
+        &lt; {{ T "previous" }}</a>
+    <span class="page">{{ T "page" }} {{ .Page }}</span>
+    <a class="{{ if lt (len .Topics) 25 }}disabled{{ end }}" href="{{ .OffsetLink }}?offset={{ .NextOffset }}">
+    {{ T "next" }} &gt;</a>
+</p>
+{{ end }}
+
+{{ if .Topics }}
+<table class="table left topics-table table-striped">
+    <thead>
+    <tr>
+        <th>{{ T "Topic" }}</th>
+        <th>{{ T "Most_recent_post" }}</th>
+        <th>{{ T "posts" }}</th>
+        <th>{{ T "followers" }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ range .Topics }}
+    <tr>
+        <td><a href="topic/{{ .GetUrlEncoded }}">{{ .Name }}</a></td>
+        <td>{{ .GetTimeAgo }}</td>
+        <td>{{ .CountPosts }}</td>
+        <td>
+        {{if gt .CountFollows 0 }}
+            <a href="topics/followers/{{ .GetUrlEncoded }}">{{ .CountFollows }}</a>
+        {{ else }}
+            {{ .CountFollows }}
+        {{ end }}
+        </td>
+    </tr>
+    {{ end }}
+    </tbody>
+</table>
+{{ end }}
+
+{{ if and (eq .NextOffset 25) (lt (len .Topics) 25) }}{{ else }}
+<p class="pagination">
+    <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}" href="{{ .OffsetLink }}?offset={{ .PrevOffset }}">
+        &lt; {{ T "previous" }}</a>
+    <span class="page">{{ T "page" }} {{ .Page }}</span>
+    <a class="{{ if lt (len .Topics) 25 }}disabled{{ end }}" href="{{ .OffsetLink }}?offset={{ .NextOffset }}">
+    {{ T "next" }} &gt;</a>
+</p>
+{{ end }}
+
+<br/>
+
+{{ template "snippets/footer.html" . }}

@@ -4,6 +4,7 @@ import (
 	"github.com/jchavannes/jgo/jerr"
 	"github.com/jchavannes/jgo/web"
 	"github.com/memocash/memo/app/auth"
+	"github.com/memocash/memo/app/cache"
 	"github.com/memocash/memo/app/db"
 	"github.com/memocash/memo/app/profile"
 	"github.com/memocash/memo/app/res"
@@ -71,17 +72,56 @@ var viewRoute = web.Route{
 				}
 			}
 		}
+		if len(userPkHash) > 0 {
+			lastPostId, err := db.GetLastTopicPostId(userPkHash, unescaped)
+			if err != nil {
+				r.Error(jerr.Get("error getting last topic post id from db", err), http.StatusInternalServerError)
+				return
+			}
+			var newLastPostId= lastPostId
+			for _, topicPost := range topicPosts {
+				if topicPost.Memo.Id > newLastPostId {
+					newLastPostId = topicPost.Memo.Id
+				}
+			}
+			if newLastPostId > lastPostId {
+				err = db.SetLastTopicPostId(userPkHash, unescaped, newLastPostId)
+				if err != nil {
+					r.Error(jerr.Get("error setting last topic post id in db", err), http.StatusInternalServerError)
+					return
+				}
+			}
+		}
 		err = profile.SetShowMediaForPosts(topicPosts, userId)
 		if err != nil {
 			r.Error(jerr.Get("error setting show media for posts", err), http.StatusInternalServerError)
 			return
 		}
+		if len(userPkHash) > 0 {
+			isFollowing, err := db.IsFollowingTopic(userPkHash, unescaped)
+			if err != nil {
+				r.Error(jerr.Get("error checking if user is following topic", err), http.StatusInternalServerError)
+				return
+			}
+			r.Helper["IsFollowingTopic"] = isFollowing
+		}
+		followerCount, err := db.GetFollowerCountForTopic(unescaped)
+		if err != nil {
+			r.Error(jerr.Get("error getting follower count for topic", err), http.StatusInternalServerError)
+			return
+		}
+		lastTopicList, err := cache.GetLastTopicList(r.Session.CookieId)
+		if err != nil {
+			jerr.Get("error getting last topic list", err).Print()
+		}
 		r.Helper["Title"] = "Memo Topic - " + topicPosts[0].Memo.Topic
 		r.Helper["Topic"] = topicPosts[0].Memo.Topic
 		r.Helper["Posts"] = topicPosts
+		r.Helper["FollowerCount"] = followerCount
 		r.Helper["FirstPostId"] = topicPosts[0].Memo.Id
 		r.Helper["LastPostId"] = topicPosts[len(topicPosts)-1].Memo.Id
 		r.Helper["LastLikeId"] = lastLikeId
+		r.Helper["LastTopicList"] = lastTopicList
 		r.RenderTemplate(res.TmplTopicView)
 	},
 }

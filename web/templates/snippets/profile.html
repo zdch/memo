@@ -37,6 +37,14 @@
             </a>
         </td>
     </tr>
+    <tr>
+        <th>{{ T "Topics Following" }}</th>
+        <td>
+            <a href="profile/topics-following/{{ .Profile.GetAddressString }}">
+            {{ .Profile.TopicsFollowingCount }}
+            </a>
+        </td>
+    </tr>
 {{ if .Profile.Reputation }}
     <tr>
         <th>{{ T "connections" }}</th>

@@ -327,5 +327,29 @@
   {
     "id": "create_poll",
     "translation": "skapa röstning"
+  },
+  {
+    "id": "view_topic",
+    "translation": "visa ämne"
+  },
+  {
+    "id": "search",
+    "translation": "söka"
+  },
+  {
+    "id": "all",
+    "translation": "all"
+  },
+  {
+    "id": "most_posts",
+    "translation": "most posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]

@@ -64,6 +64,26 @@ var postsMoreRoute = web.Route{
 			r.Error(jerr.Get("error setting show media for posts", err), http.StatusInternalServerError)
 			return
 		}
+		if len(userPkHash) > 0 {
+			lastPostId, err := db.GetLastTopicPostId(userPkHash, topic)
+			if err != nil {
+				r.Error(jerr.Get("error getting last topic post id from db", err), http.StatusInternalServerError)
+				return
+			}
+			var newLastPostId= lastPostId
+			for _, post := range posts {
+				if post.Memo.Id > newLastPostId {
+					newLastPostId = post.Memo.Id
+				}
+			}
+			if newLastPostId > lastPostId {
+				err = db.SetLastTopicPostId(userPkHash, topic, newLastPostId)
+				if err != nil {
+					r.Error(jerr.Get("error setting last topic post id in db", err), http.StatusInternalServerError)
+					return
+				}
+			}
+		}
 		r.Helper["Posts"] = posts
 		r.Helper["FirstPostId"] = posts[0].Memo.Id
 		r.Render()
@@ -122,6 +142,20 @@ var postAjaxRoute = web.Route{
 		if err != nil {
 			r.Error(jerr.Get("error setting show media for posts", err), http.StatusInternalServerError)
 			return
+		}
+		if len(pkHash) > 0 {
+			lastPostId, err := db.GetLastTopicPostId(pkHash, post.Memo.Topic)
+			if err != nil {
+				r.Error(jerr.Get("error getting last topic post id from db", err), http.StatusInternalServerError)
+				return
+			}
+			if post.Memo.Id > lastPostId {
+				err = db.SetLastTopicPostId(pkHash, post.Memo.Topic, post.Memo.Id)
+				if err != nil {
+					r.Error(jerr.Get("error setting last topic post id in db", err), http.StatusInternalServerError)
+					return
+				}
+			}
 		}
 		r.Helper["Post"] = post
 		r.RenderTemplate(res.TmplTopicPost)

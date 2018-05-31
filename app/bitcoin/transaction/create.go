@@ -27,6 +27,8 @@ const (
 	SpendOutputTypeMemoReply
 	SpendOutputTypeMemoSetProfile
 	SpendOutputTypeMemoTopicMessage
+	SpendOutputTypeMemoTopicFollow
+	SpendOutputTypeMemoTopicUnfollow
 	SpendOutputTypeMemoPollQuestionSingle
 	SpendOutputTypeMemoPollQuestionMulti
 	SpendOutputTypeMemoPollOption
@@ -192,6 +194,40 @@ func Create(spendOuts []*db.TransactionOut, privateKey *wallet.PrivateKey, spend
 				Script()
 			if err != nil {
 				return nil, jerr.Get("error creating memo tag message output", err)
+			}
+			fmt.Printf("pkScript: %x\n", pkScript)
+			txOuts = append(txOuts, wire.NewTxOut(spendOutput.Amount, pkScript))
+		case SpendOutputTypeMemoTopicFollow:
+			if len(spendOutput.Data) > memo.MaxTagMessageSize {
+				return nil, jerr.New("data too large")
+			}
+			if len(spendOutput.Data) == 0 {
+				return nil, jerr.New("empty data")
+			}
+			pkScript, err := txscript.NewScriptBuilder().
+				AddOp(txscript.OP_RETURN).
+				AddData([]byte{memo.CodePrefix, memo.CodeTopicFollow}).
+				AddData(spendOutput.Data).
+				Script()
+			if err != nil {
+				return nil, jerr.Get("error creating memo topic follow output", err)
+			}
+			fmt.Printf("pkScript: %x\n", pkScript)
+			txOuts = append(txOuts, wire.NewTxOut(spendOutput.Amount, pkScript))
+		case SpendOutputTypeMemoTopicUnfollow:
+			if len(spendOutput.Data) > memo.MaxTagMessageSize {
+				return nil, jerr.New("data too large")
+			}
+			if len(spendOutput.Data) == 0 {
+				return nil, jerr.New("empty data")
+			}
+			pkScript, err := txscript.NewScriptBuilder().
+				AddOp(txscript.OP_RETURN).
+				AddData([]byte{memo.CodePrefix, memo.CodeTopicUnfollow}).
+				AddData(spendOutput.Data).
+				Script()
+			if err != nil {
+				return nil, jerr.Get("error creating memo topic unfollow output", err)
 			}
 			fmt.Printf("pkScript: %x\n", pkScript)
 			txOuts = append(txOuts, wire.NewTxOut(spendOutput.Amount, pkScript))

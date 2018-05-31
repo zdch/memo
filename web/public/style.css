@@ -42,7 +42,7 @@ video {
 .video-container {
     position:relative;
     padding-bottom:56.25%;
-    padding-top:0px;
+    padding-top:0;
     height:0;
     overflow:hidden;
 }
@@ -389,11 +389,29 @@ span.page {
         height: 50%;
     }
 }
-.topics-table tr td:nth-child(1) {
+.topics-table>thead>tr>th,
+.topics-table>tbody>tr>td {
+    vertical-align: middle;
+}
+.topics-table tr td:nth-of-type(1) {
     max-width: 400px;
+    padding-left: 22px;
+    position: relative;
 }
 .topics-table a {
     color: #000;
+}
+.topics-table .glyphicon {
+    color: #487521;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    left: 7px;
+    font-size: 8px;
+    margin-right: 2px;
+}
+.topics-table .glyphicon.placeholder {
+    visibility: hidden;
 }
 .topic-post {
     padding: 5px 10px 5px 40px;
@@ -457,6 +475,7 @@ span.page {
     font-weight: normal;
 }
 .topic-post a.like-link {
+    margin: 0;
     font-weight: normal;
     color: #888;
 }
@@ -495,10 +514,18 @@ span.page {
     max-width: 50%;
     max-height: 200px;
 }
-.topic-post .video-container {
-    border-width: 0 25px 10px 25px;
-    border-style: solid;
-    border-color: transparent;
+.topic-post .video-wrapper {
+    margin: 5px auto;
+}
+@media (min-width: 768px) {
+    .topic-post .video-wrapper {
+        max-width: 40%;
+    }
+}
+@media (max-width: 768px) {
+    .topic-post .video-wrapper {
+        max-width: 70%;
+    }
 }
 #password-clear {
     display: none;
@@ -713,7 +740,9 @@ table.poll-results td:nth-of-type(2) {
     width: 150px;
     min-width: 150px;
 }
-
+.topic-view-nav a.btn {
+    margin: 5px 0;
+}
 
 body.dark #new-poll-form .glyphicon-remove {
     color: rgba(255,50,50,0.75);

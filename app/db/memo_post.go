@@ -13,10 +13,6 @@ import (
 	"time"
 )
 
-const (
-	PreloadMemoPostParent = "Parent"
-)
-
 type MemoPost struct {
 	Id           uint        `gorm:"primary_key"`
 	TxHash       []byte      `gorm:"unique;size:50"`
@@ -26,6 +22,7 @@ type MemoPost struct {
 	Address      string
 	ParentTxHash []byte      `gorm:"index:parent_tx_hash"`
 	Parent       *MemoPost
+	RootTxHash   []byte      `gorm:"index:root_tx_hash"`
 	Replies      []*MemoPost `gorm:"foreignkey:ParentTxHash"`
 	Topic        string      `gorm:"index:tag;size:500"`
 	Message      string      `gorm:"size:500"`
@@ -56,6 +53,15 @@ func (m MemoPost) GetTransactionHashString() string {
 
 func (m MemoPost) GetParentTransactionHashString() string {
 	hash, err := chainhash.NewHash(m.ParentTxHash)
+	if err != nil {
+		jerr.Get("error getting chainhash from memo post", err).Print()
+		return ""
+	}
+	return hash.String()
+}
+
+func (m MemoPost) GetRootTransactionHashString() string {
+	hash, err := chainhash.NewHash(m.RootTxHash)
 	if err != nil {
 		jerr.Get("error getting chainhash from memo post", err).Print()
 		return ""
@@ -288,6 +294,24 @@ func GetRecentPosts(offset uint) ([]*MemoPost, error) {
 	return memoPosts, nil
 }
 
+func GetPosts(offset uint) ([]*MemoPost, error) {
+	db, err := getDb()
+	if err != nil {
+		return nil, jerr.Get("error getting db", err)
+	}
+	db = db.Preload(BlockTable)
+	var memoPosts []*MemoPost
+	result := db.
+		Limit(25).
+		Offset(offset).
+		Order("id ASC").
+		Find(&memoPosts)
+	if result.Error != nil {
+		return nil, jerr.Get("error running query", result.Error)
+	}
+	return memoPosts, nil
+}
+
 func GetRecentReplyPosts(offset uint) ([]*MemoPost, error) {
 	db, err := getDb()
 	if err != nil {
@@ -441,9 +465,11 @@ func GetCountMemoPosts() (uint, error) {
 }
 
 type Topic struct {
-	Name       string
-	RecentTime time.Time
-	Count      int
+	Name         string
+	RecentTime   time.Time
+	CountPosts   int
+	CountFollows int
+	UnreadPosts  bool
 }
 
 func (t Topic) GetUrlEncoded() string {
@@ -454,24 +480,62 @@ func (t Topic) GetTimeAgo() string {
 	return util.GetTimeAgo(t.RecentTime)
 }
 
-func GetUniqueTopics(offset uint, searchString string) ([]*Topic, error) {
+type TopicOrderType int
+
+const (
+	TopicOrderTypeRecent    TopicOrderType = iota
+	TopicOrderTypeFollowers
+	TopicOrderTypePosts
+)
+
+func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType TopicOrderType) ([]*Topic, error) {
 	db, err := getDb()
 	if err != nil {
 		return nil, jerr.Get("error getting db", err)
 	}
+	joinSelect := "LEFT JOIN (" +
+		"	SELECT MAX(id) AS id" +
+		"	FROM memo_topic_follows" +
+		"	GROUP BY pk_hash, topic" +
+		") sq ON (sq.id = memo_topic_follows.id) "
 	query := db.
 		Table("memo_posts").
-		Select("topic, MAX(IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)) AS max_time, COUNT(*)").
-		Joins("LEFT OUTER JOIN blocks ON (memo_posts.block_id = blocks.id)").
-		Group("topic").
-		Order("max_time DESC").
+		Select("" +
+		"memo_posts.topic, " +
+		"CAST(MAX(IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)) AS DATETIME) AS max_time, " +
+		"COUNT(DISTINCT memo_posts.id) AS post_count, " +
+		"COUNT(DISTINCT case memo_topic_follows.unfollow when 0 then memo_topic_follows.id else null end) AS follower_count").
+		Joins("LEFT JOIN memo_topic_follows ON (memo_posts.topic = memo_topic_follows.topic)").
+		Joins(joinSelect).
+		Joins("LEFT JOIN blocks ON (memo_posts.block_id = blocks.id)").
+		Group("memo_posts.topic").
+		Where("(memo_topic_follows.id IS NULL OR sq.id IS NOT NULL)").
 		Limit(25).
 		Offset(offset)
 	if searchString != "" {
-		query = query.Where("topic LIKE ?", fmt.Sprintf("%%%s%%", searchString))
+		query = query.Where("memo_posts.topic LIKE ?", fmt.Sprintf("%%%s%%", searchString))
 	} else {
-		query = query.Where("topic IS NOT NULL AND topic != ''")
+		query = query.Where("memo_posts.topic IS NOT NULL AND memo_posts.topic != ''")
 	}
+	if len(pkHash) > 0 {
+		joinQuery := "JOIN (" +
+			"SELECT MAX(id) AS id " +
+			"FROM memo_topic_follows " +
+			"WHERE pk_hash = ? " +
+			"GROUP BY topic" +
+			") sq2 ON (sq2.id = memo_topic_follows2.id)"
+		query = query.
+			Joins("JOIN memo_topic_follows AS memo_topic_follows2 ON (memo_topic_follows.topic = memo_topic_follows2.topic)").
+			Joins(joinQuery, pkHash).
+			Where("memo_topic_follows2.unfollow = 0")
+	}
+	switch orderType {
+	case TopicOrderTypeFollowers:
+		query = query.Order("follower_count DESC")
+	case TopicOrderTypePosts:
+		query = query.Order("post_count DESC")
+	}
+	query = query.Order("max_time DESC")
 	rows, err := query.Rows()
 	if err != nil {
 		return nil, jerr.Get("error getting distinct topics", err)
@@ -480,14 +544,58 @@ func GetUniqueTopics(offset uint, searchString string) ([]*Topic, error) {
 	var topics []*Topic
 	for rows.Next() {
 		var topic Topic
-
-		err := rows.Scan(&topic.Name, &topic.RecentTime, &topic.Count)
+		err := rows.Scan(&topic.Name, &topic.RecentTime, &topic.CountPosts, &topic.CountFollows)
 		if err != nil {
 			return nil, jerr.Get("error scanning row with topic", err)
 		}
 		topics = append(topics, &topic)
 	}
 	return topics, nil
+}
+
+func AttachUnreadToTopics(topics []*Topic, userPkhash []byte) error {
+	var topicNames []string
+	for _, topic := range topics {
+		topicNames = append(topicNames, topic.Name)
+	}
+	lastTopicPostIds, err := GetLastTopicPostIds(userPkhash, topicNames)
+	if err != nil {
+		return jerr.Get("error getting last topic post ids", err)
+	}
+	db, err := getDb()
+	if err != nil {
+		return jerr.Get("error getting db", err)
+	}
+	query := db.
+		Table("memo_posts").
+		Select("MAX(id) AS maxId, topic").
+		Where("topic IN (?)", topicNames).
+		Group("topic")
+	rows, err := query.Rows()
+	if err != nil {
+		return jerr.Get("error getting max topic post ids", err)
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var maxId uint
+		var topicName string
+		err := rows.Scan(&maxId, &topicName)
+		if err != nil {
+			return jerr.Get("error scanning row for topic max id", err)
+		}
+		var lastPostId uint
+		for _, lastTopicPostId := range lastTopicPostIds {
+			if lastTopicPostId.Topic == topicName {
+				lastPostId = lastTopicPostId.LastPostId
+			}
+		}
+		for _, topic := range topics {
+			if topic.Name == topicName {
+				topic.UnreadPosts = lastPostId < maxId
+			}
+		}
+	}
+	return nil
 }
 
 func GetPostsForTopic(topic string, offset uint) ([]*MemoPost, error) {

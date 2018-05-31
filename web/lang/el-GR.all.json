@@ -331,5 +331,25 @@
   {
     "id": "view_topic",
     "translation": "πηγαίνετε στο θέμα"
+  },
+  {
+    "id": "search",
+    "translation": "ψάχνω"
+  },
+  {
+    "id": "all",
+    "translation": "all"
+  },
+  {
+    "id": "most_posts",
+    "translation": "most posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
   }
 ]

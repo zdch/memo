@@ -89,7 +89,17 @@ func SaveMemo(txn *db.Transaction, out *db.TransactionOut, block *db.Block) erro
 	case memo.CodeTopicMessage:
 		err = saveMemoTopicMessage(txn, out, blockId, inputAddress, parentHash)
 		if err != nil {
-			return jerr.Get("error saving memo_post tag message", err)
+			return jerr.Get("error saving memo_post topic message", err)
+		}
+	case memo.CodeTopicFollow:
+		err = saveMemoTopicFollow(false, txn, out, blockId, inputAddress, parentHash)
+		if err != nil {
+			return jerr.Get("error saving memo follow topic", err)
+		}
+	case memo.CodeTopicUnfollow:
+		err = saveMemoTopicFollow(true, txn, out, blockId, inputAddress, parentHash)
+		if err != nil {
+			return jerr.Get("error saving memo unfollow topic", err)
 		}
 	case memo.CodePollCreate:
 		err = saveMemoPollQuestion(txn, out, blockId, inputAddress, parentHash)
@@ -362,6 +372,20 @@ func saveMemoReply(txn *db.Transaction, out *db.TransactionOut, blockId uint, in
 	if err != nil {
 		return jerr.Get("error parsing transaction hash", err)
 	}
+
+	// Carry forward the root hash of the thread so it's easy to fetch.
+	var rootTxHash []byte
+	prevMemoPost, err := db.GetMemoPost(replyTxHash)
+	if err != nil {
+		jerr.Get("error getting reply post from db", err).Print()
+	} else {
+		if len(prevMemoPost.ParentTxHash) > 0 {
+			rootTxHash = prevMemoPost.RootTxHash
+		} else {
+			rootTxHash = prevMemoPost.TxHash
+		}
+	}
+
 	memoPost = &db.MemoPost{
 		TxHash:       txn.Hash,
 		PkHash:       inputAddress.ScriptAddress(),
@@ -369,6 +393,7 @@ func saveMemoReply(txn *db.Transaction, out *db.TransactionOut, blockId uint, in
 		ParentHash:   parentHash,
 		Address:      inputAddress.EncodeAddress(),
 		ParentTxHash: txHash.CloneBytes(),
+		RootTxHash:   rootTxHash,
 		Message:      html_parser.EscapeWithEmojis(string(messageRaw)),
 		BlockId:      blockId,
 	}
@@ -429,6 +454,51 @@ func saveMemoTopicMessage(txn *db.Transaction, out *db.TransactionOut, blockId u
 	err = memoPost.Save()
 	if err != nil {
 		return jerr.Get("error saving memo topic message", err)
+	}
+	return nil
+}
+
+func saveMemoTopicFollow(unfollow bool, txn *db.Transaction, out *db.TransactionOut, blockId uint, inputAddress *btcutil.AddressPubKeyHash, parentHash []byte) error {
+	memoFollowTopic, err := db.GetMemoTopicFollow(txn.Hash)
+	if err != nil && ! db.IsRecordNotFoundError(err) {
+		return jerr.Get("error getting memo follow topic", err)
+	}
+	if memoFollowTopic != nil {
+		if memoFollowTopic.BlockId != 0 || blockId == 0 {
+			return nil
+		}
+		memoFollowTopic.BlockId = blockId
+		err = memoFollowTopic.Save()
+		if err != nil {
+			return jerr.Get("error saving memo follow topic", err)
+		}
+		return nil
+	}
+
+	pushData, err := txscript.PushedData(out.PkScript)
+	if err != nil {
+		return jerr.Get("error parsing push data from memo follow topic", err)
+	}
+	if len(pushData) != 2 {
+		return jerr.Newf("invalid topic follow, incorrect push data (%d)", len(pushData))
+	}
+	var topicNameRaw = pushData[1]
+	if len(topicNameRaw) == 0 {
+		return jerr.Newf("empty topic follow name (%d)", len(topicNameRaw))
+	}
+	topicName := html_parser.EscapeWithEmojis(string(topicNameRaw))
+	memoFollowTopic = &db.MemoTopicFollow{
+		TxHash:     txn.Hash,
+		PkHash:     inputAddress.ScriptAddress(),
+		PkScript:   out.PkScript,
+		ParentHash: parentHash,
+		Topic:      topicName,
+		BlockId:    blockId,
+		Unfollow:   unfollow,
+	}
+	err = memoFollowTopic.Save()
+	if err != nil {
+		return jerr.Get("error saving memo follow topic", err)
 	}
 	return nil
 }

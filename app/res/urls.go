@@ -59,13 +59,14 @@ const (
 )
 
 const (
-	UrlProfiles              = "/profiles"
-	UrlProfileView           = "/profile"
-	UrlProfileFollowers      = "/profile/followers"
-	UrlProfileFollowing      = "/profile/following"
-	UrlProfileSettings       = "/settings"
-	UrlProfileSettingsSubmit = "/settings-submit"
-	UrlProfileNotifications  = "/notifications"
+	UrlProfiles               = "/profiles"
+	UrlProfileView            = "/profile"
+	UrlProfileFollowers       = "/profile/followers"
+	UrlProfileFollowing       = "/profile/following"
+	UrlProfileSettings        = "/settings"
+	UrlProfileSettingsSubmit  = "/settings-submit"
+	UrlProfileNotifications   = "/notifications"
+	UrlProfileTopicsFollowing = "/profile/topics-following"
 
 	TmplProfiles             = "/profile/all"
 	TmplProfileSettings      = "/profile/settings"
@@ -85,12 +86,18 @@ const (
 
 const (
 	UrlTopics             = "/topics"
+	UrlTopicsAll          = "/topics/all"
+	UrlTopicsMostFollowed = "/topics/most-followed"
+	UrlTopicsMostPosts    = "/topics/most-posts"
+	UrlTopicsFollowing    = "/topics/following"
 	UrlTopicsCreate       = "/topics/create"
 	UrlTopicsCreateSubmit = "/topics/create-submit"
 	UrlTopicView          = "/topic"
 	UrlTopicsSocket       = "/topics/socket"
 	UrlTopicsMorePosts    = "/topics/more-posts"
 	UrlTopicsPostAjax     = "/topics/post-ajax"
+	UrlTopicsFollowSubmit = "/topics/follow-submit"
+	UrlTopicsFollowers    = "/topics/followers"
 
 	TmplTopicView = "/topics/view"
 	TmplTopicPost = "/topics/post"

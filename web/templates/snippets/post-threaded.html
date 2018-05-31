@@ -25,7 +25,9 @@
                 </span>
             </span>
         {{ end }}
-        {{ if .Post.Memo.ParentTxHash }}
+        {{ if and .Post.Memo.RootTxHash .Post.Memo.ParentTxHash }}
+            replied to <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Memo.GetParentTransactionHashString }}">post</a>
+        {{ else if .Post.Memo.ParentTxHash }}
             replied to <a href="post/{{ .Post.Memo.GetParentTransactionHashString }}">post</a>
         {{ else if .Post.Memo.IsVote }}
             voted in <a href="post/{{ .Post.VoteQuestion.GetTransactionHashString }}">poll</a>
@@ -104,11 +106,19 @@
     </p>
 {{ end }}
     <div class="actions">
+    {{ if .Post.Memo.Topic }}
+        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
+           href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>{{ T "view_topic" | UcFirst }}
+        </a>
+    {{ end }}
     {{ if .Post.IsLoggedIn }}
+        {{ if or (.ShowReply) (not .Post.Memo.Topic) }}
         <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" }}
         </a>
+       {{ end }}
         <span class="creating hidden btn btn-warning">Creating...</span>
         <span class="broadcasting hidden btn btn-warning">Broadcasting...</span>
         <div class="like" id="like-{{ .Post.Memo.GetTransactionHashString }}">

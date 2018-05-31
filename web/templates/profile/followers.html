@@ -1,7 +1,9 @@
 {{ template "snippets/header.html" . }}
 
+<br/>
+
 <p>
-    <a href="profile/{{ .Profile.GetAddressString }}">Back to {{ .Profile.Name }}'s Profile</a>
+    <a class="btn btn-default" href="profile/{{ .Profile.GetAddressString }}">Back to {{ .Profile.Name }}'s Profile</a>
 </p>
 
 {{ if not .Followers }}
@@ -20,6 +22,8 @@
 </p>
 {{ end }}
 
+{{ $isLoggedIn := .IsLoggedIn }}
+
 {{ if .Followers }}
 <br/>
 <table class="table">
@@ -27,7 +31,9 @@
     <tr>
         <th>{{ T "name" }}</th>
         <th>{{ T "address" }}</th>
+    {{ if $isLoggedIn }}
         <th>{{ T "connections" }}</th>
+    {{ end }}
     </tr>
     </thead>
     <tbody>
@@ -44,12 +50,11 @@
             {{ .GetAddressString }}
             </a>
         </td>
+    {{ if $isLoggedIn }}
         <td>
-        {{ if .Reputation }}
         {{ .Reputation.GetPercentStringIncludingDirect }}
-        {{ end }}
         </td>
-        </a>
+    {{ end }}
     </tr>
     {{ end }}
     </tbody>

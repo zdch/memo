@@ -13,9 +13,11 @@ const (
 	CodeUnfollow          = 0x07
 	CodeSetImageBaseUrl   = 0x08
 	CodeAttachPicture     = 0x09
-	CodeSetProfilePicture = 0x0A
-	CodeRepost            = 0x0B
-	CodeTopicMessage      = 0x0C
+	CodeSetProfilePicture = 0x0a
+	CodeRepost            = 0x0b
+	CodeTopicMessage      = 0x0c
+	CodeTopicFollow       = 0x0d
+	CodeTopicUnfollow     = 0x0e
 
 	CodePollCreate = 0x10
 	CodePollOption = 0x13

@@ -78,6 +78,11 @@ var viewRoute = web.Route{
 			r.Error(jerr.Get("error setting follower count for profile", err), http.StatusInternalServerError)
 			return
 		}
+		err = pf.SetTopicsFollowingCount()
+		if err != nil {
+			r.Error(jerr.Get("error setting topics following count for profile", err), http.StatusInternalServerError)
+			return
+		}
 		if len(userPkHash) > 0 {
 			err = pf.SetReputation()
 			if err != nil {
