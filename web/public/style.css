@@ -457,6 +457,7 @@ span.page {
     font-weight: normal;
 }
 .topic-post a.like-link {
+    margin: 0;
     font-weight: normal;
     color: #888;
 }
