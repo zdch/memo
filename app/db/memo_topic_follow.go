@@ -120,3 +120,56 @@ func IsFollowingTopic(pkHash []byte, topic string) (bool, error) {
 	}
 	return cnt == 0, nil
 }
+
+func GetFollowersForTopic(topic string) ([]*MemoTopicFollow, error) {
+	db, err := getDb()
+	if err != nil {
+		return nil, jerr.Get("error getting db", err)
+	}
+	joinSql := "" +
+		"JOIN (" +
+		"SELECT MAX(id) AS id " +
+		"FROM memo_topic_follows " +
+		"GROUP BY pk_hash, topic" +
+		") sq ON (sq.id = memo_topic_follows.id)"
+	query := db.
+		Joins(joinSql).
+		Where("topic = ?", topic).
+		Where("unfollow = 0")
+	var memoTopicFollows []*MemoTopicFollow
+	result := query.Find(&memoTopicFollows)
+	if result.Error != nil {
+		if IsNoRowsInResultSetError(result.Error) {
+			return nil, nil
+		}
+		return nil, jerr.Get("error in topic followers query", result.Error)
+	}
+	return memoTopicFollows, nil
+}
+
+func GetFollowerCountForTopic(topic string) (uint, error) {
+	db, err := getDb()
+	if err != nil {
+		return 0, jerr.Get("error getting db", err)
+	}
+	joinSql := "" +
+		"JOIN (" +
+		"SELECT MAX(id) AS id " +
+		"FROM memo_topic_follows " +
+		"GROUP BY pk_hash, topic" +
+		") sq ON (sq.id = memo_topic_follows.id)"
+	query := db.
+		Table("memo_topic_follows").
+		Joins(joinSql).
+		Where("topic = ?", topic).
+		Where("unfollow = 0")
+	var cnt uint
+	result := query.Count(&cnt)
+	if result.Error != nil {
+		if IsNoRowsInResultSetError(result.Error) {
+			return 0, nil
+		}
+		return 0, jerr.Get("error in topic followers query", result.Error)
+	}
+	return cnt, nil
+}

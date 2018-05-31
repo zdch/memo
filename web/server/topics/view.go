@@ -84,9 +84,15 @@ var viewRoute = web.Route{
 			}
 			r.Helper["IsFollowingTopic"] = isFollowing
 		}
+		followerCount, err := db.GetFollowerCountForTopic(unescaped)
+		if err != nil {
+			r.Error(jerr.Get("error getting follower count for topic", err), http.StatusInternalServerError)
+			return
+		}
 		r.Helper["Title"] = "Memo Topic - " + topicPosts[0].Memo.Topic
 		r.Helper["Topic"] = topicPosts[0].Memo.Topic
 		r.Helper["Posts"] = topicPosts
+		r.Helper["FollowerCount"] = followerCount
 		r.Helper["FirstPostId"] = topicPosts[0].Memo.Id
 		r.Helper["LastPostId"] = topicPosts[len(topicPosts)-1].Memo.Id
 		r.Helper["LastLikeId"] = lastLikeId

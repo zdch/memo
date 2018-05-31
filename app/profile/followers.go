@@ -2,17 +2,18 @@ package profile
 
 import (
 	"bytes"
-	"github.com/memocash/memo/app/bitcoin/wallet"
-	"github.com/memocash/memo/app/db"
 	"github.com/btcsuite/btcutil"
 	"github.com/jchavannes/jgo/jerr"
+	"github.com/memocash/memo/app/bitcoin/wallet"
+	"github.com/memocash/memo/app/db"
+	"github.com/memocash/memo/app/obj/rep"
 )
 
 type Follower struct {
 	Name       string
 	PkHash     []byte
 	SelfPkHash []byte
-	Reputation *Reputation
+	Reputation *rep.Reputation
 }
 
 func (f *Follower) GetAddressString() string {
@@ -86,7 +87,7 @@ func GetFollowers(selfPkHash []byte, pkHash []byte, offset int) ([]*Follower, er
 
 func AttachReputationToFollowers(followers []*Follower) error {
 	for _, follower := range followers {
-		reputation, err := GetReputation(follower.SelfPkHash, follower.PkHash)
+		reputation, err := rep.GetReputation(follower.SelfPkHash, follower.PkHash)
 		if err != nil {
 			return jerr.Get("error getting reputation", err)
 		}
