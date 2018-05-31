@@ -2,13 +2,27 @@
 
 <div class="center">
     <h2>{{ T "Topic" }} - {{ .Topic }}</h2>
-    <p><a href="topics">{{ T "Back_to_topics" }}</a></p>
+    <p>
+        <a href="topics" class="btn btn-default">{{ T "Back_to_topics" }}</a>
+    {{ if .IsLoggedIn }}
+        <span id="follow-topic">
+            <a href="#" id="follow-topic-button" class="btn btn-primary">
+            {{- if not .IsFollowingTopic }}{{ T "follow" 1 | Title }}{{ else }}{{ T "unfollow" 1 | Title }}{{ end }} </a>
+            <a href="#" id="follow-topic-confirm" class="btn btn-success hidden">Confirm
+            {{ if not .IsFollowingTopic }}{{ T "follow" 1 | Title }}{{ else }}{{ T "unfollow" 1 | Title }}{{ end }}</a>
+            <a href="#" id="follow-topic-cancel" class="btn btn-warning hidden">Cancel</a>
+            <button id="follow-topic-creating" class="btn btn-warning hidden">Creating
+            {{ if not .IsFollowingTopic }}{{ T "follow" 1 | Title }}{{ else }}{{ T "unfollow" 1 | Title }}{{ end }}...</button>
+            <button id="follow-topic-broadcasting" class="btn btn-warning hidden">Broadcasting...</button>
+        </span>
+    {{ end }}
+    </p>
 </div>
 <div id="all-posts" style="position:relative;">
 {{ template "topics/posts.html" dict "Posts" .Posts "TimeZone" .TimeZone "UserSettings" .UserSettings }}
 </div>
 
-{{ if .Username }}
+{{ if .IsLoggedIn }}
 <form id="form-new-topic-message" method="post" autocomplete="off">
     <input type="hidden" name="topic" value="{{ .Topic }}"/>
     <p>
@@ -27,8 +41,9 @@
 
 <script type="text/javascript">
     $(function () {
-    {{ if .Username }}
+    {{ if .IsLoggedIn }}
         MemoApp.Form.NewTopicMessage($("#broadcasting"), $("#form-new-topic-message"));
+        MemoApp.Form.FollowTopic($("#follow-topic"), "{{ .Topic }}", {{ if .IsFollowingTopic }}true{{ else }}false{{ end }});
     {{ end }}
         MemoApp.SetFirstPostId({{ .FirstPostId }});
         var $allPosts = $("#all-posts");

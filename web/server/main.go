@@ -89,8 +89,10 @@ func preHandler(r *web.Response) {
 		}
 		r.Helper["UnreadNotifications"] = unreadNotifications
 		r.Helper["UserSettings"] = userSettings
+		r.Helper["IsLoggedIn"] = true
 	} else {
 		r.Helper["UserSettings"] = db.GetDefaultUserSettings()
+		r.Helper["IsLoggedIn"] = false
 	}
 	if UseMinJS {
 		r.Helper["jsFiles"] = res.GetMinJsFiles()

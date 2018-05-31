@@ -85,12 +85,17 @@ const (
 
 const (
 	UrlTopics             = "/topics"
+	UrlTopicsAll          = "/topics/all"
+	UrlTopicsMostFollowed = "/topics/most-followed"
+	UrlTopicsMostPosts    = "/topics/most-posts"
+	UrlTopicsFollowing    = "/topics/following"
 	UrlTopicsCreate       = "/topics/create"
 	UrlTopicsCreateSubmit = "/topics/create-submit"
 	UrlTopicView          = "/topic"
 	UrlTopicsSocket       = "/topics/socket"
 	UrlTopicsMorePosts    = "/topics/more-posts"
 	UrlTopicsPostAjax     = "/topics/post-ajax"
+	UrlTopicsFollowSubmit = "/topics/follow-submit"
 
 	TmplTopicView = "/topics/view"
 	TmplTopicPost = "/topics/post"
