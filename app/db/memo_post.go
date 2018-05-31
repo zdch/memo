@@ -22,6 +22,7 @@ type MemoPost struct {
 	Address      string
 	ParentTxHash []byte      `gorm:"index:parent_tx_hash"`
 	Parent       *MemoPost
+	RootTxHash   []byte      `gorm:"index:root_tx_hash"`
 	Replies      []*MemoPost `gorm:"foreignkey:ParentTxHash"`
 	Topic        string      `gorm:"index:tag;size:500"`
 	Message      string      `gorm:"size:500"`
@@ -52,6 +53,15 @@ func (m MemoPost) GetTransactionHashString() string {
 
 func (m MemoPost) GetParentTransactionHashString() string {
 	hash, err := chainhash.NewHash(m.ParentTxHash)
+	if err != nil {
+		jerr.Get("error getting chainhash from memo post", err).Print()
+		return ""
+	}
+	return hash.String()
+}
+
+func (m MemoPost) GetRootTransactionHashString() string {
+	hash, err := chainhash.NewHash(m.RootTxHash)
 	if err != nil {
 		jerr.Get("error getting chainhash from memo post", err).Print()
 		return ""
@@ -277,6 +287,24 @@ func GetRecentPosts(offset uint) ([]*MemoPost, error) {
 		Limit(25).
 		Offset(offset).
 		Order("id DESC").
+		Find(&memoPosts)
+	if result.Error != nil {
+		return nil, jerr.Get("error running query", result.Error)
+	}
+	return memoPosts, nil
+}
+
+func GetPosts(offset uint) ([]*MemoPost, error) {
+	db, err := getDb()
+	if err != nil {
+		return nil, jerr.Get("error getting db", err)
+	}
+	db = db.Preload(BlockTable)
+	var memoPosts []*MemoPost
+	result := db.
+		Limit(25).
+		Offset(offset).
+		Order("id ASC").
 		Find(&memoPosts)
 	if result.Error != nil {
 		return nil, jerr.Get("error running query", result.Error)

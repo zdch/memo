@@ -372,6 +372,20 @@ func saveMemoReply(txn *db.Transaction, out *db.TransactionOut, blockId uint, in
 	if err != nil {
 		return jerr.Get("error parsing transaction hash", err)
 	}
+
+	// Carry forward the root hash of the thread so it's easy to fetch.
+	var rootTxHash []byte
+	prevMemoPost, err := db.GetMemoPost(replyTxHash)
+	if err != nil {
+		jerr.Get("error getting reply post from db", err).Print()
+	} else {
+		if len(prevMemoPost.ParentTxHash) > 0 {
+			rootTxHash = prevMemoPost.RootTxHash
+		} else {
+			rootTxHash = prevMemoPost.TxHash
+		}
+	}
+
 	memoPost = &db.MemoPost{
 		TxHash:       txn.Hash,
 		PkHash:       inputAddress.ScriptAddress(),
@@ -379,6 +393,7 @@ func saveMemoReply(txn *db.Transaction, out *db.TransactionOut, blockId uint, in
 		ParentHash:   parentHash,
 		Address:      inputAddress.EncodeAddress(),
 		ParentTxHash: txHash.CloneBytes(),
+		RootTxHash:   rootTxHash,
 		Message:      html_parser.EscapeWithEmojis(string(messageRaw)),
 		BlockId:      blockId,
 	}
