@@ -298,6 +298,24 @@ func GetRecentPosts(offset uint) ([]*MemoPost, error) {
 	return memoPosts, nil
 }
 
+func GetPosts(offset uint) ([]*MemoPost, error) {
+	db, err := getDb()
+	if err != nil {
+		return nil, jerr.Get("error getting db", err)
+	}
+	db = db.Preload(BlockTable)
+	var memoPosts []*MemoPost
+	result := db.
+		Limit(25).
+		Offset(offset).
+		Order("id ASC").
+		Find(&memoPosts)
+	if result.Error != nil {
+		return nil, jerr.Get("error running query", result.Error)
+	}
+	return memoPosts, nil
+}
+
 func GetRecentReplyPosts(offset uint) ([]*MemoPost, error) {
 	db, err := getDb()
 	if err != nil {
