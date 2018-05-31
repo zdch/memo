@@ -4,6 +4,7 @@ import (
 	"github.com/jchavannes/jgo/jerr"
 	"github.com/jchavannes/jgo/web"
 	"github.com/memocash/memo/app/auth"
+	"github.com/memocash/memo/app/cache"
 	"github.com/memocash/memo/app/db"
 	"github.com/memocash/memo/app/profile"
 	"github.com/memocash/memo/app/res"
@@ -109,6 +110,10 @@ var viewRoute = web.Route{
 			r.Error(jerr.Get("error getting follower count for topic", err), http.StatusInternalServerError)
 			return
 		}
+		lastTopicList, err := cache.GetLastTopicList(r.Session.CookieId)
+		if err != nil {
+			jerr.Get("error getting last topic list", err).Print()
+		}
 		r.Helper["Title"] = "Memo Topic - " + topicPosts[0].Memo.Topic
 		r.Helper["Topic"] = topicPosts[0].Memo.Topic
 		r.Helper["Posts"] = topicPosts
@@ -116,6 +121,7 @@ var viewRoute = web.Route{
 		r.Helper["FirstPostId"] = topicPosts[0].Memo.Id
 		r.Helper["LastPostId"] = topicPosts[len(topicPosts)-1].Memo.Id
 		r.Helper["LastLikeId"] = lastLikeId
+		r.Helper["LastTopicList"] = lastTopicList
 		r.RenderTemplate(res.TmplTopicView)
 	},
 }

@@ -57,6 +57,10 @@ var allRoute = web.Route{
 			r.Helper["OffsetLink"] = fmt.Sprintf("%s?", res.UrlTopicsAll)
 		}
 		r.Helper["TopicPage"] = "all"
+		err = cache.SetLastTopicList(r.Session.CookieId, "all")
+		if err != nil {
+			jerr.Get("error setting last topic list", err).Print()
+		}
 		r.RenderTemplate(res.UrlTopics)
 	},
 }

@@ -58,6 +58,10 @@ var followingRoute = web.Route{
 			r.Helper["OffsetLink"] = fmt.Sprintf("%s?", res.UrlTopicsFollowing)
 		}
 		r.Helper["TopicPage"] = "following"
+		err = cache.SetLastTopicList(r.Session.CookieId, "following")
+		if err != nil {
+			jerr.Get("error setting last topic list", err).Print()
+		}
 		r.RenderTemplate(res.UrlTopics)
 	},
 }

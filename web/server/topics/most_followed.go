@@ -57,6 +57,10 @@ var mostFollowedRoute = web.Route{
 			r.Helper["OffsetLink"] = fmt.Sprintf("%s?", res.UrlTopicsMostFollowed)
 		}
 		r.Helper["TopicPage"] = "most-followed"
+		err = cache.SetLastTopicList(r.Session.CookieId, "most-followed")
+		if err != nil {
+			jerr.Get("error setting last topic list", err).Print()
+		}
 		r.RenderTemplate(res.UrlTopics)
 	},
 }

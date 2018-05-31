@@ -57,6 +57,10 @@ var mostPostsRoute = web.Route{
 			r.Helper["OffsetLink"] = fmt.Sprintf("%s?", res.UrlTopicsMostPosts)
 		}
 		r.Helper["TopicPage"] = "most-posts"
+		err = cache.SetLastTopicList(r.Session.CookieId, "most-posts")
+		if err != nil {
+			jerr.Get("error setting last topic list", err).Print()
+		}
 		r.RenderTemplate(res.UrlTopics)
 	},
 }
