@@ -30,7 +30,10 @@
 <table class="table left topics-table table-striped">
     <thead>
     <tr>
-        <th>{{ T "Topic" }}</th>
+        <th>
+            <span class="glyphicon glyphicon-asterisk placeholder" aria-hidden="true"></span>
+        {{ T "Topic" }}
+        </th>
         <th>{{ T "Most_recent_post" }}</th>
         <th>{{ T "posts" }}</th>
         <th>{{ T "followers" }}</th>
@@ -39,7 +42,11 @@
     <tbody>
     {{ range .Topics }}
     <tr>
-        <td><a href="topic/{{ .GetUrlEncoded }}">{{ .Name }}</a></td>
+        <td>
+            <span class="glyphicon glyphicon-asterisk {{ if not .UnreadPosts }}placeholder{{ end }}"
+                  aria-hidden="true"></span>
+            <a href="topic/{{ .GetUrlEncoded }}">{{ .Name }}</a>
+        </td>
         <td>{{ .GetTimeAgo }}</td>
         <td>{{ .CountPosts }}</td>
         <td>

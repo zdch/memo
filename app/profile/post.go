@@ -72,11 +72,11 @@ func (p Post) IsPoll() bool {
 
 func addYoutubeVideos(msg string) string {
 	var re = regexp.MustCompile(`(http[s]?://youtu\.be/)([A-Za-z0-9_\-\?=]+)`)
-	msg = re.ReplaceAllString(msg, `<div class="video-container"><iframe frameborder="0" src="https://www.youtube.com/embed/$2"></iframe></div>`)
+	msg = re.ReplaceAllString(msg, `<div class="video-wrapper"><div class="video-container"><iframe frameborder="0" src="https://www.youtube.com/embed/$2"></iframe></div></div>`)
 	re = regexp.MustCompile(`(http[s]?://y2u\.be/)([A-Za-z0-9_\-\?=]+)`)
-	msg = re.ReplaceAllString(msg, `<div class="video-container"><iframe frameborder="0" src="https://www.youtube.com/embed/$2"></iframe></div>`)
+	msg = re.ReplaceAllString(msg, `<div class="video-wrapper"><div class="video-container"><iframe frameborder="0" src="https://www.youtube.com/embed/$2"></iframe></div></div>`)
 	re = regexp.MustCompile(`(http[s]?://(www\.)?youtube\.com/watch\?v=)([A-Za-z0-9_\-\?=]+)`)
-	msg = re.ReplaceAllString(msg, `<div class="video-container"><iframe frameborder="0" src="https://www.youtube.com/embed/$3"></iframe></div>`)
+	msg = re.ReplaceAllString(msg, `<div class="video-wrapper"><div class="video-container"><iframe frameborder="0" src="https://www.youtube.com/embed/$3"></iframe></div></div>`)
 	return msg
 }
 
@@ -88,7 +88,7 @@ func addImgurImages(msg string) string {
 	containsRex := regexp.MustCompile(`\.jpg|\.jpeg|\.png|\.gif|\.gifv`)
 	if strings.Contains(msg, ".mp4") {
 		var re = regexp.MustCompile(`(http[s]?://([a-z]+\.)?imgur\.com/)([^\s]*)`)
-		msg = re.ReplaceAllString(msg, `<div class="video-container"><video controls><source src="https://i.imgur.com/$3" type="video/mp4"></video></iframe></div>`)
+		msg = re.ReplaceAllString(msg, `<div class="video-wrapper"><div class="video-container"><video controls><source src="https://i.imgur.com/$3" type="video/mp4"></video></iframe></div>`)
 	} else if !containsRex.MatchString(msg) {
 		var re = regexp.MustCompile(`(http[s]?://([a-z]+\.)?imgur\.com/)([^\s]*)`)
 		msg = re.ReplaceAllString(msg, `<a href="https://i.imgur.com/$3.jpg" target="_blank"><img class="imgur" src="https://i.imgur.com/$3.jpg"/></a>`)

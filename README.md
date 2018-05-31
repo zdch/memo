@@ -2,7 +2,8 @@
 
 ### Prerequisites
 
-- MySQL
+- Golang (version 1.9)
+- MySQL (version 5.5)
 - Memcache
 - Bitcoin node (ABC, Unlimited, etc)
 
@@ -13,7 +14,7 @@
     go get github.com/memocash/memo/...
     ```
 
-- Create config.yaml
+- Create config.yaml in memo diretory
 
     ```yaml
     MYSQL_HOST: 127.0.0.1
@@ -31,7 +32,6 @@
 ### Running
 
 ```sh
-cd memo
 go build
 
 # Run node

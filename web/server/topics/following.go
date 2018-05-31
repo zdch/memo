@@ -38,6 +38,11 @@ var followingRoute = web.Route{
 			allRoute.Handler(r)
 			return
 		}
+		err = db.AttachUnreadToTopics(topics, userPkHash)
+		if err != nil {
+			r.Error(jerr.Get("error attaching unread to topics", err), http.StatusInternalServerError)
+			return
+		}
 		err = setTopicFollowingCount(r, userPkHash)
 		if err != nil {
 			r.Error(jerr.Get("error setting topic follow count for user", err), http.StatusInternalServerError)

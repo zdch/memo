@@ -36,6 +36,11 @@ var allRoute = web.Route{
 				r.Error(jerr.Get("error getting pk hash from cache", err), http.StatusInternalServerError)
 				return
 			}
+			err = db.AttachUnreadToTopics(topics, userPkHash)
+			if err != nil {
+				r.Error(jerr.Get("error attaching unread to topics", err), http.StatusInternalServerError)
+				return
+			}
 		}
 		err = setTopicFollowingCount(r, userPkHash)
 		if err != nil {

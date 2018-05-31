@@ -42,7 +42,7 @@ video {
 .video-container {
     position:relative;
     padding-bottom:56.25%;
-    padding-top:0px;
+    padding-top:0;
     height:0;
     overflow:hidden;
 }
@@ -395,6 +395,15 @@ span.page {
 .topics-table a {
     color: #000;
 }
+.topics-table .glyphicon {
+    color: #487521;
+    top: -1px;
+    font-size: 9px;
+    margin-right: 2px;
+}
+.topics-table .glyphicon.placeholder {
+    visibility: hidden;
+}
 .topic-post {
     padding: 5px 10px 5px 40px;
     word-break: break-word;
@@ -496,10 +505,18 @@ span.page {
     max-width: 50%;
     max-height: 200px;
 }
-.topic-post .video-container {
-    border-width: 0 25px 10px 25px;
-    border-style: solid;
-    border-color: transparent;
+.topic-post .video-wrapper {
+    margin: 5px auto;
+}
+@media (min-width: 768px) {
+    .topic-post .video-wrapper {
+        max-width: 40%;
+    }
+}
+@media (max-width: 768px) {
+    .topic-post .video-wrapper {
+        max-width: 70%;
+    }
 }
 #password-clear {
     display: none;

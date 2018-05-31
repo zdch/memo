@@ -13,10 +13,6 @@ import (
 	"time"
 )
 
-const (
-	PreloadMemoPostParent = "Parent"
-)
-
 type MemoPost struct {
 	Id           uint        `gorm:"primary_key"`
 	TxHash       []byte      `gorm:"unique;size:50"`
@@ -445,6 +441,7 @@ type Topic struct {
 	RecentTime   time.Time
 	CountPosts   int
 	CountFollows int
+	UnreadPosts  bool
 }
 
 func (t Topic) GetUrlEncoded() string {
@@ -526,6 +523,51 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 		topics = append(topics, &topic)
 	}
 	return topics, nil
+}
+
+func AttachUnreadToTopics(topics []*Topic, userPkhash []byte) error {
+	var topicNames []string
+	for _, topic := range topics {
+		topicNames = append(topicNames, topic.Name)
+	}
+	lastTopicPostIds, err := GetLastTopicPostIds(userPkhash, topicNames)
+	if err != nil {
+		return jerr.Get("error getting last topic post ids", err)
+	}
+	db, err := getDb()
+	if err != nil {
+		return jerr.Get("error getting db", err)
+	}
+	query := db.
+		Table("memo_posts").
+		Select("MAX(id) AS maxId, topic").
+		Where("topic IN (?)", topicNames).
+		Group("topic")
+	rows, err := query.Rows()
+	if err != nil {
+		return jerr.Get("error getting max topic post ids", err)
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var maxId uint
+		var topicName string
+		err := rows.Scan(&maxId, &topicName)
+		if err != nil {
+			return jerr.Get("error scanning row for topic max id", err)
+		}
+		var lastPostId uint
+		for _, lastTopicPostId := range lastTopicPostIds {
+			if lastTopicPostId.Topic == topicName {
+				lastPostId = lastTopicPostId.LastPostId
+			}
+		}
+		for _, topic := range topics {
+			if topic.Name == topicName {
+				topic.UnreadPosts = lastPostId < maxId
+			}
+		}
+	}
+	return nil
 }
 
 func GetPostsForTopic(topic string, offset uint) ([]*MemoPost, error) {

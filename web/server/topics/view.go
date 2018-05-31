@@ -71,6 +71,26 @@ var viewRoute = web.Route{
 				}
 			}
 		}
+		if len(userPkHash) > 0 {
+			lastPostId, err := db.GetLastTopicPostId(userPkHash, unescaped)
+			if err != nil {
+				r.Error(jerr.Get("error getting last topic post id from db", err), http.StatusInternalServerError)
+				return
+			}
+			var newLastPostId= lastPostId
+			for _, topicPost := range topicPosts {
+				if topicPost.Memo.Id > newLastPostId {
+					newLastPostId = topicPost.Memo.Id
+				}
+			}
+			if newLastPostId > lastPostId {
+				err = db.SetLastTopicPostId(userPkHash, unescaped, newLastPostId)
+				if err != nil {
+					r.Error(jerr.Get("error setting last topic post id in db", err), http.StatusInternalServerError)
+					return
+				}
+			}
+		}
 		err = profile.SetShowMediaForPosts(topicPosts, userId)
 		if err != nil {
 			r.Error(jerr.Get("error setting show media for posts", err), http.StatusInternalServerError)
