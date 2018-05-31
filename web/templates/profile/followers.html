@@ -1,7 +1,9 @@
 {{ template "snippets/header.html" . }}
 
+<br/>
+
 <p>
-    <a href="profile/{{ .Profile.GetAddressString }}">Back to {{ .Profile.Name }}'s Profile</a>
+    <a class="btn btn-default" href="profile/{{ .Profile.GetAddressString }}">Back to {{ .Profile.Name }}'s Profile</a>
 </p>
 
 {{ if not .Followers }}
