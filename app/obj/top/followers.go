@@ -38,9 +38,11 @@ func GetFollowersForTopic(topic string, selfPkHash []byte) ([]*TopicFollower, er
 	if err != nil {
 		return nil, jerr.Get("error attaching names to topic followers", err)
 	}
-	err = AttachReputationToTopicFollowers(topicFollowers)
-	if err != nil {
-		return nil, jerr.Get("error attaching reputation to topic followers", err)
+	if len(selfPkHash) != 0 {
+		err = AttachReputationToTopicFollowers(topicFollowers)
+		if err != nil {
+			return nil, jerr.Get("error attaching reputation to topic followers", err)
+		}
 	}
 	return topicFollowers, nil
 }

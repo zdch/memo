@@ -39,10 +39,6 @@ var followersRoute = web.Route{
 			r.Error(jerr.Get("error getting followers for topic", err), http.StatusInternalServerError)
 			return
 		}
-		if len(topicFollowers) == 0 {
-			r.Error(jerr.Get("no topic followers", err), http.StatusUnprocessableEntity)
-			return
-		}
 		r.Helper["Title"] = fmt.Sprintf("Memo Topic Followers - %s", topicFollowers[0].MemoTopicFollow.Topic)
 		r.Helper["Topic"] = topicFollowers[0].MemoTopicFollow.Topic
 		r.Helper["TopicFollowers"] = topicFollowers

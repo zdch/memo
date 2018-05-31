@@ -17,6 +17,7 @@
 {{ end }}
 
 <br/>
+{{ if .TopicFollowers }}
 <table class="table">
     <thead>
     <tr>
@@ -49,6 +50,9 @@
     {{ end }}
     </tbody>
 </table>
+{{ else }}
+<p>This topic does not have any followers yet.</p>
+{{ end }}
 <br/>
 
 {{ if and (eq .NextOffset 25) (lt (len .TopicFollowers) 25) }}{{ else }}
