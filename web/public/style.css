@@ -405,9 +405,9 @@ span.page {
     color: #487521;
     position: absolute;
     top: 50%;
-    margin-top: -5px;
-    left: 5px;
-    font-size: 9px;
+    margin-top: -4px;
+    left: 7px;
+    font-size: 8px;
     margin-right: 2px;
 }
 .topics-table .glyphicon.placeholder {
