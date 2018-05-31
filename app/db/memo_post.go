@@ -493,7 +493,16 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 		query = query.Where("memo_posts.topic IS NOT NULL AND memo_posts.topic != ''")
 	}
 	if len(pkHash) > 0 {
-		query = query.Where("memo_topic_follows.pk_hash = ? AND memo_topic_follows.unfollow = 0", pkHash)
+		joinQuery := "JOIN (" +
+			"SELECT MAX(id) AS id " +
+			"FROM memo_topic_follows " +
+			"WHERE pk_hash = ? " +
+			"GROUP BY topic" +
+			") sq2 ON (sq2.id = memo_topic_follows2.id)"
+		query = query.
+			Joins("JOIN memo_topic_follows AS memo_topic_follows2 ON (memo_topic_follows.topic = memo_topic_follows2.topic)").
+			Joins(joinQuery, pkHash).
+			Where("memo_topic_follows2.unfollow = 0")
 	}
 	switch orderType {
 	case TopicOrderTypeFollowers:
