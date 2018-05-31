@@ -110,7 +110,8 @@ func addGiphyImages(msg string) string {
 }
 
 func addLinks(msg string) string {
-	var re = regexp.MustCompile(`(^|\s)(http[s]?://[^\s]*)`)
+	// Explanation: https://github.com/jchavannes/memo/pull/57
+	var re = regexp.MustCompile(`(^|[\s(])(http[s]?://[^\s]*[^.?!,)\s])`)
 	s := re.ReplaceAllString(msg, `$1<a href="$2" target="_blank">$2</a>`)
 	return strings.Replace(s, "\n", "<br/>", -1)
 }
@@ -321,27 +322,13 @@ func GetRecentPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
 	if err != nil {
 		return nil, jerr.Get("error getting posts for hash", err)
 	}
-	var posts []*Post
-	for _, dbPost := range dbPosts {
-		var name string
-		setName, err := db.GetNameForPkHash(dbPost.PkHash)
-		if err != nil && ! db.IsRecordNotFoundError(err) {
-			return nil, jerr.Get("error getting name for hash", err)
-		}
-		if setName != nil {
-			name = setName.Name
-		}
-		cnt, err := db.GetPostReplyCount(dbPost.TxHash)
-		if err != nil {
-			return nil, jerr.Get("error getting post reply count", err)
-		}
-		post := &Post{
-			Name:       name,
-			Memo:       dbPost,
-			SelfPkHash: selfPkHash,
-			ReplyCount: cnt,
-		}
-		posts = append(posts, post)
+	posts, err := CreatePostsFromDbPosts(selfPkHash, dbPosts)
+	if err != nil {
+		return nil, jerr.Get("error creating posts from db posts", err)
+	}
+	err = AttachNamesToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching names to posts", err)
 	}
 	return posts, nil
 }
@@ -366,8 +353,36 @@ func GetRankedPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
 	if err != nil {
 		return nil, jerr.Get("error getting posts for hash", err)
 	}
+	posts, err := CreatePostsFromDbPosts(selfPkHash, memoPosts)
+	if err != nil {
+		return nil, jerr.Get("error creating posts from db posts", err)
+	}
+	err = AttachNamesToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching names to posts", err)
+	}
+	return posts, nil
+}
+
+func GetPollsPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
+	memoPosts, err := db.GetPollsPosts(offset)
+	if err != nil {
+		return nil, jerr.Get("error getting posts for hash", err)
+	}
+	posts, err := CreatePostsFromDbPosts(selfPkHash, memoPosts)
+	if err != nil {
+		return nil, jerr.Get("error creating posts from db posts", err)
+	}
+	err = AttachNamesToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching names to posts", err)
+	}
+	return posts, nil
+}
+
+func CreatePostsFromDbPosts(selfPkHash []byte, dbPosts []*db.MemoPost) ([]*Post, error) {
 	var posts []*Post
-	for _, dbPost := range memoPosts {
+	for _, dbPost := range dbPosts {
 		cnt, err := db.GetPostReplyCount(dbPost.TxHash)
 		if err != nil {
 			return nil, jerr.Get("error getting post reply count", err)
@@ -379,6 +394,10 @@ func GetRankedPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
 		}
 		posts = append(posts, post)
 	}
+	return posts, nil
+}
+
+func AttachNamesToPosts(posts []*Post) error {
 	var namePkHashes [][]byte
 	for _, post := range posts {
 		for _, namePkHash := range namePkHashes {
@@ -389,6 +408,9 @@ func GetRankedPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
 		namePkHashes = append(namePkHashes, post.Memo.PkHash)
 	}
 	setNames, err := db.GetNamesForPkHashes(namePkHashes)
+	if err != nil {
+		return jerr.Get("error getting set names for pk hashes", err)
+	}
 	for _, setName := range setNames {
 		for _, post := range posts {
 			if bytes.Equal(post.Memo.PkHash, setName.PkHash) {
@@ -396,10 +418,7 @@ func GetRankedPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
 			}
 		}
 	}
-	if err != nil {
-		return nil, jerr.Get("error getting set names for pk hashes", err)
-	}
-	return posts, nil
+	return nil
 }
 
 func GetTopPosts(selfPkHash []byte, offset uint, timeStart time.Time, timeEnd time.Time, personalized bool) ([]*Post, error) {
@@ -416,27 +435,13 @@ func GetTopPosts(selfPkHash []byte, offset uint, timeStart time.Time, timeEnd ti
 			return nil, jerr.Get("error getting posts for hash", err)
 		}
 	}
-	var posts []*Post
-	for _, dbPost := range dbPosts {
-		var name string
-		setName, err := db.GetNameForPkHash(dbPost.PkHash)
-		if err != nil && ! db.IsRecordNotFoundError(err) {
-			return nil, jerr.Get("error getting name for hash", err)
-		}
-		if setName != nil {
-			name = setName.Name
-		}
-		cnt, err := db.GetPostReplyCount(dbPost.TxHash)
-		if err != nil {
-			return nil, jerr.Get("error getting post reply count", err)
-		}
-		post := &Post{
-			Name:       name,
-			Memo:       dbPost,
-			SelfPkHash: selfPkHash,
-			ReplyCount: cnt,
-		}
-		posts = append(posts, post)
+	posts, err := CreatePostsFromDbPosts(selfPkHash, dbPosts)
+	if err != nil {
+		return nil, jerr.Get("error creating posts from db posts", err)
+	}
+	err = AttachNamesToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching names to posts", err)
 	}
 	return posts, nil
 }
@@ -446,22 +451,13 @@ func GetPostsForTopic(tag string, selfPkHash []byte, offset uint) ([]*Post, erro
 	if err != nil {
 		return nil, jerr.Get("error getting posts for hash", err)
 	}
-	var posts []*Post
-	for _, dbPost := range dbPosts {
-		var name string
-		setName, err := db.GetNameForPkHash(dbPost.PkHash)
-		if err != nil && ! db.IsRecordNotFoundError(err) {
-			return nil, jerr.Get("error getting name for hash", err)
-		}
-		if setName != nil {
-			name = setName.Name
-		}
-		post := &Post{
-			Name:       name,
-			Memo:       dbPost,
-			SelfPkHash: selfPkHash,
-		}
-		posts = append(posts, post)
+	posts, err := CreatePostsFromDbPosts(selfPkHash, dbPosts)
+	if err != nil {
+		return nil, jerr.Get("error creating posts from db posts", err)
+	}
+	err = AttachNamesToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching names to posts", err)
 	}
 	return posts, nil
 }
@@ -471,22 +467,13 @@ func GetOlderPostsForTopic(tag string, selfPkHash []byte, firstPostId uint) ([]*
 	if err != nil {
 		return nil, jerr.Get("error getting posts", err)
 	}
-	var posts []*Post
-	for _, dbPost := range dbPosts {
-		var name string
-		setName, err := db.GetNameForPkHash(dbPost.PkHash)
-		if err != nil && ! db.IsRecordNotFoundError(err) {
-			return nil, jerr.Get("error getting name for hash", err)
-		}
-		if setName != nil {
-			name = setName.Name
-		}
-		post := &Post{
-			Name:       name,
-			Memo:       dbPost,
-			SelfPkHash: selfPkHash,
-		}
-		posts = append(posts, post)
+	posts, err := CreatePostsFromDbPosts(selfPkHash, dbPosts)
+	if err != nil {
+		return nil, jerr.Get("error creating posts from db posts", err)
+	}
+	err = AttachNamesToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching names to posts", err)
 	}
 	return posts, nil
 }

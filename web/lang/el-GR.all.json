@@ -1,331 +1,335 @@
 [
   {
     "id": "home",
-    "translation": ""
+    "translation": "Σπίτι"
   },
   {
     "id": "dashboard",
-    "translation": ""
+    "translation": "Πίνακας ελέγχου"
   },
   {
     "id": "new_memo",
-    "translation": ""
+    "translation": "Νέο μεμο"
   },
   {
     "id": "posts",
-    "translation": ""
+    "translation": "Αναρτήσεις"
   },
   {
     "id": "profiles",
-    "translation": ""
+    "translation": "Προφίλ"
   },
   {
     "id": "login",
-    "translation": ""
+    "translation": "σύνδεση"
   },
   {
     "id": "logout",
-    "translation": " <b>{{.Username}}</b>"
+    "translation": " αποσύνδεση<b>{{.Username}}</b>"
   },
   {
     "id": "about",
-    "translation": ""
+    "translation": "σχετικά με μας"
   },
   {
     "id": "protocol",
-    "translation": ""
+    "translation": "Πρωτόκολλο"
   },
   {
     "id": "disclaimer",
-    "translation": ""
+    "translation": "Αποποίηση"
   },
   {
     "id": "statistics",
-    "translation": ""
+    "translation": "Στατιστικά"
   },
   {
     "id": "name",
-    "translation": ""
+    "translation": "Όνομα"
   },
   {
     "id": "address",
-    "translation": ""
+    "translation": "Διεύθυνση"
   },
   {
     "id": "followers",
-    "translation": ""
+    "translation": "Με ακολουθούν"
   },
   {
     "id": "following",
-    "translation": ""
+    "translation": "Ακολουθώ"
   },
   {
     "id": "balance",
-    "translation": ""
+    "translation": "Ποσό"
   },
   {
     "id": "profile",
-    "translation": ""
+    "translation": "Προφίλ"
   },
   {
     "id": "actions",
-    "translation": ""
+    "translation": "Ενέργειες"
   },
   {
     "id": "view_your_profile",
-    "translation": ""
+    "translation": "Δείξε το προφίλ μου"
   },
   {
     "id": "set_name",
-    "translation": ""
+    "translation": ", Επεξεργασία ονόματος"
   },
   {
     "id": "set_profile",
-    "translation": ""
+    "translation": "Επεξεργασία προφίλ"
   },
   {
     "id": "export_key",
-    "translation": ""
+    "translation": "Εξαγωγή κλειδιού"
   },
   {
     "id": "change_password",
-    "translation": ""
+    "translation": "Αλλαγή κωδικού"
   },
   {
     "id": "reply",
-    "translation": ""
+    "translation": "απάντηση"
   },
   {
     "id": "like",
     "translation": {
-      "one": "",
-      "other": ""
+      "one": "μου αρέσει",
+      "other": "μου αρέσει"
     }
   },
   {
     "id": "replies",
-    "translation": ""
+    "translation": "απαντήσεις"
   },
   {
     "id": "likes",
-    "translation": ""
+    "translation": "καρδιές"
   },
   {
     "id": "top",
-    "translation": ""
+    "translation": "κορυφή"
   },
   {
     "id": "personalized",
-    "translation": ""
+    "translation": "προσωποποιημένο"
   },
   {
     "id": "new",
-    "translation": ""
+    "translation": "νέο"
   },
   {
     "id": "archive",
-    "translation": ""
+    "translation": "αρχείο"
   },
   {
     "id": "last_hour",
-    "translation": ""
+    "translation": "τελευταία ώρα"
   },
   {
     "id": "last_24_hours",
-    "translation": ""
+    "translation": "τελευταίες 24 ώρες"
   },
   {
     "id": "last_7_days",
-    "translation": ""
+    "translation": "τελευταίες 7 ημέρες"
   },
   {
     "id": "all_time",
-    "translation": ""
+    "translation": "από την αρχή"
   },
   {
     "id": "message",
-    "translation": ""
+    "translation": "Μήνυμα"
   },
   {
     "id": "password",
-    "translation": ""
+    "translation": "κωδικός"
   },
   {
     "id": "save_password",
-    "translation": ""
+    "translation": "Αποθήκευση κωδικού"
   },
   {
     "id": "post",
-    "translation": ""
+    "translation": "ανάρτηση"
   },
   {
     "id": "profile_text",
-    "translation": ""
+    "translation": "κείμενο προφίλ"
   },
   {
     "id": "feed",
-    "translation": ""
+    "translation": "τροφοδοτώ"
   },
   {
     "id": "posted_at",
-    "translation": ""
+    "translation": "αναρτήθηκε στις"
   },
   {
     "id": "posted",
-    "translation": ""
+    "translation": "αναρτήθηκε"
   },
   {
     "id": "view_on_block_explorer",
-    "translation": ""
+    "translation": "κοίταξε στον block explorer"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": ""
+    "translation": "κοίταξε την διεύθυνση στον block explorer"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": ""
+    "translation": "κοίταξε το όνομα στον block explorer"
   },
   {
     "id": "page",
-    "translation": ""
+    "translation": "σελίδα"
   },
   {
     "id": "previous",
-    "translation": ""
+    "translation": "προηγούμενο"
   },
   {
     "id": "next",
-    "translation": ""
+    "translation": "επόμενο"
   },
   {
     "id": "connections",
-    "translation": ""
+    "translation": "συνδέσεις"
   },
   {
     "id": "follow",
     "translation": {
-      "one": "",
-      "other": ""
+      "one": "ακολουθώ",
+      "other": "ακολουθώ"
     }
   },
   {
     "id": "unfollow",
-    "translation": ""
+    "translation": "σταματώ να ακολουθώ"
   },
   {
     "id": "next_day",
-    "translation": ""
+    "translation": "επόμενη ημέρα"
   },
   {
     "id": "previous_day",
-    "translation": ""
+    "translation": "προηγούμενη ημέρα"
   },
   {
     "id": "Topic",
-    "translation": ""
+    "translation": "Συζήτηση"
   },
   {
     "id": "Topics",
-    "translation": ""
+    "translation": "Συζητήσεις"
   },
   {
     "id": "Send",
-    "translation": ""
+    "translation": "Αποστολή"
   },
   {
     "id": "Existing_Topics",
-    "translation": ""
+    "translation": "Υπάρχοντες Συζητήσεις"
   },
   {
     "id": "Create_new_topic",
-    "translation": ""
+    "translation": "Δημιουργία νέας Συζήτησης"
   },
   {
     "id": "Most_recent_post",
-    "translation": ""
+    "translation": "Πιο πρόσφατη ανάρτηση"
   },
   {
     "id": "Total_posts",
-    "translation": ""
+    "translation": "Σύνολο αναρτήσεων"
   },
   {
     "id": "Back_to_topics",
-    "translation": ""
+    "translation": "Πίσω στις Συζητήσεις"
   },
   {
     "id": "Forget_password",
-    "translation": ""
+    "translation": "Ξέχασα τον κωδικό μου"
   },
   {
     "id": "Names_set",
-    "translation": ""
+    "translation": "Όνομα ορίστηκε"
   },
   {
     "id": "Total",
-    "translation": ""
+    "translation": "Σύνολο"
   },
   {
     "id": "Delete_Account",
-    "translation": ""
+    "translation": "Διαγραφή λογαριασμού"
   },
   {
     "id": "Guides",
-    "translation": ""
+    "translation": "Οδηγίες"
   },
   {
     "id": "Signup",
-    "translation": ""
+    "translation": "Εγγραφή"
   },
   {
     "id": "Memo",
-    "translation": ""
+    "translation": "Μέμο"
   },
   {
     "id": "Poll",
-    "translation": ""
+    "translation": "Δημοσκόπηση"
   },
   {
     "id": "Notifications",
-    "translation": ""
+    "translation": "Ενημερώσεις"
   },
   {
     "id": "Settings",
-    "translation": ""
+    "translation": "Επιλογές"
   },
   {
     "id": "new_poll",
-    "translation": ""
+    "translation": "Νέα δημοσκόπηση"
   },
   {
     "id": "type",
-    "translation": ""
+    "translation": "τύπος"
   },
   {
     "id": "select_one_option",
-    "translation": ""
+    "translation": "Επιλέξτε μια επιλογή"
   },
   {
     "id": "select_multiple_options",
-    "translation": ""
+    "translation": "Επιλέξετε περισσότερες επιλογές"
   },
   {
     "id": "question",
-    "translation": ""
+    "translation": "ερώτηση"
   },
   {
     "id": "option",
     "translation": {
-      "one": "",
-      "other": ""
+      "one": "επιλογή",
+      "other": "επιλογή"
     }
   },
   {
     "id": "add_option",
-    "translation": ""
+    "translation": "προσθήκη επιλογής"
   },
   {
     "id": "create_poll",
-    "translation": ""
+    "translation": "δημιουργία δημοσκόπησης"
+  },
+  {
+    "id": "view_topic",
+    "translation": "πηγαίνετε στο θέμα"
   }
 ]

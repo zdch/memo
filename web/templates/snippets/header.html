@@ -44,6 +44,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            {{ if .Username }}
+            <ul class="nav navbar-nav navbar-toggle mobile-notifs-link">
+                <li class="nav-item notifications"><a href="notifications">
+                {{ formatUInt .UnreadNotifications }}
+                    <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                </a></li>
+            </ul>
+            {{ end }}
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -69,11 +77,12 @@
                 <li {{ if eq $nav "topics" }}class="active"{{ end }}><a href="topics">{{ T "Topics" }}</a></li>
             {{ if not .Username }}
                 <li {{ if eq $nav "signup" }}class="active"{{ end }}><a href="signup">{{ T "Signup" }}</a></li>
+                <li {{ if eq $nav "login" }}class="active"{{ end }}><a href="login">{{ T "Login" }}</a></li>
             {{ end }}
             </ul>
         {{ if .Username }}
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item notifications"><a href="notifications">
+                <li class="hidden-xs nav-item notifications"><a href="notifications">
                 {{ formatUInt .UnreadNotifications }}
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                 </a></li>

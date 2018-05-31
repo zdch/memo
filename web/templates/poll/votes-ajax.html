@@ -14,7 +14,7 @@
         <tr>
             <td><a href="profile/{{ .GetProfileHashString }}">{{ .Name }}</a></td>
             <td>{{ .Option }}</td>
-            <td>{{ .Tip }}</td>
+            <td>{{ formatBigInt .Tip }}</td>
             <td>{{ .GetTimeAgo }}</td>
             <td>{{ if .Message }}<a href="post/{{ .GetTxHashString }}">{{ .Message }}</a>{{ end }}</td>
         </tr>

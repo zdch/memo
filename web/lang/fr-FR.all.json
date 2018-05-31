@@ -53,11 +53,11 @@
   },
   {
     "id": "followers",
-    "translation": "Followers"
+    "translation": "Abonnés"
   },
   {
     "id": "following",
-    "translation": "Following"
+    "translation": "Abonnements"
   },
   {
     "id": "balance",
@@ -77,11 +77,11 @@
   },
   {
     "id": "set_name",
-    "translation": "Set Name"
+    "translation": "Éditer le nom"
   },
   {
     "id": "set_profile",
-    "translation": "Set Profile Text"
+    "translation": "Éditer le texte de profil"
   },
   {
     "id": "export_key",
@@ -98,8 +98,8 @@
   {
     "id": "like",
     "translation": {
-      "one": "Like",
-      "other": "Likes"
+      "one": "J'aime",
+      "other": "J'aime"
     }
   },
   {
@@ -108,7 +108,7 @@
   },
   {
     "id": "likes",
-    "translation": "likes"
+    "translation": "J'aime"
   },
   {
     "id": "top",
@@ -124,7 +124,7 @@
   },
   {
     "id": "archive",
-    "translation": "Archiver"
+    "translation": "Archivé"
   },
   {
     "id": "last_hour",
@@ -164,7 +164,7 @@
   },
   {
     "id": "feed",
-    "translation": "Feed"
+    "translation": "fil d'actualité"
   },
   {
     "id": "posted_at",
@@ -176,15 +176,15 @@
   },
   {
     "id": "view_on_block_explorer",
-    "translation": "Voir sur le Block Explorer"
+    "translation": "Voir sur l'Explorateur de Blocs"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": "Voir l'Adresse sur le Block Explorer"
+    "translation": "Voir l'Adresse sur l'Explorateur de Blocs"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": "Voir le Nom sur le Block Explorer"
+    "translation": "Voir le Nom sur l'Explorateur de Blocs"
   },
   {
     "id": "page",
@@ -205,8 +205,8 @@
   {
     "id": "follow",
     "translation": {
-      "one": "Follow",
-      "other": "Follows"
+      "one": "Suivre",
+      "other": "Abonnements"
     }
   },
   {
@@ -223,11 +223,11 @@
   },
   {
     "id": "Topic",
-    "translation": "Topic"
+    "translation": "Sujet"
   },
   {
     "id": "Topics",
-    "translation": "Topics"
+    "translation": "Sujets"
   },
   {
     "id": "Send",
@@ -235,11 +235,11 @@
   },
   {
     "id": "Existing_Topics",
-    "translation": "Topics Existants"
+    "translation": "Sujets Existants"
   },
   {
     "id": "Create_new_topic",
-    "translation": "Créer un nouveau topic"
+    "translation": "Créer un nouveau sujet"
   },
   {
     "id": "Most_recent_post",
@@ -251,7 +251,7 @@
   },
   {
     "id": "Back_to_topics",
-    "translation": "Revenir aux topics"
+    "translation": "Revenir aux sujets"
   },
   {
     "id": "Forget_password",
@@ -259,7 +259,7 @@
   },
   {
     "id": "Names_set",
-    "translation": "Names set"
+    "translation": "Noms édités"
   },
   {
     "id": "Total",
@@ -307,7 +307,7 @@
   },
   {
     "id": "select_multiple_options",
-    "translation": "Beaucoup de votes par adresse"
+    "translation": "Plusieurs votes par adresse"
   },
   {
     "id": "question",
