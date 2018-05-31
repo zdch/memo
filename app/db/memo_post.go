@@ -474,7 +474,7 @@ func GetUniqueTopics(offset uint, searchString string, pkHash []byte, orderType 
 		Table("memo_posts").
 		Select("" +
 		"memo_posts.topic, " +
-		"MAX(IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)) AS max_time, " +
+		"CAST(MAX(IF(COALESCE(blocks.timestamp, memo_posts.created_at) < memo_posts.created_at, blocks.timestamp, memo_posts.created_at)) AS DATETIME) AS max_time, " +
 		"COUNT(DISTINCT memo_posts.id) AS post_count, " +
 		"COUNT(DISTINCT case memo_topic_follows.unfollow when 0 then memo_topic_follows.id else null end) AS follower_count").
 		Joins("LEFT JOIN memo_topic_follows ON (memo_posts.topic = memo_topic_follows.topic)").
