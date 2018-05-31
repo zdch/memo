@@ -46,7 +46,7 @@
                 <img class="identicon"/>
             </span>
         {{ if .Post.Memo.RootTxHash }}
-            <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Parent.Memo.GetParentTransactionHashString }}">{{ .Post.Parent.Name }}'s post</a>
+            <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Parent.Memo.GetTransactionHashString }}">{{ .Post.Parent.Name }}'s post</a>
         {{ else }}
             <a href="post/{{ .Post.Parent.Memo.GetTransactionHashString }}">{{ .Post.Parent.Name }}'s post</a>
         {{ end }}
