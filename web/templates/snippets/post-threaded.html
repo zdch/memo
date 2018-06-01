@@ -108,23 +108,25 @@
         });
     </script>
 {{ else }}
-    <p class="likes">
-        <i>
-        {{ if .Post.Likes }}
-            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }}</a>
-        {{ end }}
-        {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
-            &middot;
-        {{ end }}
-        {{ if gt .Post.ReplyCount 0 }}
-            {{ if .Post.Memo.RootTxHash }}
-                <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}</a>
-            {{ else }}
-                <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}</a>
+    {{ if or .Post.Likes (gt .Post.ReplyCount 0) }}
+        <p class="likes">
+            <i>
+            {{ if .Post.Likes }}
+                <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }}</a>
             {{ end }}
-        {{ end }}
-        </i>
-    </p>
+            {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
+                &middot;
+            {{ end }}
+            {{ if gt .Post.ReplyCount 0 }}
+                {{ if .Post.Memo.RootTxHash }}
+                    <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}</a>
+                {{ else }}
+                    <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}</a>
+                {{ end }}
+            {{ end }}
+            </i>
+        </p>
+    {{ end }}
 {{ end }}
     <div class="actions">
     {{ if .Post.Memo.Topic }}

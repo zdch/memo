@@ -65,6 +65,7 @@
 {{ if .Post.IsPoll }}
     {{ template "snippets/poll.html" dict "Post" .Post "Threaded" false }}
 {{ end }}
+{{ if or .Post.Likes (gt .Post.ReplyCount 0) }}
     <p class="likes">
         <i>
         {{ if .Post.Likes }}
@@ -83,6 +84,7 @@
         {{ end }}
         </i>
     </p>
+{{ end }}
 {{ if not .Compress }}
     <div class="actions">
     {{ if .Post.Memo.Topic }}
