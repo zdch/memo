@@ -69,9 +69,9 @@
 {{ if or .Post.Likes (gt .Post.ReplyCount 0) }}
     <p>
     {{ if .Post.Likes }}
-    {{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }} -
-        <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">Show</a>
-        (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
+        {{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }} -
+            <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">Show</a>
+            (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
     {{ end }}
     {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
         &middot;
