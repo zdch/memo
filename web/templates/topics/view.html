@@ -43,17 +43,21 @@
 </form>
 {{ end }}
 
+<input type="hidden" value="{{ .Topic }}" id="topic-name" />
+
 <script type="text/javascript">
     $(function () {
+        // handles html encoding
+        var topicName = $("#topic-name").val();
     {{ if .IsLoggedIn }}
         MemoApp.Form.NewTopicMessage($("#broadcasting"), $("#form-new-topic-message"));
-        MemoApp.Form.FollowTopic($("#follow-topic"), "{{ .Topic }}", {{ if .IsFollowingTopic }}true{{ else }}false{{ end }});
+        MemoApp.Form.FollowTopic($("#follow-topic"), topicName, {{ if .IsFollowingTopic }}true{{ else }}false{{ end }});
     {{ end }}
         MemoApp.SetFirstPostId({{ .FirstPostId }});
         var $allPosts = $("#all-posts");
         $allPosts.scrollTop($allPosts[0].scrollHeight);
-        MemoApp.WatchNewTopics("{{ .Topic }}", $allPosts);
-        MemoApp.LoadMore("{{ .Topic }}", $allPosts);
+        MemoApp.WatchNewTopics(topicName, $allPosts);
+        MemoApp.LoadMore(topicName, $allPosts);
     });
 </script>
 
