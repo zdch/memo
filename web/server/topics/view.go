@@ -44,7 +44,8 @@ var viewRoute = web.Route{
 			return
 		}
 		if len(topicPosts) == 0 {
-			r.Error(jerr.New("no posts for topic"), http.StatusInternalServerError)
+			jerr.New("no posts for topic").Print()
+			r.SetRedirect(res.UrlTopics)
 			return
 		}
 		if len(userPkHash) > 0 {
@@ -116,6 +117,7 @@ var viewRoute = web.Route{
 		}
 		r.Helper["Title"] = "Memo Topic - " + topicPosts[0].Memo.Topic
 		r.Helper["Topic"] = topicPosts[0].Memo.Topic
+		r.Helper["TopicEncoded"] = topicPosts[0].Memo.GetUrlEncodedTopic()
 		r.Helper["Posts"] = topicPosts
 		r.Helper["FollowerCount"] = followerCount
 		r.Helper["FirstPostId"] = topicPosts[0].Memo.Id
