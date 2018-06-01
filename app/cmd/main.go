@@ -23,5 +23,6 @@ func Execute() {
 	memoCmd.AddCommand(addReplyNotificationsCmd)
 	memoCmd.AddCommand(parseTransactionCmd)
 	memoCmd.AddCommand(addFollowerNotificationsCmd)
+	memoCmd.AddCommand(profilePic)
 	memoCmd.Execute()
 }
