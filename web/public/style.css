@@ -228,6 +228,11 @@ a.disabled {
     width: 100px;
     display: inline-block;
 }
+.post .actions .no-label a, .post .actions .no-label span {
+    margin: 3px;
+    padding-top: 0px;
+    color: #333;
+}
 .post .actions .glyphicon {
     margin-right: 10px;
     margin-top: -4px;

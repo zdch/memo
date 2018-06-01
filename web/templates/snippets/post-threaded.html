@@ -150,9 +150,9 @@
             </form>
         </div>
     {{ end }}
-        <a class="btn btn-leave right" target="_blank"
+        <a title="{{ T "view_on_block_explorer" }}" class="btn btn-light right no-label" target="_blank"
            href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
-        {{ T "view_on_block_explorer" }}</a>
+            <span class="glyphicon glyphicon-th"></span></a>
         <div class="clear"></div>
     </div>
 
