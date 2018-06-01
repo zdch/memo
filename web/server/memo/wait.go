@@ -104,7 +104,7 @@ var waitSubmitRoute = web.Route{
 				r.Error(jerr.Get("error getting post from db", err), http.StatusInternalServerError)
 				return
 			}
-			r.Write(strings.TrimLeft(res.UrlTopicView + "/" + post.Topic, "/"))
+			r.Write(strings.TrimLeft(res.UrlTopicView + "/" + post.GetUrlEncodedTopic(), "/"))
 		case memo.CodePollOption:
 			memoPollOption, err := db.GetMemoPollOption(txHash.CloneBytes())
 			if err != nil {
