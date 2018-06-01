@@ -65,24 +65,7 @@
 {{ if .Post.IsPoll }}
     {{ template "snippets/poll.html" dict "Post" .Post "Threaded" false }}
 {{ end }}
-
-    <!--
-{{ if or .Post.Likes (gt .Post.ReplyCount 0) }}
-    <p>
-    {{ if .Post.Likes }}
-        {{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }} -
-            <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">Show</a>
-            (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
-    {{ end }}
-    {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
-        &middot;
-    {{ end }}
-    {{ if gt .Post.ReplyCount 0 }}
-        {{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}
-    {{ end }}
-    </p>
-{{ end }}-->
-
+    
 {{ if or .Post.Likes (gt .Post.ReplyCount 0) }}
     <p class="likes">
         <i>
