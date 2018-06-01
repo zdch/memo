@@ -259,6 +259,16 @@ a.disabled {
 .post .actions .btn-leave {
     margin-left: 10px;
 }
+.btn-warning {
+    color: white;
+    background-color: #548d1d;
+    border-color: #548d1d;
+}
+.btn-warning:hover {
+    color: white;
+    background-color: #548d1d;
+    border-color: #548d1d;
+}
 #notify {
     color: red;
     font-style: italic;
