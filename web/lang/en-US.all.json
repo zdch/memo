@@ -101,13 +101,9 @@
   {
     "id": "like",
     "translation": {
-      "one": "Like",
-      "other": "Likes"
+      "one": "like",
+      "other": "likes"
     }
-  },
-  {
-    "id": "likes",
-    "translation": "likes"
   },
   {
     "id": "top",

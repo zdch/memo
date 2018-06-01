@@ -69,11 +69,11 @@
 {{ if or .Post.Likes (gt .Post.ReplyCount 0) }}
     <p>
     {{ if .Post.Likes }}
-    {{ len .Post.Likes }} likes -
+    {{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }} -
         <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">Show</a>
         (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
     {{ end }}
-    {{ if and .Post.Likes (gt .Post.ReplyCount 0) }} 
+    {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
         &middot;
     {{ end }}
     {{ if gt .Post.ReplyCount 0 }}
@@ -111,7 +111,7 @@
     <p class="likes">
         <i>
         {{ if .Post.Likes }}
-            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "likes" }}</a>
+            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }}</a>
         {{ end }}
         {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
             &middot;
@@ -146,7 +146,7 @@
             <span class="like-info" id="like-info-{{ .Post.Memo.GetTransactionHashString }}">
                 <a class="btn btn-default like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}"
                    href="#"><span class="glyphicon glyphicon-heart{{ if not .Post.HasLiked }}-empty{{ end }}"
-                                  aria-hidden="true"></span>{{ T "like" 1 }}</a>
+                                  aria-hidden="true"></span>{{ T "like" 1 | UcFirst }}</a>
             </span>
             <form class="like-form hidden form-inline" id="like-form-{{ .Post.Memo.GetTransactionHashString }}">
                 <input id="tx-hash-{{ .Post.Memo.GetTransactionHashString }}" type="hidden" name="tx-hash"

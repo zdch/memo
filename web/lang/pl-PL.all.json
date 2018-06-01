@@ -101,13 +101,9 @@
   {
     "id": "like",
     "translation": {
-      "one": "Polubienie",
-      "other": "Polubienia"
+      "one": "polubienie",
+      "other": "polubienia"
     }
-  },
-  {
-    "id": "likes",
-    "translation": "polubienia"
   },
   {
     "id": "top",

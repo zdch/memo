@@ -106,10 +106,6 @@
     }
   },
   {
-    "id": "likes",
-    "translation": "좋아요"
-  },
-  {
     "id": "top",
     "translation": "대세글"
   },

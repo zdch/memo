@@ -101,13 +101,9 @@
   {
     "id": "like",
     "translation": {
-      "one": "Gilla",
-      "other": "Gillar"
+      "one": "gilla",
+      "other": "gillar"
     }
-  },
-  {
-    "id": "likes",
-    "translation": "tycker om"
   },
   {
     "id": "top",
