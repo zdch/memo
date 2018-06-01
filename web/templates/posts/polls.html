@@ -5,7 +5,7 @@
 <p class="pagination">
     <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}"
        href="{{ .OffsetLink }}&offset={{ .PrevOffset }}">&lt; {{ T "previous" }}</a>
-    <span class="page">{{ T "page" }} {{ .Page }}</span>
+    <span class="page">{{ .Page }}</span>
     <a class="{{ if lt (len .Posts) 25 }}disabled{{ end }}"
        href="{{ .OffsetLink }}&offset={{ .NextOffset }}">{{ T "next" }} &gt;</a>
 </p>
@@ -15,7 +15,7 @@
 <p class="pagination">
     <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}"
        href="{{ .OffsetLink }}&offset={{ .PrevOffset }}">&lt; {{ T "previous" }}</a>
-    <span class="page">{{ T "page" }} {{ .Page }}</span>
+    <span class="page">{{ .Page }}</span>
     <a class="{{ if lt (len .Posts) 25 }}disabled{{ end }}"
        href="{{ .OffsetLink }}&offset={{ .NextOffset }}">{{ T "next" }} &gt;</a>
 </p>
