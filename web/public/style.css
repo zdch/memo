@@ -228,9 +228,9 @@ a.disabled {
     width: 100px;
     display: inline-block;
 }
-.post .actions .no-label a, .post .actions .no-label span {
-    margin: 3px;
-    padding-top: 0px;
+.post .post-header .block-explorer {
+    margin: 3px 0 3px 3px;
+    padding: 0px 0px 0px 0px;
     color: #333;
 }
 .post .actions .glyphicon {
