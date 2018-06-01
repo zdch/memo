@@ -39,6 +39,10 @@
         {{- if .Post.Memo.Topic }}
             in <a href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">{{ .Post.Memo.Topic }}</a>
         {{ end }}
+
+            <a title="{{ T "view_on_block_explorer" }}" class="btn btn-light right block-explorer" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
+                <span class="glyphicon glyphicon-th"></span></a>
         </p>
     </div>
 {{ if .Post.Parent }}
@@ -150,9 +154,6 @@
             </form>
         </div>
     {{ end }}
-        <a title="{{ T "view_on_block_explorer" }}" class="btn btn-light right block-explorer" target="_blank"
-           href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
-            <span class="glyphicon glyphicon-th"></span></a>
         <div class="clear"></div>
     </div>
 
