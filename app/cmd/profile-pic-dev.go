@@ -8,6 +8,8 @@ import (
 	"regexp"
 	"os"
 	"io"
+	"strconv"
+	"os/exec"
 )
 
 var profilePic = &cobra.Command{
@@ -29,17 +31,41 @@ var profilePic = &cobra.Command{
 		}
 		defer response.Body.Close()
 
-		file, err := os.Create("asdf.jpg")
+		file, err := os.Create("profile-pic.jpg")
 		if err != nil {
 			return jerr.Get("couldn't create image file", err)
 		}
+
+//		newImage := image.Resize(160, 0, original_image, resize.Lanczos3)
 
 		_, err = io.Copy(file, response.Body)
 		if err != nil {
 			return jerr.Get("couldn't save image file", err)
 		}
 		file.Close()
+
+		err = resizeExternally("profile-pic.jpg", "profile-pic-resized.jpg", 200,200)
+		if err != nil {
+			return jerr.Get("couldn't resize image file", err)
+		}
+
 		fmt.Println("success!")
 		return nil
 	},
+}
+
+func resizeExternally(from string, to string, width uint, height uint) error {
+	var args = []string{
+		"--size", strconv.FormatUint(uint64(width), 10) + "x" +
+			strconv.FormatUint(uint64(height), 10),
+		"--output", to,
+		"--crop",
+		from,
+	}
+	path, err := exec.LookPath("vipsthumbnail.exe")
+	if err != nil {
+		return err
+	}
+	cmd := exec.Command(path, args...)
+	return cmd.Run()
 }
