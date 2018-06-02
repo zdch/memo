@@ -112,6 +112,13 @@ var waitSubmitRoute = web.Route{
 				return
 			}
 			r.Write(strings.TrimLeft(res.UrlMemoPost + "/" + memoPollOption.GetPollTransactionHashString(), "/"))
+		case memo.CodeSetProfilePicture:
+			setName, err := db.GetMemoSetPic(txHash.CloneBytes())
+			if err != nil {
+				r.Error(jerr.Get("error getting profile picture from db", err), http.StatusInternalServerError)
+				return
+			}
+			r.Write(strings.TrimLeft(res.UrlProfileView + "/" + setName.GetAddressString(), "/"))
 		}
 	},
 }
