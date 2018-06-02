@@ -35,5 +35,7 @@ func GetRoutes() []web.Route {
 		waitSubmitRoute,
 		setProfileRoute,
 		setProfileSubmitRoute,
+		setPicRoute,
+		setPicSubmitRoute,
 	}
 }

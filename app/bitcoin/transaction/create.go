@@ -33,6 +33,7 @@ const (
 	SpendOutputTypeMemoPollQuestionMulti
 	SpendOutputTypeMemoPollOption
 	SpendOutputTypeMemoPollVote
+	SpendOutputTypeMemoSetPic
 )
 
 func Create(spendOuts []*db.TransactionOut, privateKey *wallet.PrivateKey, spendOutputs []SpendOutput) (*wire.MsgTx, error) {

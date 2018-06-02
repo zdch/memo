@@ -31,12 +31,11 @@ var profilePic = &cobra.Command{
 		}
 		defer response.Body.Close()
 
-		file, err := os.Create("profile-pic.jpg")
+		pic_file_name := "profile-pic"
+		file, err := os.Create(pic_file_name + ".jpg")
 		if err != nil {
 			return jerr.Get("couldn't create image file", err)
 		}
-
-//		newImage := image.Resize(160, 0, original_image, resize.Lanczos3)
 
 		_, err = io.Copy(file, response.Body)
 		if err != nil {
@@ -44,7 +43,15 @@ var profilePic = &cobra.Command{
 		}
 		file.Close()
 
-		err = resizeExternally("profile-pic.jpg", "profile-pic-resized.jpg", 200,200)
+		err = resizeExternally(pic_file_name + ".jpg", pic_file_name + "-200x200.jpg", 200,200)
+		if err != nil {
+			return jerr.Get("couldn't resize image file", err)
+		}
+		err = resizeExternally(pic_file_name + ".jpg", pic_file_name + "-75x75.jpg", 75,75)
+		if err != nil {
+			return jerr.Get("couldn't resize image file", err)
+		}
+		err = resizeExternally(pic_file_name + ".jpg", pic_file_name + "-32x32.jpg", 32,32)
 		if err != nil {
 			return jerr.Get("couldn't resize image file", err)
 		}
