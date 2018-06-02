@@ -93,7 +93,10 @@
   },
   {
     "id": "reply",
-    "translation": "답글"
+    "translation": {
+      "one": "답글",
+      "other": "답글들"
+    }
   },
   {
     "id": "like",
@@ -101,14 +104,6 @@
       "one": "좋아요",
       "other": "좋아요"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "답글들"
-  },
-  {
-    "id": "likes",
-    "translation": "좋아요"
   },
   {
     "id": "top",

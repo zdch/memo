@@ -195,7 +195,7 @@ a.disabled {
     font-weight: bold;
 }
 .post .name {
-    margin: 5px 0;
+    margin: 0 0 5px;
     line-height: 22px;
     word-break: break-all;
 }
@@ -228,6 +228,11 @@ a.disabled {
     width: 100px;
     display: inline-block;
 }
+.post .post-header .block-explorer {
+    margin: 3px 0 3px 3px;
+    padding: 0px 0px 0px 0px;
+    color: #333;
+}
 .post .actions .glyphicon {
     margin-right: 10px;
     margin-top: -4px;
@@ -253,6 +258,16 @@ a.disabled {
 }
 .post .actions .btn-leave {
     margin-left: 10px;
+}
+.btn-warning {
+    color: white;
+    background-color: #548d1d;
+    border-color: #548d1d;
+}
+.btn-warning:hover {
+    color: white;
+    background-color: #548d1d;
+    border-color: #548d1d;
 }
 #notify {
     color: red;

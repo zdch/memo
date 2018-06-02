@@ -11,9 +11,9 @@
         <span id="follow-topic">
             <a href="#" id="follow-topic-button" class="btn btn-primary">
             {{- if not .IsFollowingTopic }}{{ T "follow" 1 | Title }}{{ else }}{{ T "unfollow" 1 | Title }}{{ end }} </a>
-            <a href="#" id="follow-topic-confirm" class="btn btn-success hidden">Confirm
+            <a href="#" id="follow-topic-confirm" class="btn btn-warning hidden">Confirm
             {{ if not .IsFollowingTopic }}{{ T "follow" 1 | Title }}{{ else }}{{ T "unfollow" 1 | Title }}{{ end }}</a>
-            <a href="#" id="follow-topic-cancel" class="btn btn-warning hidden">Cancel</a>
+            <a href="#" id="follow-topic-cancel" class="btn btn-light hidden">Cancel</a>
             <button id="follow-topic-creating" class="btn btn-warning hidden">Creating
             {{ if not .IsFollowingTopic }}{{ T "follow" 1 | Title }}{{ else }}{{ T "unfollow" 1 | Title }}{{ end -}}
                 ...</button>

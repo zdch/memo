@@ -93,22 +93,17 @@
   },
   {
     "id": "reply",
-    "translation": "Odpowiedz"
+    "translation": {
+      "one": "odpowiedz",
+      "other": "odpowiedzi"
+    }
   },
   {
     "id": "like",
     "translation": {
-      "one": "Polubienie",
-      "other": "Polubienia"
+      "one": "polubienie",
+      "other": "polubienia"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "odpowiedzi"
-  },
-  {
-    "id": "likes",
-    "translation": "polubienia"
   },
   {
     "id": "top",

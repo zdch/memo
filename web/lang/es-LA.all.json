@@ -93,22 +93,17 @@
   },
   {
     "id": "reply",
-    "translation": "Respuesta"
+    "translation": {
+      "one": "respuesta",
+      "other": "respuestas"
+    }
   },
   {
     "id": "like",
     "translation": {
-      "one": "Me gusta",
-      "other": "Me gustas"
+      "one": "me gusta",
+      "other": "me gustas"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "respuestas"
-  },
-  {
-    "id": "likes",
-    "translation": "me gustas"
   },
   {
     "id": "top",

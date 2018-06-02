@@ -39,6 +39,10 @@
         {{- if .Post.Memo.Topic }}
             in <a href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">{{ .Post.Memo.Topic }}</a>
         {{ end }}
+
+            <a title="{{ T "view_on_block_explorer" }}" class="btn btn-light right block-explorer" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
+                <span class="glyphicon glyphicon-th"></span></a>
         </p>
     </div>
 {{ if .Post.Parent }}
@@ -65,14 +69,30 @@
 {{ if .Post.IsPoll }}
     {{ template "snippets/poll.html" dict "Post" .Post "Threaded" false }}
 {{ end }}
+    
+{{ if or .Post.Likes (gt .Post.ReplyCount 0) }}
+    <p class="likes">
+        <i>
+        {{ if .Post.Likes }}
+           {{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }} -
+            <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">Show</a>
+            (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
+        {{ end }}
+        {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
+            &middot;
+        {{ end }}
+        {{ if gt .Post.ReplyCount 0 }}
+        {{ if .Post.Memo.RootTxHash }}
+            {{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}
+        {{ else }}
+            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}</a>
+        {{ end }}
+        {{ end }}
+        </i>
+    </p>
+{{ end }}
 
 {{ if .Post.Likes }}
-    <p>
-    {{ len .Post.Likes }} likes -
-        <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">Show</a>
-        (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis) &middot; {{ .Post.ReplyCount }} {{ T "replies" }}
-    </p>
-
     <div id="likes-{{ .Post.Memo.GetTransactionHashString }}" style="display:none">
         <h3>Likes</h3>
 
@@ -97,14 +117,8 @@
             MemoApp.Form.LikesToggle($("#show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}"), $("#likes-{{ .Post.Memo.GetTransactionHashString }}"));
         });
     </script>
-{{ else }}
-    <p class="likes">
-        <i>
-            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "likes" }}</a>
-            &middot; <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
-        </i>
-    </p>
 {{ end }}
+
     <div class="actions">
     {{ if .Post.Memo.Topic }}
         <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
@@ -116,7 +130,7 @@
         {{ if or (.ShowReply) (not .Post.Memo.Topic) }}
         <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
-            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" }}
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" 1 | Title }}
         </a>
        {{ end }}
         <span class="creating hidden btn btn-warning">Creating...</span>
@@ -125,7 +139,7 @@
             <span class="like-info" id="like-info-{{ .Post.Memo.GetTransactionHashString }}">
                 <a class="btn btn-default like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}"
                    href="#"><span class="glyphicon glyphicon-heart{{ if not .Post.HasLiked }}-empty{{ end }}"
-                                  aria-hidden="true"></span>{{ T "like" 1 }}</a>
+                                  aria-hidden="true"></span>{{ T "like" 1 | UcFirst }}</a>
             </span>
             <form class="like-form hidden form-inline" id="like-form-{{ .Post.Memo.GetTransactionHashString }}">
                 <input id="tx-hash-{{ .Post.Memo.GetTransactionHashString }}" type="hidden" name="tx-hash"
@@ -140,9 +154,6 @@
             </form>
         </div>
     {{ end }}
-        <a class="btn btn-leave right" target="_blank"
-           href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
-        {{ T "view_on_block_explorer" }}</a>
         <div class="clear"></div>
     </div>
 
