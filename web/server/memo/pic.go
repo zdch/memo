@@ -110,7 +110,7 @@ var setPicSubmitRoute = web.Route{
 			r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
 			return
 		}
-		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-32x32.jpg", 32,32)
+		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-24x24.jpg", 24,24)
 		if err != nil {
 			r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
 			return
