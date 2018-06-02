@@ -37,12 +37,22 @@
         {{- if .Post.Memo.Topic }}
             in <a href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">{{ .Post.Memo.Topic }}</a>
         {{ end }}
-            <a title="{{ T "view_on_block_explorer" }}" class="btn btn-light right block-explorer" target="_blank"
-               href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
-                <span class="glyphicon glyphicon-th"></span></a>
-        <div class="clear"></div>
-
         </p>
+        <ul class="block-explorer">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="fas fa-cube"></span></a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a target="_blank"
+                           href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
+                        Bitcoin.com Explorer
+                    </a></li>
+                    <li><a target="_blank"
+                           href="https://blockchair.com/bitcoin-cash/transaction/{{ .Post.Memo.GetTransactionHashString }}">
+                        Blockchair
+                    </a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
 {{ if .Post.Parent }}
     <div class="reply">
