@@ -22,6 +22,11 @@ const (
 	BitcoinNodePort = "BITCOIN_NODE_PORT"
 )
 
+const (
+	ProfilePicsPath   = "PROFILE_PICS_PATH"
+	VipsThumbnailPath = "VIPS_THUMBNAIL_PATH"
+)
+
 type MysqlConfig struct {
 	Host     string
 	Username string
@@ -32,6 +37,11 @@ type MysqlConfig struct {
 type MemcacheConfig struct {
 	Host string
 	Port string
+}
+
+type FilePathsConfig struct {
+	ProfilePicsPath string
+	VipsThumbnailPath string
 }
 
 func (m MemcacheConfig) GetConnectionString() string {
@@ -78,5 +88,12 @@ func GetBitcoinNode() BitcoinNodeConfig {
 	return BitcoinNodeConfig{
 		Host: viper.GetString(BitcoinNodeHost),
 		Port: viper.GetString(BitcoinNodePort),
+	}
+}
+
+func GetFilePaths() FilePathsConfig {
+	return FilePathsConfig{
+		ProfilePicsPath: viper.GetString(ProfilePicsPath),
+		VipsThumbnailPath: viper.GetString(VipsThumbnailPath),
 	}
 }

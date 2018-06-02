@@ -11,6 +11,12 @@ import (
 	"github.com/memocash/memo/app/mutex"
 	"github.com/memocash/memo/app/res"
 	"net/http"
+	"regexp"
+	"os"
+	"io"
+	"strconv"
+	"os/exec"
+	"github.com/memocash/memo/app/config"
 )
 
 var setPicRoute = web.Route{
@@ -65,6 +71,51 @@ var setPicSubmitRoute = web.Route{
 		}
 
 		address := key.GetAddress()
+
+		// fetch and save image
+		urlMatch, err := regexp.Match(`(^http[s]?://[^\s]*[^.?!,)\s])`, []byte(url))
+		if err != nil || urlMatch == false {
+			r.Error(jerr.Get("must pass an image url", err), http.StatusUnprocessableEntity)
+			return
+		}
+
+		response, err := http.Get(url)
+		if err != nil {
+			r.Error(jerr.Get("couldn't fetch remote image", err), http.StatusInternalServerError)
+			return
+		}
+		defer response.Body.Close()
+
+		profilePicName := config.GetFilePaths().ProfilePicsPath + address.GetAddress().String()
+		file, err := os.Create(profilePicName + ".jpg")
+		if err != nil {
+			r.Error(jerr.Get("couldn't create image file", err), http.StatusInternalServerError)
+			return
+		}
+
+		_, err = io.Copy(file, response.Body)
+		if err != nil {
+			r.Error(jerr.Get("couldn't save image file", err), http.StatusInternalServerError)
+			return
+		}
+		file.Close()
+
+		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-200x200.jpg", 200,200)
+		if err != nil {
+			r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
+			return
+		}
+		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-75x75.jpg", 75,75)
+		if err != nil {
+			r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
+			return
+		}
+		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-32x32.jpg", 32,32)
+		if err != nil {
+			r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
+			return
+		}
+
 		var fee = int64(memo.MaxTxFee - memo.MaxPostSize + len([]byte(url)))
 		var minInput = fee + transaction.DustMinimumOutput
 
@@ -94,4 +145,20 @@ var setPicSubmitRoute = web.Route{
 		transaction.QueueTx(tx)
 		r.Write(tx.TxHash().String())
 	},
+}
+
+func resizeExternally(from string, to string, width uint, height uint) error {
+	var args = []string{
+		"--size", strconv.FormatUint(uint64(width), 10) + "x" +
+			strconv.FormatUint(uint64(height), 10),
+		"--output", to,
+		"--crop",
+		from,
+	}
+	path, err := exec.LookPath(config.GetFilePaths().VipsThumbnailPath)
+	if err != nil {
+		return err
+	}
+	cmd := exec.Command(path, args...)
+	return cmd.Run()
 }
