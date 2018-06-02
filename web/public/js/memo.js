@@ -174,6 +174,85 @@
     /**
      * @param {jQuery} $form
      */
+    MemoApp.Form.SetProfilePic = function ($form) {
+        var $url = $form.find("[name=url]");
+        var $msgByteCount = $form.find(".message-byte-count");
+        $url.on("input", function () {
+            setMsgByteCount();
+        });
+
+        function setMsgByteCount() {
+            var cnt = maxNameBytes - MemoApp.utf8ByteLength($url.val());
+            $msgByteCount.html("[" + cnt + "]");
+            if (cnt < 0) {
+                $msgByteCount.addClass("red");
+            } else {
+                $msgByteCount.removeClass("red");
+            }
+        }
+
+        setMsgByteCount();
+        var submitting = false;
+        $form.submit(function (e) {
+            e.preventDefault();
+            if (submitting) {
+                return
+            }
+
+            var url = $url.val();
+            if (maxNameBytes - MemoApp.utf8ByteLength(url) < 0) {
+                alert("Maximum name is " + maxNameBytes + " bytes. Note that some characters are more than 1 byte." +
+                    " Emojis are usually 4 bytes, for example.");
+                return;
+            }
+
+            if (url.length === 0) {
+                alert("Must enter a URL.");
+                return;
+            }
+
+            var password = MemoApp.GetPassword();
+            if (!password.length) {
+                console.log("Password not set. Please try logging in again.");
+                return;
+            }
+
+            submitting = true;
+            $.ajax({
+                type: "POST",
+                url: MemoApp.GetBaseUrl() + MemoApp.URL.MemoSetProfilePicSubmit,
+                data: {
+                    url: url,
+                    password: password
+                },
+                success: function (txHash) {
+                    submitting = false;
+                    if (!txHash || txHash.length === 0) {
+                        alert("Server error. Please try refreshing the page.");
+                        return
+                    }
+                    window.location = MemoApp.GetBaseUrl() + MemoApp.URL.MemoWait + "/" + txHash
+                },
+                error: function (xhr) {
+                    submitting = false;
+                    if (xhr.status === 401) {
+                        alert("Error unlocking key. " +
+                            "Please verify your password is correct. " +
+                            "If this problem persists, please try refreshing the page.");
+                        return;
+                    }
+                    var errorMessage =
+                        "Error with request (response code " + xhr.status + "):\n" +
+                        (xhr.responseText !== "" ? xhr.responseText + "\n" : "") +
+                        "If this problem persists, try refreshing the page.";
+                    alert(errorMessage);
+                }
+            });
+        });
+    };
+    /**
+     * @param {jQuery} $form
+     */
     MemoApp.Form.SetProfile = function ($form) {
         var $profile = $form.find("[name=profile]");
         var $msgByteCount = $form.find(".message-byte-count");

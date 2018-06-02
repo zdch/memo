@@ -1,0 +1,26 @@
+{{ template "snippets/header.html" . }}
+
+<div class="col-md-6 col-md-offset-3">
+
+    <h2>Set Profile Picture</h2>
+
+    <form id="form-memo-set-profile-pic" method="post">
+        <p>
+            <label for="url">Picture URL <span class="message-byte-count byte-count"></span></label>
+            <input id="url" type="text" name="url" class="form-control" placeholder="https://" required/>
+        </p>
+        <p>
+            <input class="btn btn-primary" type="submit" value="Submit">
+            <a class="btn btn-default" href="/">Cancel</a>
+        </p>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        MemoApp.Form.SetProfilePic($("#form-memo-set-profile-pic"));
+    });
+</script>
+
+{{ template "snippets/footer.html" . }}

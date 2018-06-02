@@ -1,32 +1,33 @@
 package db
 
 import (
-	"bytes"
-	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcutil"
-	"github.com/jchavannes/jgo/jerr"
-	"github.com/memocash/memo/app/bitcoin/script"
-	"github.com/memocash/memo/app/bitcoin/wallet"
-	"html"
-	"sort"
-	"time"
+"bytes"
+"fmt"
+"github.com/btcsuite/btcd/chaincfg/chainhash"
+"github.com/btcsuite/btcutil"
+"github.com/jchavannes/jgo/jerr"
+"github.com/memocash/memo/app/bitcoin/script"
+"github.com/memocash/memo/app/bitcoin/wallet"
+"html"
+"sort"
+"time"
 )
 
-type MemoSetPic struct {
+type MemoSetName struct {
 	Id         uint   `gorm:"primary_key"`
 	TxHash     []byte `gorm:"unique;size:50"`
 	ParentHash []byte
 	PkHash     []byte `gorm:"index:pk_hash"`
 	PkScript   []byte `gorm:"size:500"`
 	Address    string
-	Url        string `gorm:"size:500"`
+	Name       string `gorm:"size:500"`
 	BlockId    uint
 	Block      *Block
 	CreatedAt  time.Time
 	UpdatedAt  time.Time
 }
 
-func (m MemoSetPic) Save() error {
+func (m MemoSetName) Save() error {
 	result := save(&m)
 	if result.Error != nil {
 		return jerr.Get("error saving memo test", result.Error)
@@ -34,7 +35,7 @@ func (m MemoSetPic) Save() error {
 	return nil
 }
 
-func (m MemoSetPic) GetTransactionHashString() string {
+func (m MemoSetName) GetTransactionHashString() string {
 	hash, err := chainhash.NewHash(m.TxHash)
 	if err != nil {
 		jerr.Get("error getting chainhash from memo post", err).Print()
@@ -43,7 +44,7 @@ func (m MemoSetPic) GetTransactionHashString() string {
 	return hash.String()
 }
 
-func (m MemoSetPic) GetAddressString() string {
+func (m MemoSetName) GetAddressString() string {
 	pkHash, err := btcutil.NewAddressPubKeyHash(m.PkHash, &wallet.MainNetParamsOld)
 	if err != nil {
 		jerr.Get("error getting pubkeyhash from memo post", err).Print()
@@ -52,44 +53,44 @@ func (m MemoSetPic) GetAddressString() string {
 	return pkHash.EncodeAddress()
 }
 
-func (m MemoSetPic) GetScriptString() string {
+func (m MemoSetName) GetScriptString() string {
 	return html.EscapeString(script.GetScriptString(m.PkScript))
 }
 
-func (m MemoSetPic) GetTimeString() string {
+func (m MemoSetName) GetTimeString() string {
 	if m.BlockId != 0 {
 		return m.Block.Timestamp.Format("2006-01-02 15:04:05")
 	}
 	return "Unconfirmed"
 }
 
-func GetMemoSetPicById(id uint) (*MemoSetPic, error) {
-	var memoSetPic MemoSetPic
-	err := find(&memoSetPic, MemoSetPic{
+func GetMemoSetNameById(id uint) (*MemoSetName, error) {
+	var memoSetName MemoSetName
+	err := find(&memoSetName, MemoSetName{
 		Id: id,
 	})
 	if err != nil {
-		return nil, jerr.Get("error getting memo set pic", err)
+		return nil, jerr.Get("error getting memo set name", err)
 	}
-	return &memoSetPic, nil
+	return &memoSetName, nil
 }
 
-func GetMemoSetPic(txHash []byte) (*MemoSetPic, error) {
-	var memoSetPic MemoSetPic
-	err := find(&memoSetPic, MemoSetPic{
+func GetMemoSetName(txHash []byte) (*MemoSetName, error) {
+	var memoSetName MemoSetName
+	err := find(&memoSetName, MemoSetName{
 		TxHash: txHash,
 	})
 	if err != nil {
-		return nil, jerr.Get("error getting memo set pic", err)
+		return nil, jerr.Get("error getting memo set name", err)
 	}
-	return &memoSetPic, nil
+	return &memoSetName, nil
 }
 
-type memoSetPicSortByDate []*MemoSetPic
+type memoSetNameSortByDate []*MemoSetName
 
-func (txns memoSetPicSortByDate) Len() int      { return len(txns) }
-func (txns memoSetPicSortByDate) Swap(i, j int) { txns[i], txns[j] = txns[j], txns[i] }
-func (txns memoSetPicSortByDate) Less(i, j int) bool {
+func (txns memoSetNameSortByDate) Len() int      { return len(txns) }
+func (txns memoSetNameSortByDate) Swap(i, j int) { txns[i], txns[j] = txns[j], txns[i] }
+func (txns memoSetNameSortByDate) Less(i, j int) bool {
 	if bytes.Equal(txns[i].ParentHash, txns[j].TxHash) {
 		return true
 	}
@@ -108,102 +109,136 @@ func (txns memoSetPicSortByDate) Less(i, j int) bool {
 	return txns[i].Block.Height > txns[j].Block.Height
 }
 
-func GetPicForPkHash(pkHash []byte) (*MemoSetPic, error) {
-	pics, err := GetSetPicsForPkHash(pkHash)
+func GetNameForPkHash(pkHash []byte) (*MemoSetName, error) {
+	names, err := GetSetNamesForPkHash(pkHash)
 	if err != nil {
-		return nil, jerr.Get("error getting set pics for pk hash", err)
+		return nil, jerr.Get("error getting set names for pk hash", err)
 	}
-	if len(pics) == 0 {
+	if len(names) == 0 {
 		return nil, nil
 	}
-	return pics[0], nil
+	return names[0], nil
 }
 
-func GetPicsForPkHashes(pkHashes [][]byte) ([]*MemoSetPic, error) {
+func GetNamesForPkHashes(pkHashes [][]byte) ([]*MemoSetName, error) {
 	db, err := getDb()
 	if err != nil {
 		return nil, jerr.Get("error getting db", err)
 	}
 	joinSelect := "JOIN (" +
 		"	SELECT MAX(id) AS id" +
-		"	FROM memo_set_pics" +
+		"	FROM memo_set_names" +
 		"	GROUP BY pk_hash" +
-		") sq ON (sq.id = memo_set_pics.id)"
+		") sq ON (sq.id = memo_set_names.id)"
 	query := db.
-		Table("memo_set_pics").
-		Select("memo_set_pics.*, blocks.*").
+		Table("memo_set_names").
+		Select("memo_set_names.*, blocks.*").
 		Joins(joinSelect).
-		Joins("JOIN blocks ON (memo_set_pics.block_id = blocks.id)").
+		Joins("JOIN blocks ON (memo_set_names.block_id = blocks.id)").
 		Order("blocks.timestamp DESC").
 		Where("pk_hash IN (?)", pkHashes)
 	rows, err := query.Rows()
 	if err != nil {
-		return nil, jerr.Get("error getting set pics", err)
+		return nil, jerr.Get("error getting set names", err)
 	}
-	var memoSetPics []*MemoSetPic
+	var memoSetNames []*MemoSetName
 	for rows.Next() {
-		var memoSetPic = MemoSetPic{
+		var memoSetName = MemoSetName{
 			Block: &Block{},
 		}
 		err = rows.Scan(
-			&memoSetPic.Id,
-			&memoSetPic.TxHash,
-			&memoSetPic.ParentHash,
-			&memoSetPic.PkHash,
-			&memoSetPic.PkScript,
-			&memoSetPic.Address,
-			&memoSetPic.Url,
-			&memoSetPic.BlockId,
-			&memoSetPic.CreatedAt,
-			&memoSetPic.UpdatedAt,
-			&memoSetPic.Block.Id,
-			&memoSetPic.Block.Height,
-			&memoSetPic.Block.Timestamp,
-			&memoSetPic.Block.Hash,
-			&memoSetPic.Block.PrevBlock,
-			&memoSetPic.Block.MerkleRoot,
-			&memoSetPic.Block.Nonce,
-			&memoSetPic.Block.TxnCount,
-			&memoSetPic.Block.Version,
-			&memoSetPic.Block.Bits,
-			&memoSetPic.Block.CreatedAt,
-			&memoSetPic.Block.UpdatedAt,
+			&memoSetName.Id,
+			&memoSetName.TxHash,
+			&memoSetName.ParentHash,
+			&memoSetName.PkHash,
+			&memoSetName.PkScript,
+			&memoSetName.Address,
+			&memoSetName.Name,
+			&memoSetName.BlockId,
+			&memoSetName.CreatedAt,
+			&memoSetName.UpdatedAt,
+			&memoSetName.Block.Id,
+			&memoSetName.Block.Height,
+			&memoSetName.Block.Timestamp,
+			&memoSetName.Block.Hash,
+			&memoSetName.Block.PrevBlock,
+			&memoSetName.Block.MerkleRoot,
+			&memoSetName.Block.Nonce,
+			&memoSetName.Block.TxnCount,
+			&memoSetName.Block.Version,
+			&memoSetName.Block.Bits,
+			&memoSetName.Block.CreatedAt,
+			&memoSetName.Block.UpdatedAt,
 		)
 		if err != nil {
-			return nil, jerr.Get("error scanning set pic", err)
+			return nil, jerr.Get("error scanning set name", err)
 		}
-		memoSetPics = append(memoSetPics, &memoSetPic)
+		memoSetNames = append(memoSetNames, &memoSetName)
 	}
 
-	var setNames []*MemoSetPic
-SetPicLoop:
-	for _, memoSetPic := range memoSetPics {
+	var setNames []*MemoSetName
+SetNameLoop:
+	for _, memoSetName := range memoSetNames {
 		for _, setName := range setNames {
-			if bytes.Equal(setName.PkHash, memoSetPic.PkHash) {
-				continue SetPicLoop
+			if bytes.Equal(setName.PkHash, memoSetName.PkHash) {
+				continue SetNameLoop
 			}
 		}
-		setNames = append(setNames, memoSetPic)
+		setNames = append(setNames, memoSetName)
 	}
 	return setNames, nil
 }
 
-func GetSetPicsForPkHash(pkHash []byte) ([]*MemoSetPic, error) {
-	var memoSetPics []*MemoSetPic
+func GetUniqueMemoAPkHashesMatchName(searchString string, offset int) ([][]byte, error) {
+	db, err := getDb()
+	if err != nil {
+		return nil, jerr.Get("error getting db", err)
+	}
+	joinSelect := "JOIN (" +
+		"	SELECT MAX(id) AS id" +
+		"	FROM memo_set_names" +
+		"	GROUP BY pk_hash" +
+		") sq ON (sq.id = memo_set_names.id)"
+	rows, err := db.
+		Table("memo_set_names").
+		Select("DISTINCT(pk_hash)").
+		Joins(joinSelect).
+		Where("name LIKE ?", fmt.Sprintf("%%%s%%", searchString)).
+		Limit(25).
+		Offset(offset).
+		Rows()
+	if err != nil {
+		return nil, jerr.Get("error getting distinct pk hashes", err)
+	}
+	defer rows.Close()
+	var pkHashes [][]byte
+	for rows.Next() {
+		var pkHash []byte
+		err := rows.Scan(&pkHash)
+		if err != nil {
+			return nil, jerr.Get("error scanning row with pkHash", err)
+		}
+		pkHashes = append(pkHashes, pkHash)
+	}
+	return pkHashes, nil
+}
+
+func GetSetNamesForPkHash(pkHash []byte) ([]*MemoSetName, error) {
+	var memoSetNames []*MemoSetName
 	err := findPreloadColumns([]string{
 		BlockTable,
-	}, &memoSetPics, &MemoSetPic{
+	}, &memoSetNames, &MemoSetName{
 		PkHash: pkHash,
 	})
 	if err != nil {
-		return nil, jerr.Get("error getting memo pics", err)
+		return nil, jerr.Get("error getting memo names", err)
 	}
-	sort.Sort(memoSetPicSortByDate(memoSetPics))
-	return memoSetPics, nil
+	sort.Sort(memoSetNameSortByDate(memoSetNames))
+	return memoSetNames, nil
 }
 
-func GetCountMemoSetPic() (uint, error) {
-	cnt, err := count(&MemoSetPic{})
+func GetCountMemoSetName() (uint, error) {
+	cnt, err := count(&MemoSetName{})
 	if err != nil {
 		return 0, jerr.Get("error getting total count", err)
 	}

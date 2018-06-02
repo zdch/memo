@@ -14,7 +14,7 @@ import (
 )
 
 var setPicRoute = web.Route{
-	Pattern:    res.UrlMemoSetPic,
+	Pattern:    res.UrlMemoSetProfilePic,
 	NeedsLogin: true,
 	Handler: func(r *web.Response) {
 		user, err := auth.GetSessionUser(r.Session.CookieId)
@@ -41,7 +41,7 @@ var setPicRoute = web.Route{
 }
 
 var setPicSubmitRoute = web.Route{
-	Pattern:     res.UrlMemoSetPicSubmit,
+	Pattern:     res.UrlMemoSetProfilePicSubmit,
 	NeedsLogin:  true,
 	CsrfProtect: true,
 	Handler: func(r *web.Response) {
