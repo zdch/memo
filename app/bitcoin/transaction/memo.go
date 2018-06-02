@@ -120,7 +120,13 @@ func SaveMemo(txn *db.Transaction, out *db.TransactionOut, block *db.Block) erro
 		if err != nil {
 			return jerr.Get("error saving memo poll vote post", err)
 		}
+	case memo.CodeSetProfilePicture:
+		err = saveMemoSetPic(txn, out, blockId, inputAddress, parentHash)
+		if err != nil {
+			return jerr.Get("error saving memo_set_pic", err)
+		}
 	}
+
 	return nil
 }
 
@@ -230,6 +236,46 @@ func saveMemoSetName(txn *db.Transaction, out *db.TransactionOut, blockId uint, 
 	err = memoSetName.Save()
 	if err != nil {
 		return jerr.Get("error saving memo_set_name", err)
+	}
+	return nil
+}
+
+func saveMemoSetPic(txn *db.Transaction, out *db.TransactionOut, blockId uint, inputAddress *btcutil.AddressPubKeyHash, parentHash []byte) error {
+	memoSetPic, err := db.GetMemoSetPic(txn.Hash)
+	if err != nil && ! db.IsRecordNotFoundError(err) {
+		return jerr.Get("error getting memo_set_pic", err)
+	}
+	if memoSetPic != nil {
+		if memoSetPic.BlockId != 0 || blockId == 0 {
+			return nil
+		}
+		memoSetPic.BlockId = blockId
+		err = memoSetPic.Save()
+		if err != nil {
+			return jerr.Get("error saving memo_set_pic", err)
+		}
+		return nil
+	}
+	pushData, err := txscript.PushedData(out.PkScript)
+	if err != nil {
+		return jerr.Get("error parsing push data from set pic", err)
+	}
+	if len(pushData) != 2 {
+		return jerr.Newf("invalid set pic, incorrect push data (%d)", len(pushData))
+	}
+	var url = string(pushData[1])
+	memoSetPic = &db.MemoSetPic{
+		TxHash:     txn.Hash,
+		PkHash:     inputAddress.ScriptAddress(),
+		PkScript:   out.PkScript,
+		ParentHash: parentHash,
+		Address:    inputAddress.EncodeAddress(),
+		Url:        url,
+		BlockId:    blockId,
+	}
+	err = memoSetPic.Save()
+	if err != nil {
+		return jerr.Get("error saving memo_set_pic", err)
 	}
 	return nil
 }
