@@ -94,7 +94,7 @@ func addImgurImages(msg string) string {
 		msg = re.ReplaceAllString(msg, `<a href="https://i.imgur.com/$3.jpg" target="_blank"><img class="imgur" src="https://i.imgur.com/$3.jpg"/></a>`)
 	} else {
 		var re = regexp.MustCompile(`(http[s]?://([a-z]+\.)?imgur\.com/)([^\s]*)`)
-		msg = re.ReplaceAllString(msg, `<a href="https://i.imgur.com/$3.jpg" target="_blank"><img class="imgur" src="https://i.imgur.com/$3"/></a>`)
+		msg = re.ReplaceAllString(msg, `<a href="https://i.imgur.com/$3" target="_blank"><img class="imgur" src="https://i.imgur.com/$3"/></a>`)
 	}
 	return msg
 }
