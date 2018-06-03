@@ -176,7 +176,7 @@ a.disabled {
     margin: 0 -9px 5px -5px;
 }
 .post .reply {
-    margin: 5px 0 10px;
+    margin: 5px 0 5px;
     border: 1px solid #eee;
     background: #fafafa;
     padding: 10px;
@@ -200,11 +200,11 @@ a.disabled {
     word-break: break-all;
 }
 .post .message {
-    margin: 12px 0;
+    margin: 5px 0 5px;
     font-size: 32px;
 }
 .post .likes {
-    margin: 10px 0;
+    margin: 0 0 10px;
 }
 .post .like {
     font-size: 12px;
@@ -228,10 +228,31 @@ a.disabled {
     width: 100px;
     display: inline-block;
 }
+.post .post-header {
+    position: relative;
+    margin: 0;
+    padding-right: 25px;
+}
 .post .post-header .block-explorer {
-    margin: 3px 0 3px 3px;
-    padding: 0px 0px 0px 0px;
+    position: absolute;
+    list-style-type: none;
+    top: 0;
+    right: 0;
+    padding: 0;
+    font-size: 18px;
     color: #333;
+}
+.post .post-header .block-explorer a {
+    color: #333;
+}
+body.dark .post .post-header .block-explorer a {
+    color: #5e992b;
+}
+.post .post-header .block-explorer ul a {
+    color: #487521;
+}
+body.dark .post .post-header .block-explorer ul a {
+    color: #ccc;
 }
 .post .actions .glyphicon {
     margin-right: 10px;
