@@ -346,5 +346,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "表す"
+  },
+  {
+    "id": "replied_to",
+    "translation": "答えた"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

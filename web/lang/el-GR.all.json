@@ -346,5 +346,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "εμφανίζω"
+  },
+  {
+    "id": "replied_to",
+    "translation": "απάντησε"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

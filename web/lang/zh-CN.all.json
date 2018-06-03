@@ -346,5 +346,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "显示"
+  },
+  {
+    "id": "replied_to",
+    "translation": "回答"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

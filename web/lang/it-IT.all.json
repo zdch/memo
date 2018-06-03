@@ -346,5 +346,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "mostrare"
+  },
+  {
+    "id": "replied_to",
+    "translation": ""
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]
