@@ -351,5 +351,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "show"
+  },
+  {
+    "id": "replied_to",
+    "translation": ""
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

@@ -351,5 +351,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "wykazać"
+  },
+  {
+    "id": "replied_to",
+    "translation": "odpowiedział na"
+  },
+  {
+    "id": "topics_following",
+    "translation": "Tematy obserwowane"
   }
 ]

@@ -351,5 +351,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "보이다"
+  },
+  {
+    "id": "replied_to",
+    "translation": "대답했다"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

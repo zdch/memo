@@ -351,5 +351,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "visa"
+  },
+  {
+    "id": "replied_to",
+    "translation": "svarade på"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]
