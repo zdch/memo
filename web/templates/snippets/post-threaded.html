@@ -75,7 +75,7 @@
         <i>
         {{ if .Post.Likes }}
            {{ len .Post.Likes }} {{ T "like" (len .Post.Likes) }} -
-            <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">Show</a>
+            <a href="#" id="show-hide-likes-{{ .Post.Memo.GetTransactionHashString }}">{{ T "show" | UcFirst }}</a>
             (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
         {{ end }}
         {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
@@ -94,7 +94,7 @@
 
 {{ if .Post.Likes }}
     <div id="likes-{{ .Post.Memo.GetTransactionHashString }}" style="display:none">
-        <h3>Likes</h3>
+        <h3>{{ T "like" 2 | UcFirst }}</h3>
 
         <ul>
         {{ range .Post.Likes }}
