@@ -128,6 +128,8 @@ a.disabled {
 }
 .navbar-default {
     background: #548d1d;
+    border-color: transparent;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
 }
 .navbar-default .navbar-brand {
     margin-right: 25px;
