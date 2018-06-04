@@ -926,6 +926,9 @@ body.dark .form-control {
 body.dark .topic-post:nth-of-type(odd) {
     background: #304559;
 }
+body.dark .topic-post:nth-of-type(even) {
+    background: #2b3e50;
+}
 body.dark .topic-post {
     border-color: #666;
 }
