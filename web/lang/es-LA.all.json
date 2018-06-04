@@ -346,5 +346,21 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "set_profile_pic",
+    "translation": "set profile picture"
+  },
+  {
+    "id": "show",
+    "translation": "mostrar"
+  },
+  {
+    "id": "replied_to",
+    "translation": "responder a"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

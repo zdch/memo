@@ -1,9 +1,9 @@
 {{ template "snippets/header.html" . }}
 
 {{ if not .Username }}
-<h3 class="notice">
-    <a href="signup">Click here to create an account</a>
-</h3>
+<p class="notice">
+    <a class="btn btn-default" href="signup">Create account</a>
+</p>
 {{ else }}
 <br/>
 {{ end }}

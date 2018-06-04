@@ -350,5 +350,17 @@
   {
     "id": "set_profile_pic",
     "translation": "set profile picture"
+  },
+  {
+    "id": "show",
+    "translation": "wykazać"
+  },
+  {
+    "id": "replied_to",
+    "translation": "odpowiedział na"
+  },
+  {
+    "id": "topics_following",
+    "translation": "tematy obserwowane"
   }
 ]
