@@ -508,7 +508,10 @@ body.dark .topics-table .glyphicon {
     border-bottom: 1px solid #eee;
 }
 .topic-post:nth-of-type(odd) {
-    background: #f9f9f9;
+    background: #fcfcfc;
+}
+.topic-post:nth-of-type(even) {
+    background: #fff;
 }
 .topic-post:last-of-type {
     border-bottom: none;
@@ -559,9 +562,6 @@ body.dark .topics-table .glyphicon {
 }
 .topic-post .like-info {
     font-style: italic;
-}
-.topic-post .reply-count {
-    font-weight: normal;
 }
 .topic-post a.like-link {
     margin: 0;
