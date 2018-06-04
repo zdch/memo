@@ -177,7 +177,7 @@ var allowedExtensions = []string{
 	"eot",
 }
 
-func Run(sessionCookieInsecure bool) {
+func Run(sessionCookieInsecure bool, port int) {
 	go func() {
 		queuer.StartAndKeepAlive()
 	}()
@@ -198,7 +198,7 @@ func Run(sessionCookieInsecure bool) {
 		InsecureCookie:    sessionCookieInsecure,
 		AllowedExtensions: allowedExtensions,
 		IsLoggedIn:        isLoggedIn,
-		Port:              8261,
+		Port:              port,
 		NotFoundHandler:   notFoundHandler,
 		PreHandler:        preHandler,
 		GetCsrfToken:      getCsrfToken,

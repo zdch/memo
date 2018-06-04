@@ -103,23 +103,23 @@
 {{ if not .Compress }}
     <div class="actions">
     {{ if .Post.Memo.Topic }}
-        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
+        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-sm btn-default"
            href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">
             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>{{ T "view_topic" | UcFirst }}
         </a>
      {{ end }}
     {{ if .Post.IsLoggedIn }}
         {{ if not .Post.Memo.Topic }}
-        <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
+        <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-sm btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" 1 | Title }}
         </a>
         {{ end }}
-        <span class="creating hidden btn btn-warning">Creating...</span>
-        <span class="broadcasting hidden btn btn-warning">Broadcasting...</span>
+        <span class="creating hidden btn btn-sm btn-warning">Creating...</span>
+        <span class="broadcasting hidden btn btn-sm btn-warning">Broadcasting...</span>
         <div class="like" id="like-{{ .Post.Memo.GetTransactionHashString }}">
             <span class="like-info" id="like-info-{{ .Post.Memo.GetTransactionHashString }}">
-                <a class="btn btn-default like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}"
+                <a class="btn btn-sm btn-default like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}"
                    href="#"><span class="glyphicon glyphicon-heart{{ if not .Post.HasLiked }}-empty{{ end }}"
                                   aria-hidden="true"></span>{{ T "like" 1 | UcFirst }}</a>
             </span>
