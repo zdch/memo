@@ -25,6 +25,7 @@ const (
 const (
 	ProfilePicsPath   = "PROFILE_PICS_PATH"
 	VipsThumbnailPath = "VIPS_THUMBNAIL_PATH"
+	UseVipsThumbnail  = "USE_VIPS_THUMBNAIL"
 )
 
 type MysqlConfig struct {
@@ -42,6 +43,7 @@ type MemcacheConfig struct {
 type FilePathsConfig struct {
 	ProfilePicsPath string
 	VipsThumbnailPath string
+	UseVipsThumbnail bool
 }
 
 func (m MemcacheConfig) GetConnectionString() string {
@@ -95,5 +97,6 @@ func GetFilePaths() FilePathsConfig {
 	return FilePathsConfig{
 		ProfilePicsPath: viper.GetString(ProfilePicsPath),
 		VipsThumbnailPath: viper.GetString(VipsThumbnailPath),
+		UseVipsThumbnail: viper.GetBool(UseVipsThumbnail),
 	}
 }

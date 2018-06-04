@@ -17,6 +17,9 @@ import (
 	"strconv"
 	"os/exec"
 	"github.com/memocash/memo/app/config"
+	"log"
+	"image/jpeg"
+	"github.com/nfnt/resize"
 )
 
 var setPicRoute = web.Route{
@@ -100,22 +103,45 @@ var setPicSubmitRoute = web.Route{
 		}
 		file.Close()
 
-		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-200x200.jpg", 200,200)
-		if err != nil {
-			r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
-			return
-		}
-		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-75x75.jpg", 75,75)
-		if err != nil {
-			r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
-			return
-		}
-		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-24x24.jpg", 24,24)
-		if err != nil {
-			r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
-			return
-		}
+		// Resize. vipsthumbnail (super fast) integration is off by default.
+		if !config.GetFilePaths().UseVipsThumbnail {
 
+			// Decode jpeg into image.Image.
+			img, err := jpeg.Decode(file)
+			if err != nil {
+				log.Fatal(err)
+			}
+			file.Close()
+
+			// Resize to width 75 using Lanczos resampling and preserve aspect ratio.
+			m := resize.Resize(75, 0, img, resize.Lanczos3)
+			out, err := os.Create(profilePicName + "-75x75.jpg")
+			if err != nil {
+				log.Fatal(err)
+			}
+			defer out.Close()
+
+			// Write new image to file.
+			jpeg.Encode(out, m, nil)
+
+		} else {
+			err = resizeExternally(profilePicName + ".jpg", profilePicName + "-200x200.jpg", 200,200)
+			if err != nil {
+				r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
+				return
+			}
+			err = resizeExternally(profilePicName + ".jpg", profilePicName + "-75x75.jpg", 75,75)
+			if err != nil {
+				r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
+				return
+			}
+			err = resizeExternally(profilePicName + ".jpg", profilePicName + "-24x24.jpg", 24,24)
+			if err != nil {
+				r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
+				return
+			}
+		}
+return
 		var fee = int64(memo.MaxTxFee - memo.MaxPostSize + len([]byte(url)))
 		var minInput = fee + transaction.DustMinimumOutput
 
