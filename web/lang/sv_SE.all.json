@@ -93,22 +93,17 @@
   },
   {
     "id": "reply",
-    "translation": "Svar"
+    "translation": {
+      "one": "svar",
+      "other": "svar"
+    }
   },
   {
     "id": "like",
     "translation": {
-      "one": "Gilla",
-      "other": "Gillar"
+      "one": "gilla",
+      "other": "gillar"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "svar"
-  },
-  {
-    "id": "likes",
-    "translation": "tycker om"
   },
   {
     "id": "top",
@@ -351,5 +346,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "visa"
+  },
+  {
+    "id": "replied_to",
+    "translation": "svarade på"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

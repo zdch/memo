@@ -8,11 +8,11 @@
 {{ if .Likes }}
 
 <p>
-{{ len .Likes }} likes - <a href="#" id="show-hide-likes">Show</a>
+{{ len .Likes }} {{ T "like" 2 }} - <a href="#" id="show-hide-likes">{{ T "show" | UcFirst }}</a>
 </p>
 
 <div id="likes" style="display:none">
-    <h3>Likes</h3>
+    <h3>{{ T "like" 2 | UcFirst }}</h3>
     <ul>
     {{ range .Likes }}
         <li>
@@ -45,7 +45,7 @@
 <p class="pagination">
     <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}"
        href="profile/{{ .Profile.GetAddressString }}?offset={{ .PrevOffset }}">&lt; {{ T "previous" }}</a>
-    <span class="page">{{ T "page" }} {{ .Page }}</span>
+    <span class="page">{{ .Page }}</span>
     <a class="{{ if lt (len .Posts) 25 }}disabled{{ end }}"
        href="profile/{{ .Profile.GetAddressString }}?offset={{ .NextOffset }}">{{ T "next" }} &gt;</a>
 </p>
@@ -57,7 +57,7 @@
 <p class="pagination">
     <a class="{{ if eq .NextOffset 25 }}disabled{{ end }}"
        href="profile/{{ .Profile.GetAddressString }}?offset={{ .PrevOffset }}">&lt; {{ T "previous" }}</a>
-    <span class="page">{{ T "page" }} {{ .Page }}</span>
+    <span class="page">{{ .Page }}</span>
     <a class="{{ if lt (len .Posts) 25 }}disabled{{ end }}"
        href="profile/{{ .Profile.GetAddressString }}?offset={{ .NextOffset }}">{{ T "next" }} &gt;</a>
 </p>

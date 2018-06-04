@@ -93,7 +93,10 @@
   },
   {
     "id": "reply",
-    "translation": "回复"
+    "translation": {
+      "one": "回复",
+      "other": "回复"
+    }
   },
   {
     "id": "like",
@@ -101,14 +104,6 @@
       "one": "点赞",
       "other": "点赞"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "回复"
-  },
-  {
-    "id": "likes",
-    "translation": "点赞"
   },
   {
     "id": "top",
@@ -351,5 +346,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "显示"
+  },
+  {
+    "id": "replied_to",
+    "translation": "回答"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

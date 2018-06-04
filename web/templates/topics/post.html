@@ -44,11 +44,11 @@
                         like{{ if not (eq (len .Post.Likes) 1) }}s{{ end }}</a>
                     (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
                 {{- else }}
-                    <a class="like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}" href="#">{{ T "like" 1 }}</a>
+                    <a class="like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}" href="#">{{ T "like" 1 | UcFirst }}</a>
                 {{- end }}
                     &middot;
                 {{- if not (eq .Post.ReplyCount 0) }}
-                    <a class="reply-count" href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
+                    <a class="reply-count" href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "reply" (.Post.ReplyCount | ToInt) }}</a>
                 {{ else }}
                     <a class="like-link" href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ T "start_thread" | UcFirst }}</a>
                 {{ end }}

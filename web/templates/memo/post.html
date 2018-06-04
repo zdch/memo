@@ -8,11 +8,11 @@
 {{ if .Post.Likes }}
 
 <p>
-{{ len .Post.Likes }} likes - <a href="#" id="show-hide-likes">Show</a>
+{{ len .Post.Likes }} {{ T "like" 2 }} - <a href="#" id="show-hide-likes">{{ T "show" | UcFirst }}</a>
 </p>
 
 <div id="likes" style="display:none">
-    <h3>Likes</h3>
+    <h3>{{ T "like" 2 | UcFirst }}</h3>
 
     <ul>
     {{ range .Post.Likes }}

@@ -93,22 +93,17 @@
   },
   {
     "id": "reply",
-    "translation": "Odpowiedz"
+    "translation": {
+      "one": "odpowiedz",
+      "other": "odpowiedzi"
+    }
   },
   {
     "id": "like",
     "translation": {
-      "one": "Polubienie",
-      "other": "Polubienia"
+      "one": "polubienie",
+      "other": "polubienia"
     }
-  },
-  {
-    "id": "replies",
-    "translation": "odpowiedzi"
-  },
-  {
-    "id": "likes",
-    "translation": "polubienia"
   },
   {
     "id": "top",
@@ -351,5 +346,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "wykazać"
+  },
+  {
+    "id": "replied_to",
+    "translation": "odpowiedział na"
+  },
+  {
+    "id": "topics_following",
+    "translation": "Tematy obserwowane"
   }
 ]

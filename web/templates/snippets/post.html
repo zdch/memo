@@ -24,9 +24,9 @@
             </span>
         {{ end }}
         {{ if and .Post.Memo.RootTxHash .Post.Memo.ParentTxHash }}
-            replied to <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Memo.GetParentTransactionHashString }}">post</a>
+            {{ T "replied_to" }} <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Memo.GetParentTransactionHashString }}">post</a>
         {{ else if .Post.Memo.ParentTxHash }}
-            replied to <a href="post/{{ .Post.Memo.GetParentTransactionHashString }}">post</a>
+            {{ T "replied_to" }} <a href="post/{{ .Post.Memo.GetParentTransactionHashString }}">post</a>
         {{ else if .Post.Memo.IsVote }}
             voted in <a href="post/{{ .Post.VoteQuestion.GetTransactionHashString }}">poll</a>
         {{ else }}
@@ -38,6 +38,21 @@
             in <a href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">{{ .Post.Memo.Topic }}</a>
         {{ end }}
         </p>
+        <ul class="block-explorer">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-th"></span></a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a target="_blank"
+                           href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
+                        Bitcoin.com Explorer
+                    </a></li>
+                    <li><a target="_blank"
+                           href="https://blockchair.com/bitcoin-cash/transaction/{{ .Post.Memo.GetTransactionHashString }}">
+                        Blockchair
+                    </a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
 {{ if .Post.Parent }}
     <div class="reply">
@@ -65,40 +80,48 @@
 {{ if .Post.IsPoll }}
     {{ template "snippets/poll.html" dict "Post" .Post "Threaded" false }}
 {{ end }}
+{{ if or .Post.Likes (gt .Post.ReplyCount 0) }}
     <p class="likes">
         <i>
-            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "likes" }}</a>
-        {{- if .Post.Likes }}
+        {{ if .Post.Likes }}
+            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ len .Post.Likes }} {{ T "like" (len .Post.Likes)  }}</a>
             (tip: {{ formatBigInt .Post.GetTotalTip }} satoshis)
-        {{- end }}
-        {{ if or (and .Post.Memo.Topic (gt .Post.ReplyCount 0)) (not .Post.Memo.Topic) }}
+        {{ end }}
+        {{ if and .Post.Likes (gt .Post.ReplyCount 0) }}
             &middot;
-            <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ T "replies" }}</a>
+        {{ end }}
+        {{ if gt .Post.ReplyCount 0 }}
+            {{ if .Post.Memo.RootTxHash }}
+                <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ (T "reply" (.Post.ReplyCount | ToInt)) }}</a>
+            {{ else }}
+                <a href="post/{{ .Post.Memo.GetTransactionHashString }}">{{ .Post.ReplyCount }} {{ (T "reply" (.Post.ReplyCount | ToInt)) }}</a>
+            {{ end }}
         {{ end }}
         </i>
     </p>
+{{ end }}
 {{ if not .Compress }}
     <div class="actions">
     {{ if .Post.Memo.Topic }}
-        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
+        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-sm btn-default"
            href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">
             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>{{ T "view_topic" | UcFirst }}
         </a>
      {{ end }}
     {{ if .Post.IsLoggedIn }}
         {{ if not .Post.Memo.Topic }}
-        <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
+        <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-sm btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
-            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" }}
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" 1 | Title }}
         </a>
         {{ end }}
-        <span class="creating hidden btn btn-warning">Creating...</span>
-        <span class="broadcasting hidden btn btn-warning">Broadcasting...</span>
+        <span class="creating hidden btn btn-sm btn-warning">Creating...</span>
+        <span class="broadcasting hidden btn btn-sm btn-warning">Broadcasting...</span>
         <div class="like" id="like-{{ .Post.Memo.GetTransactionHashString }}">
             <span class="like-info" id="like-info-{{ .Post.Memo.GetTransactionHashString }}">
-                <a class="btn btn-default like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}"
+                <a class="btn btn-sm btn-default like-link" id="like-link-{{ .Post.Memo.GetTransactionHashString }}"
                    href="#"><span class="glyphicon glyphicon-heart{{ if not .Post.HasLiked }}-empty{{ end }}"
-                                  aria-hidden="true"></span>{{ T "like" 1 }}</a>
+                                  aria-hidden="true"></span>{{ T "like" 1 | UcFirst }}</a>
             </span>
             <form class="like-form hidden form-inline" id="like-form-{{ .Post.Memo.GetTransactionHashString }}">
                 <label for="tip-{{ .Post.Memo.GetTransactionHashString }}">Tip</label>
@@ -111,10 +134,7 @@
             </form>
         </div>
     {{ end }}
-        <a class="btn btn-leave right" target="_blank"
-           href="https://explorer.bitcoin.com/bch/tx/{{ .Post.Memo.GetTransactionHashString }}">
-        {{ T "view_on_block_explorer" }}</a>
-        <div class="clear"></div>
+
     </div>
 {{ end }}
 

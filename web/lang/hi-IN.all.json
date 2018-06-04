@@ -93,7 +93,10 @@
   },
   {
     "id": "reply",
-    "translation": ""
+    "translation": {
+      "one": "",
+      "other": ""
+    }
   },
   {
     "id": "like",
@@ -101,14 +104,6 @@
       "one": "",
       "other": ""
     }
-  },
-  {
-    "id": "replies",
-    "translation": ""
-  },
-  {
-    "id": "likes",
-    "translation": ""
   },
   {
     "id": "top",
@@ -351,5 +346,17 @@
   {
     "id": "start_thread",
     "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "show"
+  },
+  {
+    "id": "replied_to",
+    "translation": ""
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
   }
 ]

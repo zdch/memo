@@ -12,6 +12,7 @@ const (
 	FlagInsecure  = "insecure"
 	FlagDebugMode = "debug"
 	FlagAppendNum = "append-num"
+	FlagPort      = "port"
 )
 
 var webCmd = &cobra.Command{
@@ -24,11 +25,12 @@ var webCmd = &cobra.Command{
 		if appendNum == 0 {
 			appendNum = rand.Intn(1e5)
 		}
+		port, _ := c.Flags().GetInt(FlagPort)
 		res.SetAppendNumber(appendNum)
 		if debugMode {
 			jlog.SetLogLevel(jlog.DEBUG)
 		}
-		server.Run(sessionCookieInsecure)
+		server.Run(sessionCookieInsecure, port)
 		return nil
 	},
 }
@@ -37,4 +39,5 @@ func init() {
 	webCmd.Flags().Bool(FlagInsecure, false, "Allow session cookie over unencrypted HTTP")
 	webCmd.Flags().Bool(FlagDebugMode, false, "Debug mode")
 	webCmd.Flags().Int(FlagAppendNum, 0, "Number appended to js and css files")
+	webCmd.Flags().Int(FlagPort, 8261, "Server port")
 }
