@@ -97,7 +97,7 @@ var setPicSubmitRoute = web.Route{
 		defer response.Body.Close()
 
 		FetchProfilePic(url, address.GetAddress().String())
-return
+
 		var fee = int64(memo.MaxTxFee - memo.MaxPostSize + len([]byte(url)))
 		var minInput = fee + transaction.DustMinimumOutput
 
