@@ -2,9 +2,13 @@
     <tr>
         <th>{{ T "name" }}</th>
         <td class="name">
+        {{ if .Profile.HasPic }}
+            <img src="/img/profilepics/{{ .Profile.GetAddressString }}-75x75.jpg" style="height: 24px; width: 24px">
+        {{ else }}
             <span class="identicon-{{ .Profile.GetAddressString }}">
                 <img class="identicon"/>
             </span>
+        {{ end }}
         {{ .Profile.Name }}
         </td>
     </tr>

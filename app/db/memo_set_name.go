@@ -122,6 +122,7 @@ func GetNameForPkHash(pkHash []byte) (*MemoSetName, error) {
 
 func GetNamesForPkHashes(pkHashes [][]byte) ([]*MemoSetName, error) {
 	db, err := getDb()
+	db.LogMode(true)
 	if err != nil {
 		return nil, jerr.Get("error getting db", err)
 	}

@@ -106,6 +106,11 @@ var setPicSubmitRoute = web.Route{
 		// Resize. vipsthumbnail (super fast) integration is off by default.
 		if !config.GetFilePaths().UseVipsThumbnail {
 
+			file, err := os.Open(profilePicName + ".jpg")
+			if err != nil {
+				log.Fatal(err)
+			}
+
 			// Decode jpeg into image.Image.
 			img, err := jpeg.Decode(file)
 			if err != nil {
