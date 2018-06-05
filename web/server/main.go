@@ -19,9 +19,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"unicode"
-	"strconv"
 )
 
 var UseMinJS bool

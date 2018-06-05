@@ -127,7 +127,7 @@ a.disabled {
     height: 20px;
 }
 .navbar-default {
-    background: #548d1d;
+    background: linear-gradient(#548d1d, #62a623);
     border-color: transparent;
     box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
 }
@@ -151,7 +151,7 @@ a.disabled {
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>.active>a:hover {
-    background-color: #548d1d;
+    background-color: transparent;
     border-color: #f8f8f8;
     color: #fff;
 }
