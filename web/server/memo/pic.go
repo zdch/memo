@@ -17,11 +17,17 @@ import (
 	"strconv"
 	"os/exec"
 	"github.com/memocash/memo/app/config"
-	"log"
 	"image/jpeg"
 	"github.com/nfnt/resize"
 	"github.com/memocash/memo/app/util"
+	"github.com/btcsuite/btcutil"
+	"github.com/memocash/memo/app/bitcoin/wallet"
+	"github.com/oliamb/cutter"
 )
+
+const ResizeLg = 640
+const ResizeMed = 128
+const ResizeSm = 24
 
 var setPicRoute = web.Route{
 	Pattern:    res.UrlMemoSetProfilePic,
@@ -90,63 +96,7 @@ var setPicSubmitRoute = web.Route{
 		}
 		defer response.Body.Close()
 
-		profilePicName := config.GetFilePaths().ProfilePicsPath + address.GetAddress().String()
-		file, err := os.Create(profilePicName + ".jpg")
-		if err != nil {
-			r.Error(jerr.Get("couldn't create image file", err), http.StatusInternalServerError)
-			return
-		}
-
-		_, err = io.Copy(file, response.Body)
-		if err != nil {
-			r.Error(jerr.Get("couldn't save image file", err), http.StatusInternalServerError)
-			return
-		}
-		file.Close()
-
-		// Resize. vipsthumbnail (super fast) integration is off by default.
-		if !config.GetFilePaths().UseVipsThumbnail {
-
-			file, err := os.Open(profilePicName + ".jpg")
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			// Decode jpeg into image.Image.
-			img, err := jpeg.Decode(file)
-			if err != nil {
-				log.Fatal(err)
-			}
-			file.Close()
-
-			// Resize to width 75 using Lanczos resampling and preserve aspect ratio.
-			m := resize.Resize(75, 0, img, resize.Lanczos3)
-			out, err := os.Create(profilePicName + "-75x75.jpg")
-			if err != nil {
-				log.Fatal(err)
-			}
-			defer out.Close()
-
-			// Write new image to file.
-			jpeg.Encode(out, m, nil)
-
-		} else {
-			err = resizeExternally(profilePicName + ".jpg", profilePicName + "-200x200.jpg", 200,200)
-			if err != nil {
-				r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
-				return
-			}
-			err = resizeExternally(profilePicName + ".jpg", profilePicName + "-75x75.jpg", 75,75)
-			if err != nil {
-				r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
-				return
-			}
-			err = resizeExternally(profilePicName + ".jpg", profilePicName + "-24x24.jpg", 24,24)
-			if err != nil {
-				r.Error(jerr.Get("couldn't resize image file", err), http.StatusInternalServerError)
-				return
-			}
-		}
+		FetchProfilePic(url, address.GetAddress().String())
 return
 		var fee = int64(memo.MaxTxFee - memo.MaxPostSize + len([]byte(url)))
 		var minInput = fee + transaction.DustMinimumOutput
@@ -179,7 +129,7 @@ return
 	},
 }
 
-// test localhost:3000/memo/get-profile-pic?address=13MuoY8fLzES35bNsMveiQR7eR93LtxBmy&height=75
+// test localhost:3000/memo/get-profile-pic?address=13MuoY8fLzES35bNsMveiQR7eR93LtxBmy&height=128
 var getProfilePicRoute = web.Route{
 	Pattern:     res.UrlMemoGetProfilePic,
 	NeedsLogin:  false,
@@ -196,7 +146,27 @@ var getProfilePicRoute = web.Route{
 		profilePicPath := config.GetFilePaths().ProfilePicsPath + address
 		img, err := os.Open(profilePicPath + "-" + height + "x" + height + ".jpg")
 		if err != nil {
-			r.Error(jerr.New("could not open os.Open() " + profilePicPath + height + "x" + height + ".jpg"), http.StatusInternalServerError)
+			decodedAddress, addrErr := btcutil.DecodeAddress(address, &wallet.MainNetParamsOld)
+
+			if addrErr != nil {
+				r.Error(jerr.New("could not decode address"), http.StatusInternalServerError)
+				return
+			} else {
+				pic, getPicErr := db.GetPicForPkHash(decodedAddress.ScriptAddress())
+				if getPicErr != nil {
+					r.Error(jerr.New("could not fetch profile pic"), http.StatusInternalServerError)
+					return
+				}
+				// The profile pic exists but not on the file system. Fetch it.
+				if pic != nil {
+					FetchProfilePic(pic.Url, address)
+					r.Error(jerr.New("could not save profile pic"), http.StatusInternalServerError)
+					return
+				}
+			}
+
+			r.Error(jerr.New("could not open os.Open()"), http.StatusInternalServerError)
+			return
 		}
 		defer img.Close()
 		r.Writer.Header().Set("Content-Type", "image/jpeg")
@@ -218,4 +188,80 @@ func resizeExternally(from string, to string, width uint, height uint) error {
 	}
 	cmd := exec.Command(path, args...)
 	return cmd.Run()
+}
+
+// Call when a profile pic doesn't exist on the file system.
+func FetchProfilePic(url string, address string) (bool, error) {
+
+	response, err := http.Get(url)
+	if err != nil {
+		return false, jerr.New("couldn't fetch remote image")
+	}
+	defer response.Body.Close()
+
+	profilePicName := config.GetFilePaths().ProfilePicsPath + address
+	file, err := os.Create(profilePicName + ".jpg")
+	if err != nil {
+		return false, jerr.New("couldn't create image file")
+	}
+
+	_, err = io.Copy(file, response.Body)
+	if err != nil {
+		return false, jerr.New("couldn't save image file")
+	}
+	file.Close()
+
+	// Resize. vipsthumbnail (super fast) integration is off by default.
+	if !config.GetFilePaths().UseVipsThumbnail {
+
+		file, err := os.Open(profilePicName + ".jpg")
+		if err != nil {
+			return false, jerr.New("couldn't open fetched profile pic")
+		}
+
+		// Decode jpeg into image.Image.
+		img, err := jpeg.Decode(file)
+		if err != nil {
+			return false, jerr.New("couldn't decode jpg profile pic")
+		}
+
+		widths := []int{ ResizeSm, ResizeMed, ResizeLg }
+		for _, width := range widths {
+
+			// Some square crop handling.
+			ratio := float32(img.Bounds().Max.X) / float32(img.Bounds().Max.Y)
+			ratioY := float32(img.Bounds().Max.Y) / float32(img.Bounds().Max.X)
+			if(ratioY > ratio) {
+				ratio = ratioY
+			}
+			resizeWidth := uint(float32(width) * ratio)
+
+			// Resize to resizeWidth using Lanczos resampling and preserve aspect ratio.
+			resizedImg := resize.Resize(resizeWidth, 0, img, resize.Lanczos3)
+
+			croppedImg, err := cutter.Crop(resizedImg, cutter.Config{
+				Width: width,
+				Height: width,
+				Mode: cutter.Centered,
+			})
+
+			out, err := os.Create(profilePicName + "-" + strconv.Itoa(width) + "x" + strconv.Itoa(width) + ".jpg")
+			if err != nil {
+				return false, jerr.New("couldn't create profile pic file")
+			}
+
+			// Write new image to file.
+			jpeg.Encode(out, croppedImg, nil)
+			out.Close()
+		}
+		os.Remove(profilePicName + ".jpg")
+
+	} else {
+		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-" + strconv.Itoa(ResizeMed) + "x" + strconv.Itoa(ResizeMed) + ".jpg", ResizeMed, ResizeMed)
+		if err != nil {
+			return false, jerr.New("couldn't resize image file")
+		}
+	}
+
+	return true, nil
 }
