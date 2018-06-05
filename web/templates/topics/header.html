@@ -1,11 +1,9 @@
 <br/>
-{{ if .IsLoggedIn }}
 <p class="posts-nav">
-{{ if gt .TopicFollowCount 0 }}
+{{ if and .IsLoggedIn (gt .TopicFollowCount 0) }}
     <a {{ if eq .TopicPage "following" }}class="sel"{{ end }} href="topics">{{ T "following" }}</a>
 {{ end }}
     <a {{ if eq .TopicPage "all" }}class="sel"{{ end }} href="topics/all">{{ T "all" | Title }}</a>
     <a {{ if eq .TopicPage "most-followed" }}class="sel"{{ end }} href="topics/most-followed">{{ T "most_followed" | Title }}</a>
     <a {{ if eq .TopicPage "most-posts" }}class="sel"{{ end }} href="topics/most-posts">{{ T "most_posts" | Title }}</a>
 </p>
-{{ end }}
