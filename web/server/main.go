@@ -19,9 +19,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"unicode"
-	"strconv"
 )
 
 var UseMinJS bool
@@ -94,6 +94,12 @@ func preHandler(r *web.Response) {
 	} else {
 		r.Helper["UserSettings"] = db.GetDefaultUserSettings()
 		r.Helper["IsLoggedIn"] = false
+	}
+	memoContext := r.Request.GetHeader("memo-context")
+	if memoContext == "mobile-app" {
+		r.Helper["IsMobileApp"] = true
+	} else {
+		r.Helper["IsMobileApp"] = false
 	}
 	if UseMinJS {
 		r.Helper["jsFiles"] = res.GetMinJsFiles()
