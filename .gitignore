@@ -1,3 +1,4 @@
 /config.yaml
 .idea
 .DS_Store
+web/public/img/profilepics/*

@@ -201,11 +201,3 @@ func GetSetPicsForPkHash(pkHash []byte) ([]*MemoSetPic, error) {
 	sort.Sort(memoSetPicSortByDate(memoSetPics))
 	return memoSetPics, nil
 }
-
-func GetCountMemoSetPic() (uint, error) {
-	cnt, err := count(&MemoSetPic{})
-	if err != nil {
-		return 0, jerr.Get("error getting total count", err)
-	}
-	return cnt, nil
-}

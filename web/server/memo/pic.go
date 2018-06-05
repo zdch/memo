@@ -20,6 +20,7 @@ import (
 	"log"
 	"image/jpeg"
 	"github.com/nfnt/resize"
+	"github.com/memocash/memo/app/util"
 )
 
 var setPicRoute = web.Route{
@@ -175,6 +176,31 @@ return
 		fmt.Println(transaction.GetTxInfo(tx))
 		transaction.QueueTx(tx)
 		r.Write(tx.TxHash().String())
+	},
+}
+
+// test localhost:3000/memo/get-profile-pic?address=13MuoY8fLzES35bNsMveiQR7eR93LtxBmy&height=75
+var getProfilePicRoute = web.Route{
+	Pattern:     res.UrlMemoGetProfilePic,
+	NeedsLogin:  false,
+	CsrfProtect: false,
+	Handler: func(r *web.Response) {
+		address := r.Request.GetFormValue("address")
+		height := r.Request.GetFormValue("height")
+
+		if !util.ValidateBitcoinLegacyAddress(address) || !util.ValidateImageHeight(height) {
+			r.Error(jerr.New("invalid input"), http.StatusInternalServerError)
+			return
+		}
+
+		profilePicPath := config.GetFilePaths().ProfilePicsPath + address
+		img, err := os.Open(profilePicPath + "-" + height + "x" + height + ".jpg")
+		if err != nil {
+			r.Error(jerr.New("could not open os.Open() " + profilePicPath + height + "x" + height + ".jpg"), http.StatusInternalServerError)
+		}
+		defer img.Close()
+		r.Writer.Header().Set("Content-Type", "image/jpeg")
+		io.Copy(r.Writer, img)
 	},
 }
 

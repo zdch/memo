@@ -55,6 +55,7 @@ const (
 	UrlMemoSetProfileSubmit     = "/memo/set-profile-submit"
 	UrlMemoSetProfilePic        = "/memo/set-profile-pic"
 	UrlMemoSetProfilePicSubmit  = "/memo/set-profile-pic-submit"
+	UrlMemoGetProfilePic        = "/memo/get-profile-pic"
 
 	TmplMemoPost         = "/memo/post"
 	TmplMemoPostThreaded = "/memo/post-threaded"
