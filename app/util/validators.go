@@ -10,6 +10,6 @@ func ValidateBitcoinLegacyAddress(addr string) bool {
 }
 
 func ValidateImageHeight(height string) bool {
-	var re = regexp.MustCompile(`[0-9]+`)
+	var re = regexp.MustCompile(`[0-9]{1,4}`)
 	return re.MatchString(height)
 }
