@@ -35,5 +35,6 @@ func GetTxInfo(msg *wire.MsgTx) string {
 				address.String(), scriptClass, sigCount)
 		}
 	}
+	txnInfo += fmt.Sprintf("TxSize: %d\n", msg.SerializeSize())
 	return txnInfo
 }

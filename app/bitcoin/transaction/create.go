@@ -338,9 +338,8 @@ func Create(spendOuts []*db.TransactionOut, privateKey *wallet.PrivateKey, spend
 			txscript.SigHashAll+wallet.SigHashForkID,
 			privateKey.GetBtcEcPrivateKey(),
 			true,
-			totalValue,
+			spendOuts[i].Value,
 		)
-
 		if err != nil {
 			return nil, jerr.Get("error signing transaction", err)
 		}

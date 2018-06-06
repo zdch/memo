@@ -111,11 +111,14 @@ var likeSubmitRoute = web.Route{
 		var likeTxBytes = txHash.CloneBytes()
 		var tip = int64(r.Request.GetFormValueInt("tip"))
 
-		var minInput = int64(memo.InputFee + 2*memo.OutputFee + len(likeTxBytes)) + transaction.DustMinimumOutput
+		var minInput = int64(memo.InputFeeP2PKH +
+			memo.OutputFeeP2PKH +
+			memo.OutputFeeOpReturn +
+			len(likeTxBytes)) +
+			transaction.DustMinimumOutput
 		if tip > 0 {
-			minInput += memo.InputFee + tip
+			minInput += memo.OutputFeeP2PKH + tip
 		}
-		fmt.Printf("minInput: %d\n", minInput)
 
 		mutex.Lock(key.PkHash)
 		txOuts, err := db.GetSpendableTxOuts(key.PkHash, minInput)
@@ -152,12 +155,15 @@ var likeSubmitRoute = web.Route{
 			totalInputs += txOut.Value
 		}
 
-		var fee = int64(len(txOuts)*memo.InputFee + (len(transactions)+1)*memo.OutputFee)
+		var fee = int64(len(txOuts)*memo.InputFeeP2PKH +
+			len(transactions)*memo.OutputFeeP2PKH +
+			memo.OutputFeeOpReturn +
+			len(likeTxBytes))
 		var change = totalInputs - fee - tip
-		fmt.Printf("not enough funds (c: %d, i: %d, f: %d, t: %d)", change, totalInputs, fee, tip)
+		fmt.Printf("totalInputs: %d, fee: %d, tip: %d, change: %d)", totalInputs, fee, tip, change)
 		if change < transaction.DustMinimumOutput {
 			mutex.Unlock(key.PkHash)
-			r.Error(jerr.Newf("not enough funds (c: %d, i: %d, f: %d, t: %d)", change, totalInputs, fee, tip), http.StatusUnprocessableEntity)
+			r.Error(jerr.New("not enough funds"), http.StatusUnprocessableEntity)
 			return
 		}
 		transactions = append(transactions, transaction.SpendOutput{
@@ -174,7 +180,6 @@ var likeSubmitRoute = web.Route{
 		}
 
 		fmt.Println(transaction.GetTxInfo(tx))
-		fmt.Printf("TxSize: %d\n", tx.SerializeSize())
 		transaction.QueueTx(tx)
 		r.Write(tx.TxHash().String())
 	},

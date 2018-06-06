@@ -191,7 +191,7 @@ func GetSpendableTxOuts(pkHash []byte, fee int64) ([]*TransactionOut, error) {
 		if totalValue > fee {
 			break
 		}
-		fee += memo.InputFee
+		fee += memo.InputFeeP2PKH
 	}
 
 	if totalValue < fee {
