@@ -175,17 +175,17 @@ func GetPicsForPkHashes(pkHashes [][]byte) ([]*MemoSetPic, error) {
 		memoSetPics = append(memoSetPics, &memoSetPic)
 	}
 
-	var setNames []*MemoSetPic
+	var setPics []*MemoSetPic
 SetPicLoop:
 	for _, memoSetPic := range memoSetPics {
-		for _, setName := range setNames {
-			if bytes.Equal(setName.PkHash, memoSetPic.PkHash) {
+		for _, setPic := range setPics {
+			if bytes.Equal(setPic.PkHash, memoSetPic.PkHash) {
 				continue SetPicLoop
 			}
 		}
-		setNames = append(setNames, memoSetPic)
+		setPics = append(setPics, memoSetPic)
 	}
-	return setNames, nil
+	return setPics, nil
 }
 
 func GetSetPicsForPkHash(pkHash []byte) ([]*MemoSetPic, error) {
