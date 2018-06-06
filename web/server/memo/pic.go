@@ -143,7 +143,7 @@ var getProfilePicRoute = web.Route{
 		address := r.Request.GetFormValue("address")
 		height := r.Request.GetFormValue("height")
 
-		if !util.ValidateBitcoinLegacyAddress(address) || !util.ValidateImageHeight(height) {
+		if !util.ValidateBitcoinLegacyAddress(address) || !util.ValidateProfilePicHeight(height) {
 			r.Error(jerr.New("invalid input"), http.StatusInternalServerError)
 			return
 		}
