@@ -102,17 +102,22 @@ var setPicSubmitRoute = web.Route{
 		var minInput = fee + transaction.DustMinimumOutput
 
 		mutex.Lock(key.PkHash)
-		txOut, err := db.GetSpendableTxOut(key.PkHash, minInput)
+		txOuts, err := db.GetSpendableTxOuts(key.PkHash, minInput)
 		if err != nil {
 			mutex.Unlock(key.PkHash)
 			r.Error(jerr.Get("error getting spendable tx out", err), http.StatusInternalServerError)
 			return
 		}
 
-		tx, err := transaction.Create([]*db.TransactionOut{txOut}, privateKey, []transaction.SpendOutput{{
+		var totalValue int64
+		for _, txOut := range txOuts {
+			totalValue += txOut.Value
+		}
+
+		tx, err := transaction.Create(txOuts, privateKey, []transaction.SpendOutput{{
 			Type:    transaction.SpendOutputTypeP2PK,
 			Address: address,
-			Amount:  txOut.Value - fee,
+			Amount:  totalValue - fee,
 		}, {
 			Type: transaction.SpendOutputTypeMemoSetPic,
 			Data: []byte(url),
