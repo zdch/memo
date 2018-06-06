@@ -112,6 +112,9 @@ var likeSubmitRoute = web.Route{
 
 		var fee = int64(memo.MaxTxFee - memo.MaxPostSize + len(txHash.CloneBytes()))
 		tip := int64(r.Request.GetFormValueInt("tip"))
+		if tip != 0 {
+			fee += memo.AdditionalOutputFee
+		}
 		var minInput = fee + transaction.DustMinimumOutput + tip
 
 		transactions := []transaction.SpendOutput{{
@@ -120,13 +123,16 @@ var likeSubmitRoute = web.Route{
 		}}
 
 		mutex.Lock(key.PkHash)
-		txOut, err := db.GetSpendableTxOut(key.PkHash, minInput)
+		txOuts, err := db.GetSpendableTxOuts(key.PkHash, minInput)
 		if err != nil {
 			mutex.Unlock(key.PkHash)
 			r.Error(jerr.Get("error getting spendable tx out", err), http.StatusPaymentRequired)
 			return
 		}
-		remaining := txOut.Value
+		var remaining int64
+		for _, txOut := range txOuts {
+			remaining += txOut.Value
+		}
 
 		if tip != 0 {
 			if tip < transaction.DustMinimumOutput {
@@ -150,14 +156,13 @@ var likeSubmitRoute = web.Route{
 				r.Error(jerr.New("not enough funds"), http.StatusUnprocessableEntity)
 				return
 			}
-			fee += memo.AdditionalOutputFee
 		}
 		transactions = append(transactions, transaction.SpendOutput{
 			Type:    transaction.SpendOutputTypeP2PK,
 			Address: userAddress,
 			Amount:  remaining - fee,
 		})
-		tx, err = transaction.Create([]*db.TransactionOut{txOut}, privateKey, transactions)
+		tx, err = transaction.Create(txOuts, privateKey, transactions)
 		if err != nil {
 			mutex.Unlock(key.PkHash)
 			r.Error(jerr.Get("error creating tx", err), http.StatusInternalServerError)
