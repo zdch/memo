@@ -32,7 +32,7 @@
     {{ if .NameSet }}
         <p data-address="{{ .Name }} {{ .GetAddressString }}">
             {{ if .HasPic }}
-                <img src="/memo/get-profile-pic?address={{ .GetAddressString }}&height=24">
+                <img class="profile-pic profile-pic-24" src="/memo/get-profile-pic?address={{ .GetAddressString }}&height=24">
             {{ else }}
                 <span class="identicon-{{ .GetAddressString }}">
                     <img class="identicon"/>
@@ -43,7 +43,7 @@
     {{ else }}
         <p data-address="{{ .GetAddressString }}">
             {{ if .HasPic }}
-                <img src="/memo/get-profile-pic?address={{ .GetAddressString }}&height=24">
+                <img class="profile-pic profile-pic-24" src="/memo/get-profile-pic?address={{ .GetAddressString }}&height=24">
             {{ else }}
                 <span class="identicon-{{ .GetAddressString }}">
                     <img class="identicon"/>

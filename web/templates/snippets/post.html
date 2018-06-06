@@ -2,7 +2,7 @@
     <div class="post-header">
         <p class="name">
         {{ if .Post.HasProfilePic }}
-            <img src="/memo/get-profile-pic?address={{ .Post.Memo.GetAddressString }}&height=24">
+            <img class="profile-pic profile-pic-24" src="/memo/get-profile-pic?address={{ .Post.Memo.GetAddressString }}&height=24">
         {{ else }}
             <span class="identicon-{{ .Post.Memo.GetAddressString }}">
                 <img class="identicon"/>
