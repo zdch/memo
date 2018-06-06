@@ -1,8 +1,13 @@
 <div class="topic-post" id="topic-post-{{ .Post.Memo.GetTransactionHashString }}">
     <a href="profile/{{ .Post.Memo.GetAddressString }}">
-    <span class="identicon-{{ .Post.Memo.GetAddressString }}">
-        <img class="identicon"/>
-    </span>
+
+    {{ if .Post.HasProfilePic }}
+        <img class="profile-pic-24" src="/memo/get-profile-pic?address={{ .Post.Memo.GetAddressString }}&height=24">
+    {{ else }}
+        <span class="identicon-{{ .Post.Memo.GetAddressString }}">
+            <img class="identicon"/>
+        </span>
+    {{ end }}
     </a>
     <div class="post-wrapper">
     <div class="post-header">

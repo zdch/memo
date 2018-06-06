@@ -338,7 +338,7 @@ body.dark .post .post-header .block-explorer ul a {
     color: red;
     font-style: italic;
 }
-img.identicon {
+img.identicon, img.profile-pic-24 {
     border: none;
     vertical-align: top;
     width: 24px;
@@ -516,7 +516,7 @@ body.dark .topics-table .glyphicon {
 .topic-post:last-of-type {
     border-bottom: none;
 }
-.topic-post .identicon {
+.topic-post .identicon, .topic-post .profile-pic-24 {
     float: left;
     display: block;
     width: 24px;
