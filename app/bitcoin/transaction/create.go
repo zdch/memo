@@ -330,24 +330,26 @@ func Create(spendOuts []*db.TransactionOut, privateKey *wallet.PrivateKey, spend
 		LockTime: 0,
 	}
 
-	signature, err := txscript.SignatureScript(
-		tx,
-		0,
-		spendOuts[0].PkScript,
-		txscript.SigHashAll+wallet.SigHashForkID,
-		privateKey.GetBtcEcPrivateKey(),
-		true,
-		totalValue,
-	)
+	for i := 0; i < len(spendOuts); i++ {
+		signature, err := txscript.SignatureScript(
+			tx,
+			i,
+			spendOuts[i].PkScript,
+			txscript.SigHashAll+wallet.SigHashForkID,
+			privateKey.GetBtcEcPrivateKey(),
+			true,
+			totalValue,
+		)
 
-	if err != nil {
-		return nil, jerr.Get("error signing transaction", err)
+		if err != nil {
+			return nil, jerr.Get("error signing transaction", err)
+		}
+		txIns[i].SignatureScript = signature
+		fmt.Printf("Signature: %x\n", signature)
 	}
-	txIns[0].SignatureScript = signature
 
-	fmt.Printf("Signature: %x\n", signature)
 	writer := new(bytes.Buffer)
-	err = tx.BtcEncode(writer, 1)
+	err := tx.BtcEncode(writer, 1)
 	if err != nil {
 		return nil, jerr.Get("error encoding transaction", err)
 	}

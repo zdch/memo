@@ -10,9 +10,9 @@ const (
 )
 
 const (
-	MaxTxFee            = 425
-	AdditionalOutputFee = 34
-	AdditionalInputFee  = 181
+	MaxTxFee  = 425
+	OutputFee = 34
+	InputFee  = 181
 )
 
 const (

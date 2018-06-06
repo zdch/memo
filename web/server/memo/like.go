@@ -108,19 +108,14 @@ var likeSubmitRoute = web.Route{
 		userAddress := key.GetAddress()
 		postAddress := memoPost.GetAddress()
 
-		var tx *wire.MsgTx
+		var likeTxBytes = txHash.CloneBytes()
+		var tip = int64(r.Request.GetFormValueInt("tip"))
 
-		var fee = int64(memo.MaxTxFee - memo.MaxPostSize + len(txHash.CloneBytes()))
-		tip := int64(r.Request.GetFormValueInt("tip"))
-		if tip != 0 {
-			fee += memo.AdditionalOutputFee
+		var minInput = int64(memo.InputFee + 2*memo.OutputFee + len(likeTxBytes)) + transaction.DustMinimumOutput
+		if tip > 0 {
+			minInput += memo.InputFee + tip
 		}
-		var minInput = fee + transaction.DustMinimumOutput + tip
-
-		transactions := []transaction.SpendOutput{{
-			Type: transaction.SpendOutputTypeMemoLike,
-			Data: txHash.CloneBytes(),
-		}}
+		fmt.Printf("minInput: %d\n", minInput)
 
 		mutex.Lock(key.PkHash)
 		txOuts, err := db.GetSpendableTxOuts(key.PkHash, minInput)
@@ -129,11 +124,11 @@ var likeSubmitRoute = web.Route{
 			r.Error(jerr.Get("error getting spendable tx out", err), http.StatusPaymentRequired)
 			return
 		}
-		var remaining int64
-		for _, txOut := range txOuts {
-			remaining += txOut.Value
-		}
 
+		transactions := []transaction.SpendOutput{{
+			Type: transaction.SpendOutputTypeMemoLike,
+			Data: likeTxBytes,
+		}}
 		if tip != 0 {
 			if tip < transaction.DustMinimumOutput {
 				mutex.Unlock(key.PkHash)
@@ -150,18 +145,27 @@ var likeSubmitRoute = web.Route{
 				Address: postAddress,
 				Amount:  tip,
 			})
-			remaining -= tip
-			if remaining < transaction.DustMinimumOutput {
-				mutex.Unlock(key.PkHash)
-				r.Error(jerr.New("not enough funds"), http.StatusUnprocessableEntity)
-				return
-			}
+		}
+
+		var totalInputs int64
+		for _, txOut := range txOuts {
+			totalInputs += txOut.Value
+		}
+
+		var fee = int64(len(txOuts)*memo.InputFee + (len(transactions)+1)*memo.OutputFee)
+		var change = totalInputs - fee - tip
+		fmt.Printf("not enough funds (c: %d, i: %d, f: %d, t: %d)", change, totalInputs, fee, tip)
+		if change < transaction.DustMinimumOutput {
+			mutex.Unlock(key.PkHash)
+			r.Error(jerr.Newf("not enough funds (c: %d, i: %d, f: %d, t: %d)", change, totalInputs, fee, tip), http.StatusUnprocessableEntity)
+			return
 		}
 		transactions = append(transactions, transaction.SpendOutput{
 			Type:    transaction.SpendOutputTypeP2PK,
 			Address: userAddress,
-			Amount:  remaining - fee,
+			Amount:  change,
 		})
+		var tx *wire.MsgTx
 		tx, err = transaction.Create(txOuts, privateKey, transactions)
 		if err != nil {
 			mutex.Unlock(key.PkHash)
@@ -170,6 +174,7 @@ var likeSubmitRoute = web.Route{
 		}
 
 		fmt.Println(transaction.GetTxInfo(tx))
+		fmt.Printf("TxSize: %d\n", tx.SerializeSize())
 		transaction.QueueTx(tx)
 		r.Write(tx.TxHash().String())
 	},
