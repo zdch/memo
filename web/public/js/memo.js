@@ -176,6 +176,9 @@
      */
     MemoApp.Form.SetProfilePic = function ($form) {
         var $url = $form.find("[name=url]");
+        var $submit = $('#set-profile-pic-submit');
+        var $cancel = $('#set-profile-pic-cancel');
+        var $broadcasting = $('#set-profile-pic-broadcasting');
         var $msgByteCount = $form.find(".message-byte-count");
         $url.on("input", function () {
             setMsgByteCount();
@@ -195,9 +198,15 @@
         var submitting = false;
         $form.submit(function (e) {
             e.preventDefault();
+
             if (submitting) {
                 return
             }
+
+            $submit.prop('disabled', true);
+            $url.prop('disabled', true);
+            $broadcasting.removeClass('hidden')
+            $cancel.hide()
 
             var url = $url.val();
             if (maxNameBytes - MemoApp.utf8ByteLength(url) < 0) {
@@ -229,6 +238,10 @@
                     submitting = false;
                     if (!txHash || txHash.length === 0) {
                         alert("Server error. Please try refreshing the page.");
+                        $submit.prop('disabled', false);
+                        $url.prop('disabled', false);
+                        $broadcasting.addClass('hidden');
+                        $cancel.show()
                         return
                     }
                     window.location = MemoApp.GetBaseUrl() + MemoApp.URL.MemoWait + "/" + txHash
@@ -239,13 +252,17 @@
                         alert("Error unlocking key. " +
                             "Please verify your password is correct. " +
                             "If this problem persists, please try refreshing the page.");
-                        return;
+                    } else {
+                        var errorMessage =
+                            "Error with request (response code " + xhr.status + "):\n" +
+                            (xhr.responseText !== "" ? xhr.responseText + "\n" : "") +
+                            "If this problem persists, try refreshing the page.";
+                        alert(errorMessage);
                     }
-                    var errorMessage =
-                        "Error with request (response code " + xhr.status + "):\n" +
-                        (xhr.responseText !== "" ? xhr.responseText + "\n" : "") +
-                        "If this problem persists, try refreshing the page.";
-                    alert(errorMessage);
+                    $submit.prop('disabled', false);
+                    $url.prop('disabled', false);
+                    $broadcasting.addClass('hidden');
+                    $cancel.show()
                 }
             });
         });
