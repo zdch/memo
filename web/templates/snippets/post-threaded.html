@@ -122,7 +122,7 @@
 
     <div class="actions">
     {{ if .Post.Memo.Topic }}
-        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-default"
+        <a id="view-topic-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-sm btn-default"
            href="topic/{{ .Post.Memo.GetUrlEncodedTopic }}">
             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>{{ T "view_topic" | UcFirst }}
         </a>
