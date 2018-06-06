@@ -3,7 +3,7 @@
         <th>{{ T "name" }}</th>
         <td class="name">
         {{ if .Profile.HasPic }}
-            <img class="profile-pic" src="/memo/get-profile-pic?address={{ .Profile.GetAddressString }}&height=128">
+            <a href="/memo/get-profile-pic?address={{ .Profile.GetAddressString }}&height=640" target="_blank"><img class="profile-pic" src="/memo/get-profile-pic?address={{ .Profile.GetAddressString }}&height=128"></a>
         {{ else }}
             <span class="identicon-{{ .Profile.GetAddressString }}">
                 <img class="identicon"/>
