@@ -111,7 +111,8 @@ var likeSubmitRoute = web.Route{
 		var likeTxBytes = txHash.CloneBytes()
 		var tip = int64(r.Request.GetFormValueInt("tip"))
 
-		var minInput = int64(memo.InputFeeP2PKH +
+		var minInput = int64(memo.BaseTxFee +
+			memo.InputFeeP2PKH +
 			memo.OutputFeeP2PKH +
 			memo.OutputFeeOpReturn +
 			len(likeTxBytes)) +
@@ -155,7 +156,8 @@ var likeSubmitRoute = web.Route{
 			totalInputs += txOut.Value
 		}
 
-		var fee = int64(len(txOuts)*memo.InputFeeP2PKH +
+		var fee = int64(memo.BaseTxFee +
+			len(txOuts)*memo.InputFeeP2PKH +
 			len(transactions)*memo.OutputFeeP2PKH +
 			memo.OutputFeeOpReturn +
 			len(likeTxBytes))
