@@ -1,0 +1,362 @@
+[
+  {
+    "id": "home",
+    "translation": "Página inicial"
+  },
+  {
+    "id": "dashboard",
+    "translation": "Tainel de controle"
+  },
+  {
+    "id": "new memo",
+    "translation": "Novo Memorando"
+  },
+  {
+    "id": "posts",
+    "translation": "Posts"
+  },
+  {
+    "id": "profiles",
+    "translation": "Perfis"
+  },
+  {
+    "id": "login",
+    "translation": "Entrar"
+  },
+  {
+    "id": "logout",
+    "translation": "Cair <b>{{.Username}}</b>"
+  },
+  {
+    "id": "about",
+    "translation": "Sobre"
+  },
+  {
+    "id": "protocol",
+    "translation": "Protocolo"
+  },
+  {
+    "id": "disclaimer",
+    "translation": "Isenção de responsabilidade"
+  },
+  {
+    "id": "statistics",
+    "translation": "Estatísticas"
+  },
+  {
+    "id": "name",
+    "translation": "Nome"
+  },
+  {
+    "id": "address",
+    "translation": "Endereço"
+  },
+  {
+    "id": "followers",
+    "translation": "Seguidores"
+  },
+  {
+    "id": "following",
+    "translation": "Seguindo"
+  },
+  {
+    "id": "balance",
+    "translation": "Saldo"
+  },
+  {
+    "id": "profile",
+    "translation": "Perfil"
+  },
+  {
+    "id": "actions",
+    "translation": "Atividade"
+  },
+  {
+    "id": "view_your_profile",
+    "translation": "Ver Perfil"
+  },
+  {
+    "id": "set_name",
+    "translation": "Escolha apelido"
+  },
+  {
+    "id": "set_profile",
+    "translation": "Crie seu perfil"
+  },
+  {
+    "id": "export_key",
+    "translation": "Exportar Chave"
+  },
+  {
+    "id": "change_password",
+    "translation": "trocar senha"
+  },
+  {
+    "id": "reply",
+    "translation": {
+      "one": "resposta",
+      "other": "respostas"
+    }
+  },
+  {
+    "id": "like",
+    "translation": {
+      "one": "convir",
+      "other": "convindos"
+    }
+  },
+  {
+    "id": "top",
+    "translation": "Popular"
+  },
+  {
+    "id": "personalized",
+    "translation": "Personalizado"
+  },
+  {
+    "id": "new",
+    "translation": "novo"
+  },
+  {
+    "id": "archive",
+    "translation": "Arquivo"
+  },
+  {
+    "id": "last_hour",
+    "translation": "Última hora"
+  },
+  {
+    "id": "last_24_hours",
+    "translation": "Últimas 24 horas"
+  },
+  {
+    "id": "last_7_days",
+    "translation": "Últimos 7 dias"
+  },
+  {
+    "id": "all_time",
+    "translation": "Desde o início"
+  },
+  {
+    "id": "message",
+    "translation": "Mensagem"
+  },
+  {
+    "id": "password",
+    "translation": "Senha"
+  },
+  {
+    "id": "save_password",
+    "translation": "Salvar senha"
+  },
+  {
+    "id": "post",
+    "translation": "Post"
+  },
+  {
+    "id": "profile_text",
+    "translation": "Texto de perfil"
+  },
+  {
+    "id": "feed",
+    "translation": "Feed"
+  },
+  {
+    "id": "posted_at",
+    "translation": "postado às"
+  },
+  {
+    "id": "posted",
+    "translation": "postado"
+  },
+  {
+    "id": "view_on_block_explorer",
+    "translation": "Ver no explorador de blocos"
+  },
+  {
+    "id": "view_address_on_block_explorer",
+    "translation": "Ver endereço"
+  },
+  {
+    "id": "view_name_on_block_explorer",
+    "translation": "Ver nome no explorador de blocos"
+  },
+  {
+    "id": "page",
+    "translation": "Página"
+  },
+  {
+    "id": "previous",
+    "translation": "Anterior"
+  },
+  {
+    "id": "next",
+    "translation": "Próximo"
+  },
+  {
+    "id": "connections",
+    "translation": "Conexões"
+  },
+  {
+    "id": "follow",
+    "translation": {
+      "one": "Seguimento",
+      "other": "Seguimentos"
+  }
+  },
+  {
+    "id": "unfollow",
+    "translation": "Deixar"
+  },
+  {
+    "id": "next_day",
+    "translation": "Próximo dia"
+  },
+  {
+    "id": "previous_day",
+    "translation": "Dia anterior"
+  },
+  {
+    "id": "Topic",
+    "translation": "Tópico"
+  },
+  {
+    "id": "Topics",
+    "translation": "Tópicos"
+  },
+  {
+    "id": "Send",
+    "translation": "Enviar"
+  },
+  {
+    "id": "Existing_Topics",
+    "translation": "Tópicos Existentes"
+  },
+  {
+    "id": "Create_new_topic",
+    "translation": "Criar novo tópico"
+  },
+  {
+    "id": "Most_recent_post",
+    "translation": "Posts mais recentes"
+  },
+  {
+    "id": "Total_posts",
+    "translation": "Todos os posts"
+  },
+  {
+    "id": "Back_to_topics",
+    "translation": "Voltar nos Tópicos"
+  },
+  {
+    "id": "Forget_password",
+    "translation": "Esqueci a senha"
+  },
+  {
+    "id": "Names_set",
+    "translation": "Conjunto de nomes"
+  },
+  {
+    "id": "Total",
+    "translation": "Total"
+  },
+  {
+    "id": "Delete_Account",
+    "translation": "Deletar Conta"
+  },
+  {
+    "id": "Guides",
+    "translation": "Guias"
+  },
+  {
+    "id": "Signup",
+    "translation": "Cadastrar-se"
+  },
+  {
+    "id": "Memo",
+    "translation": "Memo"
+  },
+  {
+    "id": "Poll",
+    "translation": "Votação"
+  },
+  {
+    "id": "Notifications",
+    "translation": "Notificações"
+  },
+  {
+    "id": "Settings",
+    "translation": "Configurações"
+  },
+  {
+    "id": "new_poll",
+    "translation": "nova votação"
+  },
+  {
+    "id": "type",
+    "translation": "tipo"
+  },
+  {
+    "id": "select_one_option",
+    "translation": "selecionar uma opção"
+  },
+  {
+    "id": "select_multiple_options",
+    "translation": "selecionar múltiplas opções"
+  },
+  {
+    "id": "question",
+    "translation": "pergunta"
+  },
+  {
+    "id": "option",
+    "translation": {
+      "one": "um",
+      "other": "outro"
+    }
+  },
+  {
+    "id": "add_option",
+    "translation": "adicionar opção"
+  },
+  {
+    "id": "create_poll",
+    "translation": "criar votação"
+  },
+  {
+    "id": "view_topic",
+    "translation": "ver-tópico"
+  },
+  {
+    "id": "search",
+    "translation": "busca"
+  },
+  {
+    "id": "all",
+    "translation": "todos"
+  },
+  {
+    "id": "most_posts",
+    "translation": "mais posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most popular"
+  },
+  {
+    "id": "start_thread",
+    "translation": "iniciar discussão"
+  },
+  {
+    "id": "show",
+    "translation": "mostrar"
+  },
+  {
+    "id": "replied_to",
+    "translation": "respondeu a"
+  },
+  {
+    "id": "topics_following",
+    "translation": "tópicos seguindo"
+  }
+]
