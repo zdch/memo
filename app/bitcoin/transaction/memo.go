@@ -277,6 +277,10 @@ func saveMemoSetPic(txn *db.Transaction, out *db.TransactionOut, blockId uint, i
 	if err != nil {
 		return jerr.Get("error saving memo_set_pic", err)
 	}
+	err = cache.ClearHasPic(inputAddress.ScriptAddress())
+	if err != nil {
+		return jerr.Get("error clearing has pic cache", err)
+	}
 	return nil
 }
 
