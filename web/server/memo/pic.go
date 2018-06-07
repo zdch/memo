@@ -263,14 +263,22 @@ func FetchProfilePic(url string, address string) (bool, error) {
 			jpeg.Encode(out, croppedImg, nil)
 			out.Close()
 		}
-		os.Remove(profilePicName + ".jpg")
 
 	} else {
+		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-" + strconv.Itoa(ResizeSm) + "x" + strconv.Itoa(ResizeSm) + ".jpg", ResizeSm, ResizeSm)
+		if err != nil {
+			return false, jerr.New("couldn't resize image file")
+		}
 		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-" + strconv.Itoa(ResizeMed) + "x" + strconv.Itoa(ResizeMed) + ".jpg", ResizeMed, ResizeMed)
 		if err != nil {
 			return false, jerr.New("couldn't resize image file")
 		}
+		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-" + strconv.Itoa(ResizeLg) + "x" + strconv.Itoa(ResizeLg) + ".jpg", ResizeLg, ResizeLg)
+		if err != nil {
+			return false, jerr.New("couldn't resize image file")
+		}
 	}
+	os.Remove(profilePicName + ".jpg")
 
 	return true, nil
 }
