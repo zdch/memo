@@ -62,6 +62,10 @@ var setPicSubmitRoute = web.Route{
 	CsrfProtect: true,
 	Handler: func(r *web.Response) {
 		url := r.Request.GetFormValue("url")
+		if !util.ValidateImgurJpg(url)  {
+			r.Error(jerr.New("invalid imgur url"), http.StatusUnprocessableEntity)
+			return
+		}
 		password := r.Request.GetFormValue("password")
 		user, err := auth.GetSessionUser(r.Session.CookieId)
 		if err != nil {

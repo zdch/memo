@@ -13,3 +13,8 @@ func ValidateProfilePicHeight(height string) bool {
 	var re = regexp.MustCompile(`^(24|128|640)$`)
 	return re.MatchString(height)
 }
+
+func ValidateImgurJpg(url string) bool {
+	var re = regexp.MustCompile(`(^https://i\.imgur\.com/[a-zA-Z0-9]+\.jpg$)`)
+	return re.MatchString(url)
+}

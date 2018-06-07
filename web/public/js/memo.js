@@ -203,13 +203,8 @@
                 return
             }
 
-            $submit.prop('disabled', true);
-            $url.prop('disabled', true);
-            $broadcasting.removeClass('hidden')
-            $cancel.hide()
-
             var url = $url.val();
-            if (maxNameBytes - MemoApp.utf8ByteLength(url) < 0) {
+            if (maxPostBytes - MemoApp.utf8ByteLength(url) < 0) {
                 alert("Maximum name is " + maxNameBytes + " bytes. Note that some characters are more than 1 byte." +
                     " Emojis are usually 4 bytes, for example.");
                 return;
@@ -219,6 +214,17 @@
                 alert("Must enter a URL.");
                 return;
             }
+            var imgurJpg = /^https:\/\/i\.imgur\.com\/[a-zA-Z0-9]+\.jpg$/;
+            var imgurJpgErroMsg = "Please enter an imgur URL in the form https://i.imgur.com/jYK7Hy8.jpg";
+            if(!imgurJpg.test(url)) {
+                alert(imgurJpgErroMsg);
+                return;
+            }
+
+            $submit.prop('disabled', true);
+            $url.prop('disabled', true);
+            $broadcasting.removeClass('hidden')
+            $cancel.hide()
 
             var password = MemoApp.GetPassword();
             if (!password.length) {
@@ -252,6 +258,8 @@
                         alert("Error unlocking key. " +
                             "Please verify your password is correct. " +
                             "If this problem persists, please try refreshing the page.");
+                    } else if (xhr.status === 422) {
+                        alert(imgurJpgErroMsg);
                     } else {
                         var errorMessage =
                             "Error with request (response code " + xhr.status + "):\n" +
