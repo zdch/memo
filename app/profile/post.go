@@ -581,10 +581,18 @@ func AttachParentToPosts(posts []*Post) error {
 		if setName != nil {
 			name = setName.Name
 		}
+		var hasPic = false
+		setPic, err := db.GetPicForPkHash(parentPost.PkHash)
+		if err != nil {
+			return jerr.Get("error getting profile pic for hash", err)
+		} else if setPic != nil {
+			hasPic = true
+		}
 		post.Parent = &Post{
-			Name:       name,
-			Memo:       parentPost,
-			SelfPkHash: post.SelfPkHash,
+			Name:          name,
+			Memo:          parentPost,
+			SelfPkHash:    post.SelfPkHash,
+			HasProfilePic: hasPic,
 		}
 	}
 	return nil

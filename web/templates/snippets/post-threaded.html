@@ -63,9 +63,13 @@
 {{ if .Post.Parent }}
     <div class="reply">
         Replying to
-        <span class="identicon-{{ .Post.Parent.Memo.GetAddressString }}">
-                <img class="identicon"/>
-            </span>
+        {{ if .Post.Parent.HasProfilePic }}
+            <img class="profile-pic profile-pic-24" src="/memo/get-profile-pic?address={{ .Post.Parent.Memo.GetAddressString }}&height=24">
+        {{ else }}
+            <span class="identicon-{{ .Post.Parent.Memo.GetAddressString }}">
+                    <img class="identicon"/>
+                </span>
+        {{ end }}
         <a href="post/{{ .Post.Parent.Memo.GetTransactionHashString }}">{{ .Post.Parent.Name }}'s
             post</a>
         <p>{{ .Post.Parent.GetMessage }}</p>
