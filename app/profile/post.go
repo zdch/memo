@@ -254,15 +254,23 @@ func GetPostByTxHashWithReplies(txHash []byte, selfPkHash []byte, offset uint) (
 	if setName != nil {
 		name = setName.Name
 	}
+	var hasPic = false
+	setPic, err := db.GetPicForPkHash(memoPost.PkHash)
+	if err != nil {
+		return nil, jerr.Get("error getting profile pic for hash", err)
+	} else if setPic != nil {
+		hasPic = true
+	}
 	cnt, err := db.GetPostReplyCount(txHash)
 	if err != nil {
 		return nil, jerr.Get("error getting post reply count", err)
 	}
 	post := &Post{
-		Name:       name,
-		Memo:       memoPost,
-		SelfPkHash: selfPkHash,
-		ReplyCount: cnt,
+		Name:          name,
+		Memo:          memoPost,
+		SelfPkHash:    selfPkHash,
+		ReplyCount:    cnt,
+		HasProfilePic: hasPic,
 	}
 	err = AttachRepliesToPost(post, offset)
 	if err != nil {
