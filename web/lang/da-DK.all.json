@@ -99,6 +99,10 @@
     }
   },
   {
+    "id": "reply_verb",
+    "translation": "svare"
+  },
+  {
     "id": "like",
     "translation": {
       "one": "άρεσε",

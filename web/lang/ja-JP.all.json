@@ -99,6 +99,10 @@
     }
   },
   {
+    "id": "reply_verb",
+    "translation": "答える"
+  },
+  {
     "id": "like",
     "translation": {
       "one": "いいね",

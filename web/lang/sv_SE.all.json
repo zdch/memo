@@ -99,6 +99,10 @@
     }
   },
   {
+    "id": "reply_verb",
+    "translation": "svara"
+  },
+  {
     "id": "like",
     "translation": {
       "one": "gilla",

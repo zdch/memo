@@ -99,6 +99,10 @@
     }
   },
   {
+    "id": "reply_verb",
+    "translation": "responder"
+  },
+  {
     "id": "like",
     "translation": {
       "one": "me gusta",

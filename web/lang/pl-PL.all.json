@@ -99,6 +99,10 @@
     }
   },
   {
+    "id": "reply_verb",
+    "translation": "odpowiadać"
+  },
+  {
     "id": "like",
     "translation": {
       "one": "polubienie",
