@@ -1,0 +1,366 @@
+[
+  {
+    "id": "home",
+    "translation": "doma"
+  },
+  {
+    "id": "dashboard",
+    "translation": "dashboard"
+  },
+  {
+    "id": "new_memo",
+    "translation": "nové memo"
+  },
+  {
+    "id": "posts",
+    "translation": "příspěvky"
+  },
+  {
+    "id": "profiles",
+    "translation": "profily"
+  },
+  {
+    "id": "login",
+    "translation": "přihlásit se"
+  },
+  {
+    "id": "logout",
+    "translation": "odhlásit se"
+  },
+  {
+    "id": "about",
+    "translation": "info"
+  },
+  {
+    "id": "protocol",
+    "translation": "protokol"
+  },
+  {
+    "id": "disclaimer",
+    "translation": "odmítnutí odpovědnosti"
+  },
+  {
+    "id": "statistics",
+    "translation": "statistiky"
+  },
+  {
+    "id": "name",
+    "translation": "jméno"
+  },
+  {
+    "id": "address",
+    "translation": "adresa"
+  },
+  {
+    "id": "followers",
+    "translation": "sledující"
+  },
+  {
+    "id": "following",
+    "translation": "sleduje"
+  },
+  {
+    "id": "balance",
+    "translation": "bilance"
+  },
+  {
+    "id": "profile",
+    "translation": "profil"
+  },
+  {
+    "id": "actions",
+    "translation": "akce"
+  },
+  {
+    "id": "view_your_profile",
+    "translation": "prohlídnout profil"
+  },
+  {
+    "id": "set_name",
+    "translation": "nastavit jméno"
+  },
+  {
+    "id": "set_profile",
+    "translation": "nastavit profil"
+  },
+  {
+    "id": "export_key",
+    "translation": "exportovat klíč"
+  },
+  {
+    "id": "change_password",
+    "translation": "změnit heslo"
+  },
+  {
+    "id": "reply",
+    "translation": {
+      "one": "odpověď",
+      "other": "odpovědi"
+    }
+  },
+  {
+    "id": "like",
+    "translation": {
+      "one": "lajk",
+      "other": "lajky"
+    }
+  },
+  {
+    "id": "reply_verb",
+    "translation": "odpovědět"
+  },
+  {
+    "id": "top",
+    "translation": "nahoru"
+  },
+  {
+    "id": "personalized",
+    "translation": "osobní"
+  },
+  {
+    "id": "new",
+    "translation": "nový"
+  },
+  {
+    "id": "archive",
+    "translation": "archiv"
+  },
+  {
+    "id": "last_hour",
+    "translation": "minulá hodina"
+  },
+  {
+    "id": "last_24_hours",
+    "translation": "minulé 24 hodin"
+  },
+  {
+    "id": "last_7_days",
+    "translation": "minulé 7 dní"
+  },
+  {
+    "id": "all_time",
+    "translation": "všech dob"
+  },
+  {
+    "id": "message",
+    "translation": "zpráva"
+  },
+  {
+    "id": "password",
+    "translation": "heslo"
+  },
+  {
+    "id": "save_password",
+    "translation": "uložit heslo"
+  },
+  {
+    "id": "post",
+    "translation": "napsat příspěvek"
+  },
+  {
+    "id": "profile_text",
+    "translation": "text profilu"
+  },
+  {
+    "id": "feed",
+    "translation": "přívod"
+  },
+  {
+    "id": "posted_at",
+    "translation": "napsáno v"
+  },
+  {
+    "id": "posted",
+    "translation": "napsáno"
+  },
+  {
+    "id": "view_on_block_explorer",
+    "translation": "prohlídnout na prohlížeči blocků"
+  },
+  {
+    "id": "view_address_on_block_explorer",
+    "translation": "prohlídnout adresu na prohlížeči blocků"
+  },
+  {
+    "id": "view_name_on_block_explorer",
+    "translation": "prohlídnout jméno na prohlížeči blocků"
+  },
+  {
+    "id": "page",
+    "translation": "stránka"
+  },
+  {
+    "id": "previous",
+    "translation": "minulý"
+  },
+  {
+    "id": "next",
+    "translation": "příští"
+  },
+  {
+    "id": "connections",
+    "translation": "spoje"
+  },
+  {
+    "id": "follow",
+    "translation": {
+      "one": "sledování",
+      "other": "sledování"
+    }
+  },
+  {
+    "id": "unfollow",
+    "translation": "přestat sledovat"
+  },
+  {
+    "id": "next_day",
+    "translation": "příští den"
+  },
+  {
+    "id": "previous_day",
+    "translation": "minulý den"
+  },
+  {
+    "id": "Topic",
+    "translation": "téma"
+  },
+  {
+    "id": "Topics",
+    "translation": "témata"
+  },
+  {
+    "id": "Send",
+    "translation": "poslat"
+  },
+  {
+    "id": "Existing_Topics",
+    "translation": "stávající témata"
+  },
+  {
+    "id": "Create_new_topic",
+    "translation": "vytvořit nový téma"
+  },
+  {
+    "id": "Most_recent_post",
+    "translation": "nejnovější příspěvek"
+  },
+  {
+    "id": "Total_posts",
+    "translation": "součet příspěvků"
+  },
+  {
+    "id": "Back_to_topics",
+    "translation": "zpátky na témata"
+  },
+  {
+    "id": "Forget_password",
+    "translation": "zapomenout heslo"
+  },
+  {
+    "id": "Names_set",
+    "translation": "jména nastavené"
+  },
+  {
+    "id": "Total",
+    "translation": "součet"
+  },
+  {
+    "id": "Delete_Account",
+    "translation": "vymazat ůčet"
+  },
+  {
+    "id": "Guides",
+    "translation": "návody"
+  },
+  {
+    "id": "Signup",
+    "translation": "zapsat se"
+  },
+  {
+    "id": "Memo",
+    "translation": "Memo"
+  },
+  {
+    "id": "Poll",
+    "translation": "anketa"
+  },
+  {
+    "id": "Notifications",
+    "translation": "notifikace"
+  },
+  {
+    "id": "Settings",
+    "translation": "nastavení"
+  },
+  {
+    "id": "new_poll",
+    "translation": "nová anketa"
+  },
+  {
+    "id": "type",
+    "translation": "typ"
+  },
+  {
+    "id": "select_one_option",
+    "translation": "vybrat jednu možnost"
+  },
+  {
+    "id": "select_multiple_options",
+    "translation": "vybrat víc možností"
+  },
+  {
+    "id": "question",
+    "translation": "otázka"
+  },
+  {
+    "id": "option",
+    "translation": {
+      "one": "možnost",
+      "other": "možnosti"
+    }
+  },
+  {
+    "id": "add_option",
+    "translation": "přidat možnost"
+  },
+  {
+    "id": "create_poll",
+    "translation": "vytvořit anketu"
+  },
+  {
+    "id": "view_topic",
+    "translation": "prohlídnout téma"
+  },
+  {
+    "id": "search",
+    "translation": "hledat"
+  },
+  {
+    "id": "all",
+    "translation": "all"
+  },
+  {
+    "id": "most_posts",
+    "translation": "most posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "ukázat"
+  },
+  {
+    "id": "replied_to",
+    "translation": "odpověděl"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
+  }
+]
