@@ -5,9 +5,13 @@
     <h2>Set Profile Picture</h2>
 
     <form id="form-memo-set-profile-pic" method="post">
+        <p>Use the <a href="/guides">image upload guide</a> to get an Imgur link. Note that the image will
+            be center-cropped to make a square.
+        </p>
         <p>
-            <label for="url">Picture URL <span class="message-byte-count byte-count"></span></label>
+            <label for="url">Imgur URL <span class="hidden message-byte-count byte-count"></span></label>
             <input id="url" type="text" name="url" class="form-control" placeholder="https://" required/>
+
         </p>
         <p>
             <input id="set-profile-pic-submit" class="btn btn-primary" type="submit" value="Submit">
