@@ -2,32 +2,36 @@ package memo
 
 import (
 	"fmt"
+	"github.com/btcsuite/btcutil"
 	"github.com/jchavannes/jgo/jerr"
 	"github.com/jchavannes/jgo/web"
 	"github.com/memocash/memo/app/auth"
 	"github.com/memocash/memo/app/bitcoin/memo"
 	"github.com/memocash/memo/app/bitcoin/transaction"
+	"github.com/memocash/memo/app/bitcoin/wallet"
+	"github.com/memocash/memo/app/config"
 	"github.com/memocash/memo/app/db"
 	"github.com/memocash/memo/app/mutex"
 	"github.com/memocash/memo/app/res"
-	"net/http"
-	"regexp"
-	"os"
-	"io"
-	"strconv"
-	"os/exec"
-	"github.com/memocash/memo/app/config"
-	"image/jpeg"
-	"github.com/nfnt/resize"
 	"github.com/memocash/memo/app/util"
-	"github.com/btcsuite/btcutil"
-	"github.com/memocash/memo/app/bitcoin/wallet"
+	"github.com/nfnt/resize"
 	"github.com/oliamb/cutter"
+	"image/jpeg"
+	"io"
+	"net/http"
+	"os"
+	"os/exec"
+	"regexp"
+	"strconv"
 )
 
-const ResizeLg = 640
-const ResizeMed = 128
-const ResizeSm = 24
+const (
+	ResizeLg  = 640
+	ResizeMed = 128
+	ResizeSm  = 24
+
+	PicPath = "web/public/img/profilepics/"
+)
 
 var setPicRoute = web.Route{
 	Pattern:    res.UrlMemoSetProfilePic,
@@ -60,7 +64,7 @@ var setPicRoute = web.Route{
 func processImgurUrl(url string) (string, error) {
 
 	// Nothing to do.
-	if util.ValidateImgurDirectJpg(url)  {
+	if util.ValidateImgurDirectJpg(url) {
 		return url, nil
 	}
 
@@ -68,7 +72,7 @@ func processImgurUrl(url string) (string, error) {
 	var re = regexp.MustCompile(`(https://([a-z]+\.)?imgur\.com/)([^\s]*)`)
 	url = re.ReplaceAllString(url, `https://i.imgur.com/$3.jpg`)
 
-	if util.ValidateImgurDirectJpg(url)  {
+	if util.ValidateImgurDirectJpg(url) {
 		return url, nil
 	} else {
 		return "", jerr.New("invalid imgur link")
@@ -82,7 +86,7 @@ var setPicSubmitRoute = web.Route{
 	Handler: func(r *web.Response) {
 		url := r.Request.GetFormValue("url")
 		url, err := processImgurUrl(url)
-		if err != nil  {
+		if err != nil {
 			r.Error(jerr.Get("invalid profile pic url", err), http.StatusInternalServerError)
 			return
 		}
@@ -173,7 +177,7 @@ var getProfilePicRoute = web.Route{
 			return
 		}
 
-		profilePicPath := config.GetFilePaths().ProfilePicsPath + address
+		profilePicPath := PicPath + address
 		img, err := os.Open(profilePicPath + "-" + height + "x" + height + ".jpg")
 		if err != nil {
 			decodedAddress, addrErr := btcutil.DecodeAddress(address, &wallet.MainNetParamsOld)
@@ -189,9 +193,11 @@ var getProfilePicRoute = web.Route{
 				}
 				// The profile pic exists but not on the file system. Fetch it.
 				if pic != nil {
-					FetchProfilePic(pic.Url, address)
-					r.Error(jerr.New("could not save profile pic"), http.StatusInternalServerError)
-					return
+					err = FetchProfilePic(pic.Url, address)
+					if err != nil {
+						r.Error(jerr.Get("could not save profile pic", err), http.StatusInternalServerError)
+						return
+					}
 				}
 			}
 
@@ -221,47 +227,56 @@ func resizeExternally(from string, to string, width uint, height uint) error {
 }
 
 // Call when a profile pic doesn't exist on the file system.
-func FetchProfilePic(url string, address string) (bool, error) {
+func FetchProfilePic(url string, address string) error {
 
 	response, err := http.Get(url)
 	if err != nil {
-		return false, jerr.New("couldn't fetch remote image")
+		return jerr.Get("couldn't fetch remote image", err)
 	}
 	defer response.Body.Close()
 
-	profilePicName := config.GetFilePaths().ProfilePicsPath + address
+	if _, err := os.Stat(PicPath); os.IsNotExist(err) {
+		err = os.Mkdir(PicPath, 0755)
+		if err != nil {
+			return jerr.Get("unable to create pic path", err)
+		}
+	}
+	profilePicName := PicPath + address
 	file, err := os.Create(profilePicName + ".jpg")
 	if err != nil {
-		return false, jerr.New("couldn't create image file")
+		return jerr.Get("couldn't create image file", err)
 	}
 
 	_, err = io.Copy(file, response.Body)
 	if err != nil {
-		return false, jerr.New("couldn't save image file")
+		return jerr.Get("couldn't save image file", err)
 	}
-	file.Close()
+	err = file.Close()
+	if err != nil {
+		return jerr.Get("error closing file", err)
+	}
 
 	// Resize. vipsthumbnail (super fast) integration is off by default.
 	if !config.GetFilePaths().UseVipsThumbnail {
 
 		file, err := os.Open(profilePicName + ".jpg")
 		if err != nil {
-			return false, jerr.New("couldn't open fetched profile pic")
+			return jerr.Get("couldn't open fetched profile pic", err)
 		}
 
 		// Decode jpeg into image.Image.
 		img, err := jpeg.Decode(file)
 		if err != nil {
-			return false, jerr.New("couldn't decode jpg profile pic")
+			return jerr.Get("couldn't decode jpg profile pic", err)
 		}
 
-		widths := []int{ ResizeSm, ResizeMed, ResizeLg }
+		widths := []int{ResizeSm, ResizeMed, ResizeLg}
 		for _, width := range widths {
 
 			// Some square crop handling.
 			ratio := float32(img.Bounds().Max.X) / float32(img.Bounds().Max.Y)
 			ratioY := float32(img.Bounds().Max.Y) / float32(img.Bounds().Max.X)
-			if(ratioY > ratio) {
+			if ratioY > ratio {
 				ratio = ratioY
 			}
 			resizeWidth := uint(float32(width) * ratio)
@@ -270,36 +285,48 @@ func FetchProfilePic(url string, address string) (bool, error) {
 			resizedImg := resize.Resize(resizeWidth, 0, img, resize.Lanczos3)
 
 			croppedImg, err := cutter.Crop(resizedImg, cutter.Config{
-				Width: width,
+				Width:  width,
 				Height: width,
-				Mode: cutter.Centered,
+				Mode:   cutter.Centered,
 			})
+			if err != nil {
+				return jerr.Get("error cropping image", err)
+			}
 
 			out, err := os.Create(profilePicName + "-" + strconv.Itoa(width) + "x" + strconv.Itoa(width) + ".jpg")
 			if err != nil {
-				return false, jerr.New("couldn't create profile pic file")
+				return jerr.Get("couldn't create profile pic file", err)
 			}
 
 			// Write new image to file.
-			jpeg.Encode(out, croppedImg, nil)
-			out.Close()
+			err = jpeg.Encode(out, croppedImg, nil)
+			if err != nil {
+				return jerr.Get("error encoding cropped image", err)
+			}
+			err = out.Close()
+			if err != nil {
+				return jerr.Get("error saving cropped image", err)
+			}
 		}
 
 	} else {
-		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-" + strconv.Itoa(ResizeSm) + "x" + strconv.Itoa(ResizeSm) + ".jpg", ResizeSm, ResizeSm)
+		err = resizeExternally(profilePicName+".jpg", profilePicName+"-"+strconv.Itoa(ResizeSm)+"x"+strconv.Itoa(ResizeSm)+".jpg", ResizeSm, ResizeSm)
 		if err != nil {
-			return false, jerr.New("couldn't resize image file")
+			return jerr.Get("couldn't resize image file", err)
 		}
-		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-" + strconv.Itoa(ResizeMed) + "x" + strconv.Itoa(ResizeMed) + ".jpg", ResizeMed, ResizeMed)
+		err = resizeExternally(profilePicName+".jpg", profilePicName+"-"+strconv.Itoa(ResizeMed)+"x"+strconv.Itoa(ResizeMed)+".jpg", ResizeMed, ResizeMed)
 		if err != nil {
-			return false, jerr.New("couldn't resize image file")
+			return jerr.Get("couldn't resize image file", err)
 		}
-		err = resizeExternally(profilePicName + ".jpg", profilePicName + "-" + strconv.Itoa(ResizeLg) + "x" + strconv.Itoa(ResizeLg) + ".jpg", ResizeLg, ResizeLg)
+		err = resizeExternally(profilePicName+".jpg", profilePicName+"-"+strconv.Itoa(ResizeLg)+"x"+strconv.Itoa(ResizeLg)+".jpg", ResizeLg, ResizeLg)
 		if err != nil {
-			return false, jerr.New("couldn't resize image file")
+			return jerr.Get("couldn't resize image file", err)
 		}
 	}
-	os.Remove(profilePicName + ".jpg")
+	err = os.Remove(profilePicName + ".jpg")
+	if err != nil {
+		return jerr.Get("error removing profile pic", err)
+	}
 
-	return true, nil
+	return nil
 }
