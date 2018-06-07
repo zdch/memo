@@ -1,336 +1,366 @@
 [
-{
-"id": "home",
-"translation": "startpagina"
-},
-{
-"id": "dashboard",
-"translation": "dashboard"
-},
-{
-"id": "new_memo",
-"translation": "nieuw_bericht"
-},
-{
-"id": "posts",
-"translation": "berichten"
-},
-{
-"id": "profiles",
-"translation": "profielen"
-},
-{
-"id": "login",
-"translation": "inloggen"
-},
-{
-"id": "logout",
-"translation": "uitloggen
-},
-{
-"id": "about",
-"translation": "info"
-},
-{
-"id": "protocol",
-"translation": "protocol"
-},
-{
-"id": "disclaimer",
-"translation": "disclaimer"
-},
-{
-"id": "statistics",
-"translation": " statistische_gegevens
-"
-},
-{
-"id": "name",
-"translation": "naam"
-},
-{
-"id": "address",
-"translation": "adres"
-},
-{
-"id": "followers",
-"translation": "gevolgd_door"
-},
-{
-"id": "following",
-"translation": "volgen"
-},
-{
-"id": "balance",
-"translation": "balans"
-},
-{
-"id": "profile",
-"translation": "profiel"
-},
-{
-"id": "actions",
-"translation": "acties"
-},
-{
-"id": "view_your_profile",
-"translation": "profiel_bekijken"
-},
-{
-"id": "set_name",
-"translation": "instellen_naam"
-},
-{
-"id": "set_profile",
-"translation": "instellen_profiel"
-},
-{
-"id": "export_key",
-"translation": "exporteren_sleutel"
-},
-{
-"id": "change_password",
-"translation": "wachtwoord_wijzigen"
-},
-{
-"id": "reply",
-"translation": "Reageren"
-},
-{
-"id": "like",
-"translation": {
-"one": "leuk",
-"other": "leuk"
-}
-},
-{
-"id": "replies",
-"translation": "reacties"
-},
-{
-"id": "likes",
-"translation": "leuk"
-},
-{
-"id": "top",
-"translation": "top"
-},
-{
-"id": "personalized",
-"translation": "gepersonaliseerd"
-},
-{
-"id": "new",
-"translation": "nieuw"
-},
-{
-"id": "archive",
-"translation": "archief"
-},
-{
-"id": "last_hour",
-"translation": "afgelopen_uur"
-},
-{
-"id": "last_24_hours",
-"translation": "afgelopen_24_uur"
-},
-{
-"id": "last_7_days",
-"translation": "afgelopen_7_dagen"
-},
-{
-"id": "all_time",
-"translation": "alles"
-},
-{
-"id": "message",
-"translation": "bericht"
-},
-{
-"id": "password",
-"translation": "wachtwoord"
-},
-{
-"id": "save_password",
-"translation": "wachtwoord_opslaan"
-},
-{
-"id": "post",
-"translation": "plaats_bericht"
-},
-{
-"id": "profile_text",
-"translation": "profiel_tekst"
-},
-{
-"id": "feed",
-"translation": "berichten_overzicht"
-},
-{
-"id": "posted_at",
-"translation": "geplaatst_bij"
-},
-{
-"id": "posted",
-"translation": "geplaatst"
-},
-{
-"id": "view_on_block_explorer",
-"translation": "bekijken_op_block_explorer"
-},
-{
-"id": "view_address_on_block_explorer",
-"translation": "bekijk_adres_op_block_explorer"
-},
-{
-"id": "view_name_on_block_explorer",
-"translation": "bekijk_naam_op_block_explorer"
-},
-{
-"id": "page",
-"translation": "pagina"
-},
-{
-"id": "previous",
-"translation": "vorige"
-},
-{
-"id": "next",
-"translation": "volgende"
-},
-{
-"id": "connections",
-"translation": "connecties"
-},
-{
-"id": "follow",
-"translation": {
-"one": "volg",
-"other": "volgen"
-}
-},
-{
-"id": "unfollow",
-"translation": "ontvolgen"
-},
-{
-"id": "next_day",
-"translation": "Volgende_dag"
-},
-{
-"id": "previous_day",
-"translation": "Vorige_dag"
-},
-{
-"id": "Topic",
-"translation": "Onderwerp"
-},
-{
-"id": "Topics",
-"translation": "Onderwerpen"
-},
-{
-"id": "Send",
-"translation": "Verstuur"
-},
-{
-"id": "Existing_Topics",
-"translation": "Huidige_onderwerpen"
-},
-{
-"id": "Create_new_topic",
-"translation": "Aanmaken_nieuw_onderwerp"
-},
-{
-"id": "Most_recent_post",
-"translation": "Meest_recente_bericht"
-},
-{
-"id": "Total_posts",
-"translation": "Totaal_aantal_berichten"
-},
-{
-"id": "Back_to_topics",
-"translation": "terug_naar_onderwerpen"
-},
-{
-"id": "Forget_password",
-"translation": "Vergeet_wachtwoord"
-},
-{
-"id": "Names_set",
-"translation": "Naam_instelling"
-},
-{
-"id": "Total",
-"translation": "Totaal"
-},
-{
-"id": "Delete_Account",
-"translation": "Verwijderen_account"
-},
-{
-"id": "Guides",
-"translation": "Instructies"
-},
-{
-"id": "Signup",
-"translation": "Registreren"
-},
-{
-"id": "Memo",
-"translation": "Memo"
-},
-{
-"id": "Poll",
-"translation": "Poll"
-},
-{
-"id": "Notifications",
-"translation": "Notificaties"
-},
-{
-"id": "Settings",
-"translation": "Instellingen"
-},
-{
-"id": "new_poll",
-"translation": "nieuwe_poll"
-},
-{
-"id": "type",
-"translation": "soort"
-},
-{
-"id": "select_one_option",
-"translation": "selecteer_een_keuze"
-},
-{
-"id": "select_multiple_options",
-"translation": "selecteer_meerdere_keuzes"
-},
-{
-"id": "question",
-"translation": "vraag"
-},
-{
-"id": "option",
-"translation": {
-"one": "optie",
-"other": "opties"
-}
-},
-{
-"id": "add_option",
-"translation": "toevoegen_optie"
-},
-{
-"id": "create_poll",
-"translation": "Creeren_poll"
-},
-{
-"id": "view_topic",
-"translation": "bekijk_topic"
-}
+  {
+    "id": "home",
+    "translation": "Startpagina"
+  },
+  {
+    "id": "dashboard",
+    "translation": "Dashboard"
+  },
+  {
+    "id": "new_memo",
+    "translation": "Nieuw bericht"
+  },
+  {
+    "id": "posts",
+    "translation": "Berichten"
+  },
+  {
+    "id": "profiles",
+    "translation": "Profielen"
+  },
+  {
+    "id": "login",
+    "translation": "Inloggen"
+  },
+  {
+    "id": "logout",
+    "translation": "Uitloggen"
+  },
+  {
+    "id": "about",
+    "translation": "Info"
+  },
+  {
+    "id": "protocol",
+    "translation": "Protocol"
+  },
+  {
+    "id": "disclaimer",
+    "translation": "Disclaimer"
+  },
+  {
+    "id": "statistics",
+    "translation": "Statistische gegevens"
+  },
+  {
+    "id": "name",
+    "translation": "Naam"
+  },
+  {
+    "id": "address",
+    "translation": "Adres"
+  },
+  {
+    "id": "followers",
+    "translation": "Gevolgd door"
+  },
+  {
+    "id": "following",
+    "translation": "Volgen"
+  },
+  {
+    "id": "balance",
+    "translation": "Balans"
+  },
+  {
+    "id": "profile",
+    "translation": "Profiel"
+  },
+  {
+    "id": "actions",
+    "translation": "Acties"
+  },
+  {
+    "id": "view_your_profile",
+    "translation": "Profiel bekijken"
+  },
+  {
+    "id": "set_name",
+    "translation": "Instellen naam"
+  },
+  {
+    "id": "set_profile",
+    "translation": "Instellen profiel"
+  },
+  {
+    "id": "export_key",
+    "translation": "Exporteren sleutel"
+  },
+  {
+    "id": "change_password",
+    "translation": "Wachtwoord wijzigen"
+  },
+  {
+    "id": "reply",
+    "translation": {
+      "one": "reactie",
+      "other": "reacties"
+    }
+  },
+  {
+    "id": "reply_verb",
+    "translation": "reageren"
+  },
+  {
+    "id": "like",
+    "translation": {
+      "one": "leuk",
+      "other": "leuk"
+    }
+  },
+  {
+    "id": "top",
+    "translation": "Top"
+  },
+  {
+    "id": "personalized",
+    "translation": "Gepersonaliseerd"
+  },
+  {
+    "id": "new",
+    "translation": "Nieuw"
+  },
+  {
+    "id": "archive",
+    "translation": "Archief"
+  },
+  {
+    "id": "last_hour",
+    "translation": "Afgelopen uur"
+  },
+  {
+    "id": "last_24_hours",
+    "translation": "Afgelopen 24 uur"
+  },
+  {
+    "id": "last_7_days",
+    "translation": "Afgelopen 7 dagen"
+  },
+  {
+    "id": "all_time",
+    "translation": "Alles"
+  },
+  {
+    "id": "message",
+    "translation": "Bericht"
+  },
+  {
+    "id": "password",
+    "translation": "Wachtwoord"
+  },
+  {
+    "id": "save_password",
+    "translation": "Wachtwoord opslaan"
+  },
+  {
+    "id": "post",
+    "translation": "Plaats bericht"
+  },
+  {
+    "id": "profile_text",
+    "translation": "Profiel tekst"
+  },
+  {
+    "id": "feed",
+    "translation": "Berichten overzicht"
+  },
+  {
+    "id": "posted_at",
+    "translation": "geplaatst bij"
+  },
+  {
+    "id": "posted",
+    "translation": "geplaatst"
+  },
+  {
+    "id": "view_on_block_explorer",
+    "translation": "bekijken op block explorer"
+  },
+  {
+    "id": "view_address_on_block_explorer",
+    "translation": "bekijk adres op block explorer"
+  },
+  {
+    "id": "view_name_on_block_explorer",
+    "translation": "bekijk naam op block explorer"
+  },
+  {
+    "id": "page",
+    "translation": "Pagina"
+  },
+  {
+    "id": "previous",
+    "translation": "Vorige"
+  },
+  {
+    "id": "next",
+    "translation": "Volgende"
+  },
+  {
+    "id": "connections",
+    "translation": "Connecties"
+  },
+  {
+    "id": "follow",
+    "translation": {
+      "one": "Volg",
+      "other": "Volgen"
+    }
+  },
+  {
+    "id": "unfollow",
+    "translation": "Untvolgen"
+  },
+  {
+    "id": "next_day",
+    "translation": "Volgende dag"
+  },
+  {
+    "id": "previous_day",
+    "translation": "Vorige dag"
+  },
+  {
+    "id": "Topic",
+    "translation": "Onderwerp"
+  },
+  {
+    "id": "Topics",
+    "translation": "Onderwerpen"
+  },
+  {
+    "id": "Send",
+    "translation": "Verstuur"
+  },
+  {
+    "id": "Existing_Topics",
+    "translation": "Huidige onderwerpen"
+  },
+  {
+    "id": "Create_new_topic",
+    "translation": "Aanmaken nieuw onderwerp"
+  },
+  {
+    "id": "Most_recent_post",
+    "translation": "Meest recente bericht"
+  },
+  {
+    "id": "Total_posts",
+    "translation": "Totaal aantal berichten"
+  },
+  {
+    "id": "Back_to_topics",
+    "translation": "Terug naar onderwerpen"
+  },
+  {
+    "id": "Forget_password",
+    "translation": "Vergeet wachtwoord"
+  },
+  {
+    "id": "Names_set",
+    "translation": "Naam instelling"
+  },
+  {
+    "id": "Total",
+    "translation": "Totaal"
+  },
+  {
+    "id": "Delete_Account",
+    "translation": "Verwijderen account"
+  },
+  {
+    "id": "Guides",
+    "translation": "Instructies"
+  },
+  {
+    "id": "Signup",
+    "translation": "Registreren"
+  },
+  {
+    "id": "Memo",
+    "translation": "Memo"
+  },
+  {
+    "id": "Poll",
+    "translation": "Poll"
+  },
+  {
+    "id": "Notifications",
+    "translation": "Notificaties"
+  },
+  {
+    "id": "Settings",
+    "translation": "Instellingen"
+  },
+  {
+    "id": "new_poll",
+    "translation": "nieuwe poll"
+  },
+  {
+    "id": "type",
+    "translation": "soort"
+  },
+  {
+    "id": "select_one_option",
+    "translation": "Selecteer een keuze"
+  },
+  {
+    "id": "select_multiple_options",
+    "translation": "Melecteer meerdere keuzes"
+  },
+  {
+    "id": "question",
+    "translation": "vraag"
+  },
+  {
+    "id": "option",
+    "translation": {
+      "one": "optie",
+      "other": "opties"
+    }
+  },
+  {
+    "id": "add_option",
+    "translation": "toevoegen optie"
+  },
+  {
+    "id": "create_poll",
+    "translation": "Creeren poll"
+  },
+  {
+    "id": "view_topic",
+    "translation": "bekijk topic"
+  },
+  {
+    "id": "search",
+    "translation": "search"
+  },
+  {
+    "id": "all",
+    "translation": "all"
+  },
+  {
+    "id": "most_posts",
+    "translation": "most posts"
+  },
+  {
+    "id": "most_followed",
+    "translation": "most followed"
+  },
+  {
+    "id": "start_thread",
+    "translation": "start thread"
+  },
+  {
+    "id": "show",
+    "translation": "show"
+  },
+  {
+    "id": "replied_to",
+    "translation": "replied to"
+  },
+  {
+    "id": "topics_following",
+    "translation": "topics following"
+  }
 ]
