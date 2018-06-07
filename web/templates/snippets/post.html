@@ -112,7 +112,7 @@
         {{ if not .Post.Memo.Topic }}
         <a id="reply-link-{{ .Post.Memo.GetTransactionHashString }}" class="btn btn-sm btn-default"
            href="memo/reply/{{ .Post.Memo.GetTransactionHashString }}">
-            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply" 1 | Title }}
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>{{ T "reply_verb" | Title }}
         </a>
         {{ end }}
         <span class="creating hidden btn btn-sm btn-warning">Creating...</span>

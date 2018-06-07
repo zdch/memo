@@ -99,6 +99,10 @@
     }
   },
   {
+    "id": "reply_verb",
+    "translation": "대답하다"
+  },
+  {
     "id": "like",
     "translation": {
       "one": "좋아요",

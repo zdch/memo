@@ -1,15 +1,15 @@
 [
   {
     "id": "home",
-    "translation": "Home"
+    "translation": "Página inicial"
   },
   {
     "id": "dashboard",
-    "translation": "Dashboard"
+    "translation": "Tainel de controle"
   },
   {
-    "id": "new_memo",
-    "translation": "New Memo"
+    "id": "new memo",
+    "translation": "Novo Memorando"
   },
   {
     "id": "posts",
@@ -17,141 +17,141 @@
   },
   {
     "id": "profiles",
-    "translation": "Profiles"
+    "translation": "Perfis"
   },
   {
     "id": "login",
-    "translation": "Login"
+    "translation": "Entrar"
   },
   {
     "id": "logout",
-    "translation": "Logout <b>{{.Username}}</b>"
+    "translation": "Cair <b>{{.Username}}</b>"
   },
   {
     "id": "about",
-    "translation": "About"
+    "translation": "Sobre"
   },
   {
     "id": "protocol",
-    "translation": "Protocol"
+    "translation": "Protocolo"
   },
   {
     "id": "disclaimer",
-    "translation": "Disclaimer"
+    "translation": "Isenção de responsabilidade"
   },
   {
     "id": "statistics",
-    "translation": "Statistics"
+    "translation": "Estatísticas"
   },
   {
     "id": "name",
-    "translation": "Name"
+    "translation": "Nome"
   },
   {
     "id": "address",
-    "translation": "Address"
+    "translation": "Endereço"
   },
   {
     "id": "followers",
-    "translation": "Followers"
+    "translation": "Seguidores"
   },
   {
     "id": "following",
-    "translation": "Following"
+    "translation": "Seguindo"
   },
   {
     "id": "balance",
-    "translation": "Balance"
+    "translation": "Saldo"
   },
   {
     "id": "profile",
-    "translation": "Profile"
+    "translation": "Perfil"
   },
   {
     "id": "actions",
-    "translation": "Actions"
+    "translation": "Atividade"
   },
   {
     "id": "view_your_profile",
-    "translation": "View Your Profile"
+    "translation": "Ver Perfil"
   },
   {
     "id": "set_name",
-    "translation": "Set Name"
+    "translation": "Escolha apelido"
   },
   {
     "id": "set_profile",
-    "translation": "Set Profile Text"
+    "translation": "Crie seu perfil"
   },
   {
     "id": "export_key",
-    "translation": "Export Key"
+    "translation": "Exportar Chave"
   },
   {
     "id": "change_password",
-    "translation": "Change Password"
+    "translation": "trocar senha"
   },
   {
     "id": "reply",
     "translation": {
-      "one": "reply",
-      "other": "replies"
+      "one": "resposta",
+      "other": "respostas"
     }
   },
   {
     "id": "reply_verb",
-    "translation": "reply"
+    "translation": "responder"
   },
   {
     "id": "like",
     "translation": {
-      "one": "like",
-      "other": "likes"
+      "one": "convir",
+      "other": "convindos"
     }
   },
   {
     "id": "top",
-    "translation": "Top"
+    "translation": "Popular"
   },
   {
     "id": "personalized",
-    "translation": "Personalized"
+    "translation": "Personalizado"
   },
   {
     "id": "new",
-    "translation": "new"
+    "translation": "novo"
   },
   {
     "id": "archive",
-    "translation": "Archive"
+    "translation": "Arquivo"
   },
   {
     "id": "last_hour",
-    "translation": "Last hour"
+    "translation": "Última hora"
   },
   {
     "id": "last_24_hours",
-    "translation": "Last 24 hours"
+    "translation": "Últimas 24 horas"
   },
   {
     "id": "last_7_days",
-    "translation": "Last 7 days"
+    "translation": "Últimos 7 dias"
   },
   {
     "id": "all_time",
-    "translation": "All time"
+    "translation": "Desde o início"
   },
   {
     "id": "message",
-    "translation": "Message"
+    "translation": "Mensagem"
   },
   {
     "id": "password",
-    "translation": "Password"
+    "translation": "Senha"
   },
   {
     "id": "save_password",
-    "translation": "Save password"
+    "translation": "Salvar senha"
   },
   {
     "id": "post",
@@ -159,7 +159,7 @@
   },
   {
     "id": "profile_text",
-    "translation": "Profile text"
+    "translation": "Texto de perfil"
   },
   {
     "id": "feed",
@@ -167,98 +167,98 @@
   },
   {
     "id": "posted_at",
-    "translation": "posted at"
+    "translation": "postado às"
   },
   {
     "id": "posted",
-    "translation": "posted"
+    "translation": "postado"
   },
   {
     "id": "view_on_block_explorer",
-    "translation": "View on Block Explorer"
+    "translation": "Ver no explorador de blocos"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": "View Address on Block Explorer"
+    "translation": "Ver endereço"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": "View Name on Block Explorer"
+    "translation": "Ver nome no explorador de blocos"
   },
   {
     "id": "page",
-    "translation": "Page"
+    "translation": "Página"
   },
   {
     "id": "previous",
-    "translation": "Previous"
+    "translation": "Anterior"
   },
   {
     "id": "next",
-    "translation": "Next"
+    "translation": "Próximo"
   },
   {
     "id": "connections",
-    "translation": "Connections"
+    "translation": "Conexões"
   },
   {
     "id": "follow",
     "translation": {
-      "one": "Follow",
-      "other": "Follows"
-    }
+      "one": "Seguimento",
+      "other": "Seguimentos"
+  }
   },
   {
     "id": "unfollow",
-    "translation": "Unfollow"
+    "translation": "Deixar"
   },
   {
     "id": "next_day",
-    "translation": "Next Day"
+    "translation": "Próximo dia"
   },
   {
     "id": "previous_day",
-    "translation": "Previous Day"
+    "translation": "Dia anterior"
   },
   {
     "id": "Topic",
-    "translation": "Topic"
+    "translation": "Tópico"
   },
   {
     "id": "Topics",
-    "translation": "Topics"
+    "translation": "Tópicos"
   },
   {
     "id": "Send",
-    "translation": "Send"
+    "translation": "Enviar"
   },
   {
     "id": "Existing_Topics",
-    "translation": "Existing Topics"
+    "translation": "Tópicos Existentes"
   },
   {
     "id": "Create_new_topic",
-    "translation": "Create new topic"
+    "translation": "Criar novo tópico"
   },
   {
     "id": "Most_recent_post",
-    "translation": "Most recent post"
+    "translation": "Posts mais recentes"
   },
   {
     "id": "Total_posts",
-    "translation": "Total posts"
+    "translation": "Todos os posts"
   },
   {
     "id": "Back_to_topics",
-    "translation": "Back to topics"
+    "translation": "Voltar nos Tópicos"
   },
   {
     "id": "Forget_password",
-    "translation": "Uncache password"
+    "translation": "Esqueci a senha"
   },
   {
     "id": "Names_set",
-    "translation": "Names set"
+    "translation": "Conjunto de nomes"
   },
   {
     "id": "Total",
@@ -266,15 +266,15 @@
   },
   {
     "id": "Delete_Account",
-    "translation": "Delete Account"
+    "translation": "Deletar Conta"
   },
   {
     "id": "Guides",
-    "translation": "Guides"
+    "translation": "Guias"
   },
   {
     "id": "Signup",
-    "translation": "Signup"
+    "translation": "Cadastrar-se"
   },
   {
     "id": "Memo",
@@ -282,85 +282,85 @@
   },
   {
     "id": "Poll",
-    "translation": "Poll"
+    "translation": "Votação"
   },
   {
     "id": "Notifications",
-    "translation": "Notifications"
+    "translation": "Notificações"
   },
   {
     "id": "Settings",
-    "translation": "Settings"
+    "translation": "Configurações"
   },
   {
     "id": "new_poll",
-    "translation": "new poll"
+    "translation": "nova votação"
   },
   {
     "id": "type",
-    "translation": "type"
+    "translation": "tipo"
   },
   {
     "id": "select_one_option",
-    "translation": "One option can be selected"
+    "translation": "selecionar uma opção"
   },
   {
     "id": "select_multiple_options",
-    "translation": "Many options can be selected"
+    "translation": "selecionar múltiplas opções"
   },
   {
     "id": "question",
-    "translation": "question"
+    "translation": "pergunta"
   },
   {
     "id": "option",
     "translation": {
-      "one": "option",
-      "other": "options"
+      "one": "um",
+      "other": "outro"
     }
   },
   {
     "id": "add_option",
-    "translation": "add option"
+    "translation": "adicionar opção"
   },
   {
     "id": "create_poll",
-    "translation": "create poll"
+    "translation": "criar votação"
   },
   {
     "id": "view_topic",
-    "translation": "view topic"
+    "translation": "ver-tópico"
   },
   {
     "id": "search",
-    "translation": "search"
+    "translation": "busca"
   },
   {
     "id": "all",
-    "translation": "all"
+    "translation": "todos"
   },
   {
     "id": "most_posts",
-    "translation": "most posts"
+    "translation": "mais posts"
   },
   {
     "id": "most_followed",
-    "translation": "most followed"
+    "translation": "most popular"
   },
   {
     "id": "start_thread",
-    "translation": "start thread"
+    "translation": "iniciar discussão"
   },
   {
     "id": "show",
-    "translation": "show"
+    "translation": "mostrar"
   },
   {
     "id": "replied_to",
-    "translation": "replied to"
+    "translation": "respondeu a"
   },
   {
     "id": "topics_following",
-    "translation": "topics following"
+    "translation": "tópicos seguindo"
   }
 ]

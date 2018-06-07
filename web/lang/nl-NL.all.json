@@ -1,51 +1,51 @@
 [
   {
     "id": "home",
-    "translation": "Strona główna"
+    "translation": "Startpagina"
   },
   {
     "id": "dashboard",
-    "translation": "Pulpit"
+    "translation": "Dashboard"
   },
   {
     "id": "new_memo",
-    "translation": "Nowe Memo"
+    "translation": "Nieuw bericht"
   },
   {
     "id": "posts",
-    "translation": "Posty"
+    "translation": "Berichten"
   },
   {
     "id": "profiles",
-    "translation": "Profile"
+    "translation": "Profielen"
   },
   {
     "id": "login",
-    "translation": "Zaloguj"
+    "translation": "Inloggen"
   },
   {
     "id": "logout",
-    "translation": "Wyloguj <b>{{.Username}}</b>"
+    "translation": "Uitloggen"
   },
   {
     "id": "about",
-    "translation": "O nas"
+    "translation": "Info"
   },
   {
     "id": "protocol",
-    "translation": "Protokół"
+    "translation": "Protocol"
   },
   {
     "id": "disclaimer",
-    "translation": "Zastrzeżenie"
+    "translation": "Disclaimer"
   },
   {
     "id": "statistics",
-    "translation": "Statystyki"
+    "translation": "Statistische gegevens"
   },
   {
     "id": "name",
-    "translation": "Nazwa"
+    "translation": "Naam"
   },
   {
     "id": "address",
@@ -53,228 +53,228 @@
   },
   {
     "id": "followers",
-    "translation": "Obserwujący"
+    "translation": "Gevolgd door"
   },
   {
     "id": "following",
-    "translation": "Obserwowani"
+    "translation": "Volgen"
   },
   {
     "id": "balance",
-    "translation": "Saldo"
+    "translation": "Balans"
   },
   {
     "id": "profile",
-    "translation": "Profil"
+    "translation": "Profiel"
   },
   {
     "id": "actions",
-    "translation": "Akcje"
+    "translation": "Acties"
   },
   {
     "id": "view_your_profile",
-    "translation": "Wyświetl swój profil"
+    "translation": "Profiel bekijken"
   },
   {
     "id": "set_name",
-    "translation": "Ustaw nazwę"
+    "translation": "Instellen naam"
   },
   {
     "id": "set_profile",
-    "translation": "Ustaw opis profilu"
+    "translation": "Instellen profiel"
   },
   {
     "id": "export_key",
-    "translation": "Eksportuj klucz"
+    "translation": "Exporteren sleutel"
   },
   {
     "id": "change_password",
-    "translation": "Zmień hasło"
+    "translation": "Wachtwoord wijzigen"
   },
   {
     "id": "reply",
     "translation": {
-      "one": "odpowiedz",
-      "other": "odpowiedzi"
+      "one": "reactie",
+      "other": "reacties"
     }
   },
   {
     "id": "reply_verb",
-    "translation": "odpowiadać"
+    "translation": "reageren"
   },
   {
     "id": "like",
     "translation": {
-      "one": "like",
-      "other": "likes"
+      "one": "leuk",
+      "other": "leuk"
     }
   },
   {
     "id": "top",
-    "translation": "Najpopularniejsze"
+    "translation": "Top"
   },
   {
     "id": "personalized",
-    "translation": "Spersonalizowane"
+    "translation": "Gepersonaliseerd"
   },
   {
     "id": "new",
-    "translation": "nowe"
+    "translation": "Nieuw"
   },
   {
     "id": "archive",
-    "translation": "archiwalne"
+    "translation": "Archief"
   },
   {
     "id": "last_hour",
-    "translation": "Ostatnia godzina"
+    "translation": "Afgelopen uur"
   },
   {
     "id": "last_24_hours",
-    "translation": "Ostatnie 24 godziny"
+    "translation": "Afgelopen 24 uur"
   },
   {
     "id": "last_7_days",
-    "translation": "Ostatnie 7 dni"
+    "translation": "Afgelopen 7 dagen"
   },
   {
     "id": "all_time",
-    "translation": "Wszystkie"
+    "translation": "Alles"
   },
   {
     "id": "message",
-    "translation": "Wiadomość"
+    "translation": "Bericht"
   },
   {
     "id": "password",
-    "translation": "Hasło"
+    "translation": "Wachtwoord"
   },
   {
     "id": "save_password",
-    "translation": "Zapisz hasło"
+    "translation": "Wachtwoord opslaan"
   },
   {
     "id": "post",
-    "translation": "Wyślij"
+    "translation": "Plaats bericht"
   },
   {
     "id": "profile_text",
-    "translation": "Opis profilu"
+    "translation": "Profiel tekst"
   },
   {
     "id": "feed",
-    "translation": "Aktualności"
+    "translation": "Berichten overzicht"
   },
   {
     "id": "posted_at",
-    "translation": "wysłano o"
+    "translation": "geplaatst bij"
   },
   {
     "id": "posted",
-    "translation": "wysłano"
+    "translation": "geplaatst"
   },
   {
     "id": "view_on_block_explorer",
-    "translation": "Sprawdź w eksploratorze bloków"
+    "translation": "bekijken op block explorer"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": "Sprawdź adres w eksploratorze bloków"
+    "translation": "bekijk adres op block explorer"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": "Sprawdź nazwę w eksploratorze bloków"
+    "translation": "bekijk naam op block explorer"
   },
   {
     "id": "page",
-    "translation": "Strona"
+    "translation": "Pagina"
   },
   {
     "id": "previous",
-    "translation": "Poprzednie"
+    "translation": "Vorige"
   },
   {
     "id": "next",
-    "translation": "Następne"
+    "translation": "Volgende"
   },
   {
     "id": "connections",
-    "translation": "Powiązania"
+    "translation": "Connecties"
   },
   {
     "id": "follow",
     "translation": {
-      "one": "Obserwuj",
-      "other": "Obserwuje"
+      "one": "Volg",
+      "other": "Volgen"
     }
   },
   {
     "id": "unfollow",
-    "translation": "Przestań obserwować"
+    "translation": "Untvolgen"
   },
   {
     "id": "next_day",
-    "translation": "Następny dzień"
+    "translation": "Volgende dag"
   },
   {
     "id": "previous_day",
-    "translation": "Poprzedni dzień"
+    "translation": "Vorige dag"
   },
   {
     "id": "Topic",
-    "translation": "Temat"
+    "translation": "Onderwerp"
   },
   {
     "id": "Topics",
-    "translation": "Tematy"
+    "translation": "Onderwerpen"
   },
   {
     "id": "Send",
-    "translation": "Wyślij"
+    "translation": "Verstuur"
   },
   {
     "id": "Existing_Topics",
-    "translation": "Istniejące tematy"
+    "translation": "Huidige onderwerpen"
   },
   {
     "id": "Create_new_topic",
-    "translation": "Utwórz nowy temat"
+    "translation": "Aanmaken nieuw onderwerp"
   },
   {
     "id": "Most_recent_post",
-    "translation": "Najnowszy post"
+    "translation": "Meest recente bericht"
   },
   {
     "id": "Total_posts",
-    "translation": "Wszystkie posty"
+    "translation": "Totaal aantal berichten"
   },
   {
     "id": "Back_to_topics",
-    "translation": "Wróć do tematów"
+    "translation": "Terug naar onderwerpen"
   },
   {
     "id": "Forget_password",
-    "translation": "Usuń hasło z pamięci"
+    "translation": "Vergeet wachtwoord"
   },
   {
     "id": "Names_set",
-    "translation": "Nadanych nazw"
+    "translation": "Naam instelling"
   },
   {
     "id": "Total",
-    "translation": "Łącznie"
+    "translation": "Totaal"
   },
   {
     "id": "Delete_Account",
-    "translation": "Usuń konto"
+    "translation": "Verwijderen account"
   },
   {
     "id": "Guides",
-    "translation": "Poradniki"
+    "translation": "Instructies"
   },
   {
     "id": "Signup",
-    "translation": "Zarejestruj się"
+    "translation": "Registreren"
   },
   {
     "id": "Memo",
@@ -282,58 +282,58 @@
   },
   {
     "id": "Poll",
-    "translation": "Ankieta"
+    "translation": "Poll"
   },
   {
     "id": "Notifications",
-    "translation": "Powiadomienia"
+    "translation": "Notificaties"
   },
   {
     "id": "Settings",
-    "translation": "Ustawienia"
+    "translation": "Instellingen"
   },
   {
     "id": "new_poll",
-    "translation": "nowa ankieta"
+    "translation": "nieuwe poll"
   },
   {
     "id": "type",
-    "translation": "typ"
+    "translation": "soort"
   },
   {
     "id": "select_one_option",
-    "translation": "Jednokrotnego wyboru"
+    "translation": "Selecteer een keuze"
   },
   {
     "id": "select_multiple_options",
-    "translation": "Wielokrotnego wyboru"
+    "translation": "Melecteer meerdere keuzes"
   },
   {
     "id": "question",
-    "translation": "pytanie"
+    "translation": "vraag"
   },
   {
     "id": "option",
     "translation": {
-      "one": "opcja",
-      "other": "opcje"
+      "one": "optie",
+      "other": "opties"
     }
   },
   {
     "id": "add_option",
-    "translation": "dodaj opcję"
+    "translation": "toevoegen optie"
   },
   {
     "id": "create_poll",
-    "translation": "utwórz ankietę"
+    "translation": "Creeren poll"
   },
   {
     "id": "view_topic",
-    "translation": "przejdź do tematu"
+    "translation": "bekijk topic"
   },
   {
     "id": "search",
-    "translation": "poszukiwać"
+    "translation": "search"
   },
   {
     "id": "all",
@@ -353,14 +353,14 @@
   },
   {
     "id": "show",
-    "translation": "wykazać"
+    "translation": "show"
   },
   {
     "id": "replied_to",
-    "translation": "odpowiedział na"
+    "translation": "replied to"
   },
   {
     "id": "topics_following",
-    "translation": "Tematy obserwowane"
+    "translation": "topics following"
   }
 ]
