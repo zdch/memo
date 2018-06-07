@@ -320,15 +320,23 @@ func AttachRepliesToPost(post *Post, offset uint) error {
 		if setName != nil {
 			name = setName.Name
 		}
+		var hasPic = false
+		setPic, err := db.GetPicForPkHash(reply.PkHash)
+		if err != nil {
+			return jerr.Get("error getting profile pic for hash", err)
+		} else if setPic != nil {
+			hasPic = true
+		}
 		cnt, err := db.GetPostReplyCount(reply.TxHash)
 		if err != nil {
 			return jerr.Get("error getting post reply count", err)
 		}
 		replies = append(replies, &Post{
-			Name:       name,
-			Memo:       reply,
-			SelfPkHash: post.SelfPkHash,
-			ReplyCount: cnt,
+			Name:          name,
+			Memo:          reply,
+			SelfPkHash:    post.SelfPkHash,
+			ReplyCount:    cnt,
+			HasProfilePic: hasPic,
 		})
 	}
 	post.Replies = replies
