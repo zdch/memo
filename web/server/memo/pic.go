@@ -56,16 +56,37 @@ var setPicRoute = web.Route{
 	},
 }
 
+// Transform https://imgur.com/xSSV7Sg into https://i.imgur.com/xSSV7Sg.jpg and return the string.
+func processImgurUrl(url string) (string, error) {
+
+	// Nothing to do.
+	if util.ValidateImgurDirectJpg(url)  {
+		return url, nil
+	}
+
+	// Transform to direct link and validate.
+	var re = regexp.MustCompile(`(https://([a-z]+\.)?imgur\.com/)([^\s]*)`)
+	url = re.ReplaceAllString(url, `https://i.imgur.com/$3.jpg`)
+
+	if util.ValidateImgurDirectJpg(url)  {
+		return url, nil
+	} else {
+		return "", jerr.New("invalid imgur link")
+	}
+}
+
 var setPicSubmitRoute = web.Route{
 	Pattern:     res.UrlMemoSetProfilePicSubmit,
 	NeedsLogin:  true,
 	CsrfProtect: true,
 	Handler: func(r *web.Response) {
 		url := r.Request.GetFormValue("url")
-		if !util.ValidateImgurJpg(url)  {
-			r.Error(jerr.New("invalid imgur url"), http.StatusUnprocessableEntity)
+		url, err := processImgurUrl(url)
+		if err != nil  {
+			r.Error(jerr.Get("invalid profile pic url", err), http.StatusInternalServerError)
 			return
 		}
+
 		password := r.Request.GetFormValue("password")
 		user, err := auth.GetSessionUser(r.Session.CookieId)
 		if err != nil {

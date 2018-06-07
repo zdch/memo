@@ -215,8 +215,9 @@
                 return;
             }
             var imgurJpg = /^https:\/\/i\.imgur\.com\/[a-zA-Z0-9]+\.jpg$/;
-            var imgurJpgErroMsg = "Please enter an imgur URL in the form https://i.imgur.com/jYK7Hy8.jpg";
-            if(!imgurJpg.test(url)) {
+            var imgurLink = /^https:\/\/imgur\.com\/[a-zA-Z0-9]+$/;
+            var imgurJpgErroMsg = "Please enter an imgur URL in the form https://imgur.com/abcd or https://i.imgur.com/abcd.jpg";
+            if(!imgurJpg.test(url) && !imgurLink.test(url)) {
                 alert(imgurJpgErroMsg);
                 return;
             }
