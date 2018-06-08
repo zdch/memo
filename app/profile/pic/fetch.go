@@ -4,6 +4,7 @@ import (
 	"github.com/jchavannes/jgo/jerr"
 	"github.com/memocash/memo/app/config"
 	"github.com/memocash/memo/app/res"
+	"github.com/memocash/memo/app/util"
 	"github.com/nfnt/resize"
 	"github.com/oliamb/cutter"
 	"image"
@@ -24,6 +25,9 @@ const (
 
 // Call when a profile pic doesn't exist on the file system.
 func FetchProfilePic(url string, address string) error {
+	if ! util.ValidateImgurDirectLink(url) {
+		return jerr.New("invalid imgur link")
+	}
 	response, err := http.Get(url)
 	if err != nil {
 		return jerr.Get("couldn't fetch remote image", err)
