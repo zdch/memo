@@ -150,6 +150,10 @@ func setFeed(r *web.Response, selfPkHash []byte, userId uint) error {
 	if err != nil {
 		return jerr.Get("error attaching likes to posts", err)
 	}
+	err = profile.AttachProfilePicsToPosts(posts)
+	if err != nil {
+		return jerr.Get("error attaching profile pics to posts", err)
+	}
 	err = profile.AttachPollsToPosts(posts)
 	if err != nil {
 		return jerr.Get("error attaching polls to posts", err)
