@@ -53,6 +53,8 @@ const (
 	UrlMemoWaitSubmit           = "/memo/wait-submit"
 	UrlMemoSetProfile           = "/memo/set-profile"
 	UrlMemoSetProfileSubmit     = "/memo/set-profile-submit"
+	UrlMemoSetProfilePic        = "/memo/set-profile-pic"
+	UrlMemoSetProfilePicSubmit  = "/memo/set-profile-pic-submit"
 
 	TmplMemoPost         = "/memo/post"
 	TmplMemoPostThreaded = "/memo/post-threaded"

@@ -31,16 +31,24 @@
     {{ range .Profiles }}
     {{ if .NameSet }}
         <p data-address="{{ .Name }} {{ .GetAddressString }}">
-        <span class="identicon-{{ .GetAddressString }}">
-            <img class="identicon"/>
-        </span>
+            {{ if .Pic }}
+                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .GetAddressString }}-24x24.{{ .Pic.GetExtension }}?id={{ .Pic.Id }}"/>
+            {{ else }}
+                <span class="identicon-{{ .GetAddressString }}">
+                    <img class="identicon"/>
+                </span>
+            {{ end }}
             <a href="/profile/{{ .GetAddressString }}">{{ .Name }} ({{ .GetAddressString }})</a>
         </p>
     {{ else }}
         <p data-address="{{ .GetAddressString }}">
-        <span class="identicon-{{ .GetAddressString }}">
-            <img class="identicon"/>
-        </span>
+            {{ if .Pic }}
+                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .GetAddressString }}-24x24.{{ .Pic.GetExtension }}?id={{ .Pic.Id }}"/>
+            {{ else }}
+                <span class="identicon-{{ .GetAddressString }}">
+                    <img class="identicon"/>
+                </span>
+            {{ end }}
             <a href="/profile/{{ .GetAddressString }}">{{ .GetAddressString }}</a>
         </p>
     {{ end }}

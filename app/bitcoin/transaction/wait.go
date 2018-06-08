@@ -37,3 +37,18 @@ func WaitForTx(txHash *chainhash.Hash) error {
 	}
 	return jerr.New("unable to find transaction")
 }
+
+func WaitForPic(txHash *chainhash.Hash) error {
+	// wait up to 30 seconds
+	for i := 0; i < 150; i++ {
+		_, err := db.GetMemoSetPic(txHash.CloneBytes())
+		if err == nil {
+			return nil
+		}
+		if ! db.IsRecordNotFoundError(err) {
+			return jerr.Get("error looking for pic", err)
+		}
+		time.Sleep(waitTime)
+	}
+	return jerr.New("unable to find pic")
+}

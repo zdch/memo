@@ -1,0 +1,33 @@
+{{ template "snippets/header.html" . }}
+
+<div class="col-md-6 col-md-offset-3">
+
+    <h2>Set Profile Picture</h2>
+
+    <form id="form-memo-set-profile-pic" method="post">
+        <p>Use the <a href="/guides">image upload guide</a> to get an Imgur link. The image will
+            be center-cropped to make a square.
+        </p>
+        <p>
+            <label for="url">Imgur URL <span class="hidden message-byte-count byte-count"></span></label>
+            <input id="url" type="text" name="url" class="form-control" placeholder="https://" required/>
+
+        </p>
+        <p>
+            <input id="set-profile-pic-submit" class="btn btn-primary" type="submit" value="Submit">
+            <a id="set-profile-pic-cancel" class="btn btn-default" href="/">Cancel</a>
+            <span id="set-profile-pic-broadcasting" class="broadcasting hidden btn btn-warning">Broadcasting...</span>
+
+        </p>
+    </form>
+    <br/>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        MemoApp.Form.SetProfilePic($("#form-memo-set-profile-pic"));
+    });
+</script>
+
+{{ template "snippets/footer.html" . }}

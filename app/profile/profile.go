@@ -37,6 +37,7 @@ type Profile struct {
 	CanFollow            bool
 	CanUnfollow          bool
 	Qr                   string
+	Pic                  *db.MemoSetPic
 }
 
 func (p Profile) IsSelf() bool {
@@ -217,11 +218,18 @@ func GetProfile(pkHash []byte, selfPkHash []byte) (*Profile, error) {
 		name = memoSetName.Name
 		nameTx = memoSetName.TxHash
 	}
+	memoSetPic, err := db.GetPicForPkHash(pkHash)
+	if err != nil && ! db.IsRecordNotFoundError(err) {
+		return nil, jerr.Get("error getting MemoSetPic for hash", err)
+	}
 	profile := &Profile{
 		Name:       name,
 		PkHash:     pkHash,
 		NameTx:     nameTx,
 		SelfPkHash: selfPkHash,
+	}
+	if memoSetPic != nil {
+		profile.Pic = memoSetPic
 	}
 	if profile.Name == "" {
 		profile.Name = fmt.Sprintf("Profile %.16s", profile.GetAddressString())

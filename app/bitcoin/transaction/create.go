@@ -33,6 +33,7 @@ const (
 	SpendOutputTypeMemoPollQuestionMulti
 	SpendOutputTypeMemoPollOption
 	SpendOutputTypeMemoPollVote
+	SpendOutputTypeMemoSetProfilePic
 )
 
 func Create(spendOuts []*db.TransactionOut, privateKey *wallet.PrivateKey, spendOutputs []SpendOutput) (*wire.MsgTx, error) {
@@ -302,6 +303,23 @@ func Create(spendOuts []*db.TransactionOut, privateKey *wallet.PrivateKey, spend
 				Script()
 			if err != nil {
 				return nil, jerr.Get("error creating memo poll vote output", err)
+			}
+			fmt.Printf("pkScript: %x\n", pkScript)
+			txOuts = append(txOuts, wire.NewTxOut(spendOutput.Amount, pkScript))
+		case SpendOutputTypeMemoSetProfilePic:
+			if len(spendOutput.Data) > memo.MaxPostSize {
+				return nil, jerr.New("url too large")
+			}
+			if len(spendOutput.Data) == 0 {
+				return nil, jerr.New("empty url")
+			}
+			pkScript, err := txscript.NewScriptBuilder().
+				AddOp(txscript.OP_RETURN).
+				AddData([]byte{memo.CodePrefix, memo.CodeSetProfilePicture}).
+				AddData(spendOutput.Data).
+				Script()
+			if err != nil {
+				return nil, jerr.Get("error creating memo set pic output", err)
 			}
 			fmt.Printf("pkScript: %x\n", pkScript)
 			txOuts = append(txOuts, wire.NewTxOut(spendOutput.Amount, pkScript))

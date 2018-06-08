@@ -48,5 +48,7 @@ func GetAllCodes() [][]byte {
 		{CodePrefix, CodePollCreate},
 		{CodePrefix, CodePollOption},
 		{CodePrefix, CodePollVote},
+		{CodePrefix, CodeTopicFollow},
+		{CodePrefix, CodeTopicUnfollow},
 	}
 }

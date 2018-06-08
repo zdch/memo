@@ -151,6 +151,7 @@ var MemoApp = {
         TopicsMorePosts: "topics/more-posts",
         TopicsPostAjax: "topics/post-ajax",
         TopicsFollowSubmit: "topics/follow-submit",
-        TopicsCreateSubmit: "topics/create-submit"
+        TopicsCreateSubmit: "topics/create-submit",
+        MemoSetProfilePicSubmit: "memo/set-profile-pic-submit",
     };
 })();

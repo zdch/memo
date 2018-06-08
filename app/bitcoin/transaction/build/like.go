@@ -32,7 +32,7 @@ func Like(likeTxBytes []byte, tip int64, privateKey *wallet.PrivateKey) (*wire.M
 	}
 	tx, err := Build(transactions, privateKey)
 	if err != nil {
-		return nil, jerr.Get("error building tx", err)
+		return nil, jerr.Get("error building like tx", err)
 	}
 	return tx, nil
 }

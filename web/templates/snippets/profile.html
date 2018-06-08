@@ -2,9 +2,15 @@
     <tr>
         <th>{{ T "name" }}</th>
         <td class="name">
+        {{ if .Profile.Pic }}
+            <a class="image-link" href="/img/profilepics/{{ .Profile.GetAddressString }}-640x640.{{ .Profile.Pic.GetExtension }}?id={{ .Profile.Pic.Id }}" target="_blank">
+                <img class="profile-pic" src="/img/profilepics/{{ .Profile.GetAddressString }}-128x128.{{ .Profile.Pic.GetExtension }}?id={{ .Profile.Pic.Id }}"/>
+            </a>
+        {{ else }}
             <span class="identicon-{{ .Profile.GetAddressString }}">
                 <img class="identicon"/>
             </span>
+        {{ end }}
         {{ .Profile.Name }}
         </td>
     </tr>

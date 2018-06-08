@@ -174,6 +174,111 @@
     /**
      * @param {jQuery} $form
      */
+    MemoApp.Form.SetProfilePic = function ($form) {
+        var $url = $form.find("[name=url]");
+        var $submit = $('#set-profile-pic-submit');
+        var $cancel = $('#set-profile-pic-cancel');
+        var $broadcasting = $('#set-profile-pic-broadcasting');
+        var $msgByteCount = $form.find(".message-byte-count");
+        $url.on("input", function () {
+            setMsgByteCount();
+        });
+
+        function setMsgByteCount() {
+            var cnt = maxNameBytes - MemoApp.utf8ByteLength($url.val());
+            $msgByteCount.html("[" + cnt + "]");
+            if (cnt < 0) {
+                $msgByteCount.addClass("red");
+            } else {
+                $msgByteCount.removeClass("red");
+            }
+        }
+
+        setMsgByteCount();
+        var submitting = false;
+        $form.submit(function (e) {
+            e.preventDefault();
+
+            if (submitting) {
+                return
+            }
+
+            var url = $url.val();
+            if (maxPostBytes - MemoApp.utf8ByteLength(url) < 0) {
+                alert("Maximum name is " + maxNameBytes + " bytes. Note that some characters are more than 1 byte." +
+                    " Emojis are usually 4 bytes, for example.");
+                return;
+            }
+
+            if (url.length === 0) {
+                alert("Must enter a URL.");
+                return;
+            }
+            var imgurJpg = /^https:\/\/i\.imgur\.com\/[a-zA-Z0-9]+\.(jpg|png)$/;
+            var imgurLink = /^https:\/\/imgur\.com\/[a-zA-Z0-9]+$/;
+            var imgurJpgErroMsg = "Please enter an imgur URL in the form https://imgur.com/abcd or https://i.imgur.com/abcd.jpg";
+            if(!imgurJpg.test(url) && !imgurLink.test(url)) {
+                alert(imgurJpgErroMsg);
+                return;
+            }
+
+            $submit.prop('disabled', true);
+            $url.prop('disabled', true);
+            $broadcasting.removeClass('hidden')
+            $cancel.hide()
+
+            var password = MemoApp.GetPassword();
+            if (!password.length) {
+                console.log("Password not set. Please try logging in again.");
+                return;
+            }
+
+            submitting = true;
+            $.ajax({
+                type: "POST",
+                url: MemoApp.GetBaseUrl() + MemoApp.URL.MemoSetProfilePicSubmit,
+                data: {
+                    url: url,
+                    password: password
+                },
+                success: function (txHash) {
+                    submitting = false;
+                    if (!txHash || txHash.length === 0) {
+                        alert("Server error. Please try refreshing the page.");
+                        $submit.prop('disabled', false);
+                        $url.prop('disabled', false);
+                        $broadcasting.addClass('hidden');
+                        $cancel.show()
+                        return
+                    }
+                    window.location = MemoApp.GetBaseUrl() + MemoApp.URL.MemoWait + "/" + txHash
+                },
+                error: function (xhr) {
+                    submitting = false;
+                    if (xhr.status === 401) {
+                        alert("Error unlocking key. " +
+                            "Please verify your password is correct. " +
+                            "If this problem persists, please try refreshing the page.");
+                    } else if (xhr.status === 422) {
+                        alert(imgurJpgErroMsg);
+                    } else {
+                        var errorMessage =
+                            "Error with request (response code " + xhr.status + "):\n" +
+                            (xhr.responseText !== "" ? xhr.responseText + "\n" : "") +
+                            "If this problem persists, try refreshing the page.";
+                        alert(errorMessage);
+                    }
+                    $submit.prop('disabled', false);
+                    $url.prop('disabled', false);
+                    $broadcasting.addClass('hidden');
+                    $cancel.show()
+                }
+            });
+        });
+    };
+    /**
+     * @param {jQuery} $form
+     */
     MemoApp.Form.SetProfile = function ($form) {
         var $profile = $form.find("[name=profile]");
         var $msgByteCount = $form.find(".message-byte-count");

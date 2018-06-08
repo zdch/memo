@@ -1,9 +1,15 @@
 <div class="post rounded box-shadow" id="post-{{ .Post.Memo.GetTransactionHashString }}">
     <div class="post-header">
         <p class="name">
-        <span class="identicon-{{ .Post.Memo.GetAddressString }}">
-            <img class="identicon"/>
-        </span>
+        {{ if .Post.ProfilePic }}
+            <a class="image-link" href="profile/{{ .Post.Memo.GetAddressString }}">
+                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Memo.GetAddressString }}-24x24.{{ .Post.ProfilePic.GetExtension }}?id={{ .Post.ProfilePic.Id }}">
+            </a>
+        {{ else }}
+            <span class="identicon-{{ .Post.Memo.GetAddressString }}">
+                <img class="identicon"/>
+            </span>
+        {{ end }}
             <a class="profile" href="profile/{{ .Post.Memo.GetAddressString }}">{{ $len := len .Post.Name }}
         {{- if gt $len 0 -}}
             {{ .Post.Name }}
@@ -57,9 +63,15 @@
 {{ if .Post.Parent }}
     <div class="reply">
         Replying to
-        <span class="identicon-{{ .Post.Parent.Memo.GetAddressString }}">
+        {{ if .Post.Parent.ProfilePic }}
+            <a class="image-link" href="profile/{{ .Post.Parent.Memo.GetAddressString }}">
+                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Parent.Memo.GetAddressString }}-24x24.{{ .Post.Parent.ProfilePic.GetExtension }}?id={{ .Post.Parent.ProfilePic.Id }}"/>
+            </a>
+        {{ else }}
+            <span class="identicon-{{ .Post.Parent.Memo.GetAddressString }}">
                 <img class="identicon"/>
             </span>
+        {{ end }}
         {{ if .Post.Memo.RootTxHash }}
             <a href="post/{{ .Post.Memo.GetRootTransactionHashString }}#post-{{ .Post.Parent.Memo.GetTransactionHashString }}">{{ .Post.Parent.Name }}'s post</a>
         {{ else }}

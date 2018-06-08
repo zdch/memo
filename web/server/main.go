@@ -88,6 +88,12 @@ func preHandler(r *web.Response) {
 			r.Error(jerr.Get("error getting last notification id from cache", err), http.StatusInternalServerError)
 			return
 		}
+		profilePic, err := cache.GetProfilePic(userAddress.GetScriptAddress())
+		if err != nil {
+			r.Error(jerr.Get("error getting has pic from cache", err), http.StatusInternalServerError)
+			return
+		}
+		r.Helper["ProfilePic"] = profilePic
 		r.Helper["UnreadNotifications"] = unreadNotifications
 		r.Helper["UserSettings"] = userSettings
 		r.Helper["IsLoggedIn"] = true

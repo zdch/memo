@@ -15,6 +15,9 @@ html {
 a {
     color: #487521;
 }
+a.image-link:hover {
+    text-decoration: none;
+}
 
 h1 {
     margin-bottom: 10px;
@@ -245,7 +248,7 @@ a.disabled {
 }
 .post .message {
     margin: 5px 0 5px;
-    font-size: 32px;
+    font-size: 28px;
 }
 .post .likes {
     margin: 0 0 10px;
@@ -280,7 +283,7 @@ a.disabled {
 .post .post-header .block-explorer {
     position: absolute;
     list-style-type: none;
-    top: 0;
+    top: -4px;
     right: 0;
     padding: 0;
     font-size: 18px;
@@ -297,6 +300,9 @@ body.dark .post .post-header .block-explorer a {
 }
 body.dark .post .post-header .block-explorer ul a {
     color: #ccc;
+}
+.post .block-explorer .glyphicon {
+    font-size: 15px;
 }
 .post .actions .glyphicon {
     margin-right: 10px;
@@ -338,7 +344,7 @@ body.dark .post .post-header .block-explorer ul a {
     color: red;
     font-style: italic;
 }
-img.identicon {
+img.identicon, img.profile-pic-24 {
     border: none;
     vertical-align: top;
     width: 24px;
@@ -516,7 +522,7 @@ body.dark .topics-table .glyphicon {
 .topic-post:last-of-type {
     border-bottom: none;
 }
-.topic-post .identicon {
+.topic-post .identicon, .topic-post .profile-pic-24 {
     float: left;
     display: block;
     width: 24px;
@@ -974,4 +980,8 @@ body.dark .notify-post a {
 body.dark .poll .votes {
     background: #374f66;
     border-color: #3e5973;
+}
+
+.profile-pic {
+    border-radius:4px;
 }

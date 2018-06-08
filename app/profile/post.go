@@ -14,19 +14,20 @@ import (
 )
 
 type Post struct {
-	Name         string
-	Memo         *db.MemoPost
-	Parent       *Post
-	Likes        []*Like
-	HasLiked     bool
-	SelfPkHash   []byte
-	ReplyCount   uint
-	Replies      []*Post
-	Reputation   *rep.Reputation
-	ShowMedia    bool
-	Poll         *Poll
-	VoteQuestion *db.MemoPost
-	VoteOption   *db.MemoPollOption
+	Name          string
+	Memo          *db.MemoPost
+	Parent        *Post
+	Likes         []*Like
+	HasLiked      bool
+	SelfPkHash    []byte
+	ReplyCount    uint
+	Replies       []*Post
+	Reputation    *rep.Reputation
+	ShowMedia     bool
+	Poll          *Poll
+	VoteQuestion  *db.MemoPost
+	VoteOption    *db.MemoPollOption
+	ProfilePic    *db.MemoSetPic
 }
 
 func (p Post) IsSelf() bool {
@@ -211,6 +212,10 @@ func GetPostsForHash(pkHash []byte, selfPkHash []byte, offset uint) ([]*Post, er
 	if setName != nil {
 		name = setName.Name
 	}
+	setPic, err := db.GetPicForPkHash(pkHash)
+	if err != nil {
+		return nil, jerr.Get("error getting profile pic for hash", err)
+	}
 	dbPosts, err := db.GetPostsForPkHash(pkHash, offset)
 	if err != nil {
 		return nil, jerr.Get("error getting posts for hash", err)
@@ -226,6 +231,9 @@ func GetPostsForHash(pkHash []byte, selfPkHash []byte, offset uint) ([]*Post, er
 			Memo:       dbPost,
 			SelfPkHash: selfPkHash,
 			ReplyCount: cnt,
+		}
+		if setPic != nil {
+			post.ProfilePic = setPic
 		}
 		posts = append(posts, post)
 	}
@@ -245,6 +253,10 @@ func GetPostByTxHashWithReplies(txHash []byte, selfPkHash []byte, offset uint) (
 	if setName != nil {
 		name = setName.Name
 	}
+	setPic, err := db.GetPicForPkHash(memoPost.PkHash)
+	if err != nil {
+		return nil, jerr.Get("error getting profile pic for hash", err)
+	}
 	cnt, err := db.GetPostReplyCount(txHash)
 	if err != nil {
 		return nil, jerr.Get("error getting post reply count", err)
@@ -254,6 +266,9 @@ func GetPostByTxHashWithReplies(txHash []byte, selfPkHash []byte, offset uint) (
 		Memo:       memoPost,
 		SelfPkHash: selfPkHash,
 		ReplyCount: cnt,
+	}
+	if setPic != nil {
+		post.ProfilePic = setPic
 	}
 	err = AttachRepliesToPost(post, offset)
 	if err != nil {
@@ -303,16 +318,24 @@ func AttachRepliesToPost(post *Post, offset uint) error {
 		if setName != nil {
 			name = setName.Name
 		}
+		setPic, err := db.GetPicForPkHash(reply.PkHash)
+		if err != nil {
+			return jerr.Get("error getting profile pic for hash", err)
+		}
 		cnt, err := db.GetPostReplyCount(reply.TxHash)
 		if err != nil {
 			return jerr.Get("error getting post reply count", err)
 		}
-		replies = append(replies, &Post{
+		var post = &Post{
 			Name:       name,
 			Memo:       reply,
 			SelfPkHash: post.SelfPkHash,
 			ReplyCount: cnt,
-		})
+		}
+		if setPic != nil {
+			post.ProfilePic = setPic
+		}
+		replies = append(replies, post)
 	}
 	post.Replies = replies
 	return nil
@@ -330,6 +353,10 @@ func GetRecentPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
 	err = AttachNamesToPosts(posts)
 	if err != nil {
 		return nil, jerr.Get("error attaching names to posts", err)
+	}
+	err = AttachProfilePicsToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching profile pics to posts", err)
 	}
 	return posts, nil
 }
@@ -362,6 +389,10 @@ func GetRankedPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
 	if err != nil {
 		return nil, jerr.Get("error attaching names to posts", err)
 	}
+	err = AttachProfilePicsToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching profile pics to posts", err)
+	}
 	return posts, nil
 }
 
@@ -377,6 +408,10 @@ func GetPollsPosts(selfPkHash []byte, offset uint) ([]*Post, error) {
 	err = AttachNamesToPosts(posts)
 	if err != nil {
 		return nil, jerr.Get("error attaching names to posts", err)
+	}
+	err = AttachProfilePicsToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching profile pics to posts", err)
 	}
 	return posts, nil
 }
@@ -422,6 +457,30 @@ func AttachNamesToPosts(posts []*Post) error {
 	return nil
 }
 
+func AttachProfilePicsToPosts(posts []*Post) error {
+	var namePkHashes [][]byte
+	for _, post := range posts {
+		for _, namePkHash := range namePkHashes {
+			if bytes.Equal(namePkHash, post.Memo.PkHash) {
+				continue
+			}
+		}
+		namePkHashes = append(namePkHashes, post.Memo.PkHash)
+	}
+	setPics, err := db.GetPicsForPkHashes(namePkHashes)
+	if err != nil {
+		return jerr.Get("error getting profile pics for pk hashes", err)
+	}
+	for _, setPic := range setPics {
+		for _, post := range posts {
+			if bytes.Equal(post.Memo.PkHash, setPic.PkHash) {
+				post.ProfilePic = setPic
+			}
+		}
+	}
+	return nil
+}
+
 func GetTopPosts(selfPkHash []byte, offset uint, timeStart time.Time, timeEnd time.Time, personalized bool) ([]*Post, error) {
 	var dbPosts []*db.MemoPost
 	var err error
@@ -444,6 +503,10 @@ func GetTopPosts(selfPkHash []byte, offset uint, timeStart time.Time, timeEnd ti
 	if err != nil {
 		return nil, jerr.Get("error attaching names to posts", err)
 	}
+	err = AttachProfilePicsToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching profile pics to posts", err)
+	}
 	return posts, nil
 }
 
@@ -460,6 +523,10 @@ func GetPostsForTopic(tag string, selfPkHash []byte, offset uint) ([]*Post, erro
 	if err != nil {
 		return nil, jerr.Get("error attaching names to posts", err)
 	}
+	err = AttachProfilePicsToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching profile pics to posts", err)
+	}
 	return posts, nil
 }
 
@@ -475,6 +542,10 @@ func GetOlderPostsForTopic(tag string, selfPkHash []byte, firstPostId uint) ([]*
 	err = AttachNamesToPosts(posts)
 	if err != nil {
 		return nil, jerr.Get("error attaching names to posts", err)
+	}
+	err = AttachProfilePicsToPosts(posts)
+	if err != nil {
+		return nil, jerr.Get("error attaching profile pics to posts", err)
 	}
 	return posts, nil
 }
@@ -516,10 +587,17 @@ func AttachParentToPosts(posts []*Post) error {
 		if setName != nil {
 			name = setName.Name
 		}
+		setPic, err := db.GetPicForPkHash(parentPost.PkHash)
+		if err != nil {
+			return jerr.Get("error getting profile pic for hash", err)
+		}
 		post.Parent = &Post{
 			Name:       name,
 			Memo:       parentPost,
 			SelfPkHash: post.SelfPkHash,
+		}
+		if setPic != nil {
+			post.ProfilePic = setPic
 		}
 	}
 	return nil
