@@ -41,7 +41,7 @@ func SetProfilePic(pkHash []byte, profilePic ProfilePic) error {
 
 func ClearHasPic(pkHash []byte) error {
 	err := DeleteItem(getHasPicName(pkHash))
-	if err != nil {
+	if err != nil && ! IsMissError(err) {
 		return jerr.Get("error clearing has pic", err)
 	}
 	return nil
