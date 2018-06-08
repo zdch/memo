@@ -4,7 +4,9 @@
     <div class="post-header">
         <p class="name">
         {{ if .Post.ProfilePic }}
-            <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Memo.GetAddressString }}-24x24.{{ .Post.ProfilePic.GetExtension }}?id={{ .Post.ProfilePic.Id }}">
+            <a href="profile/{{ .Post.Memo.GetAddressString }}">
+                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Memo.GetAddressString }}-24x24.{{ .Post.ProfilePic.GetExtension }}?id={{ .Post.ProfilePic.Id }}">
+            </a>
         {{ else }}
             <span class="identicon-{{ .Post.Memo.GetAddressString }}">
                 <img class="identicon"/>
@@ -64,7 +66,9 @@
     <div class="reply">
         Replying to
         {{ if .Post.Parent.ProfilePic }}
-            <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Parent.Memo.GetAddressString }}-24x24.{{ .Post.Parent.ProfilePic.GetExtension }}?id={{ .Post.Parent.ProfilePic.Id }}"/>
+            <a href="profile/{{ .Post.Parent.Memo.GetAddressString }}">
+                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Parent.Memo.GetAddressString }}-24x24.{{ .Post.Parent.ProfilePic.GetExtension }}?id={{ .Post.Parent.ProfilePic.Id }}"/>
+            </a>
         {{ else }}
             <span class="identicon-{{ .Post.Parent.Memo.GetAddressString }}">
                     <img class="identicon"/>
