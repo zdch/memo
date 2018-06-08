@@ -280,7 +280,7 @@ a.disabled {
 .post .post-header .block-explorer {
     position: absolute;
     list-style-type: none;
-    top: 0;
+    top: -4px;
     right: 0;
     padding: 0;
     font-size: 18px;
