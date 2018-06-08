@@ -2,6 +2,7 @@ package transaction
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcutil"
 	"github.com/jchavannes/btcd/txscript"
@@ -264,7 +265,7 @@ func saveMemoSetPic(txn *db.Transaction, out *db.TransactionOut, blockId uint, i
 	if len(pushData) != 2 {
 		return jerr.Newf("invalid set pic, incorrect push data (%d)", len(pushData))
 	}
-	var url = string(pushData[1])
+	var url = html_parser.EscapeWithEmojis(string(pushData[1]))
 	memoSetPic = &db.MemoSetPic{
 		TxHash:     txn.Hash,
 		PkHash:     inputAddress.ScriptAddress(),
@@ -274,18 +275,20 @@ func saveMemoSetPic(txn *db.Transaction, out *db.TransactionOut, blockId uint, i
 		Url:        url,
 		BlockId:    blockId,
 	}
-	err = memoSetPic.Save()
-	if err != nil {
-		return jerr.Get("error saving memo_set_pic", err)
-	}
-	err = cache.ClearHasPic(inputAddress.ScriptAddress())
-	if err != nil {
-		return jerr.Get("error clearing has pic cache", err)
-	}
 	go func() {
 		err = pic.FetchProfilePic(memoSetPic.Url, memoSetPic.GetAddressString())
 		if err != nil {
 			jerr.Get("could not save profile pic", err).Print()
+		} else {
+			fmt.Printf("successfully generated profile pic: %s\n", memoSetPic.Url)
+		}
+		err = memoSetPic.Save()
+		if err != nil {
+			jerr.Get("error saving memo_set_pic", err).Print()
+		}
+		err = cache.ClearHasPic(inputAddress.ScriptAddress())
+		if err != nil {
+			jerr.Get("error clearing has pic cache", err).Print()
 		}
 	}()
 	return nil

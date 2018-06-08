@@ -114,6 +114,11 @@ var waitSubmitRoute = web.Route{
 			}
 			r.Write(strings.TrimLeft(res.UrlMemoPost + "/" + memoPollOption.GetPollTransactionHashString(), "/"))
 		case memo.CodeSetProfilePicture:
+			err = transaction.WaitForPic(txHash)
+			if err != nil {
+				r.Error(jerr.Getf(err, "error waiting for transaction (%s)", txHashString), http.StatusInternalServerError)
+				return
+			}
 			setName, err := db.GetMemoSetPic(txHash.CloneBytes())
 			if err != nil {
 				r.Error(jerr.Get("error getting profile picture from db", err), http.StatusInternalServerError)
