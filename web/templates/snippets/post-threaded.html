@@ -3,8 +3,8 @@
 <div class="post" id="post-{{ .Post.Memo.GetTransactionHashString }}">
     <div class="post-header">
         <p class="name">
-        {{ if .Post.HasProfilePic }}
-            <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Memo.GetAddressString }}-24x24.{{ .Post.PicExtension }}">
+        {{ if .Post.ProfilePic }}
+            <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Memo.GetAddressString }}-24x24.{{ .Post.ProfilePic.GetExtension }}?id={{ .Post.ProfilePic.Id }}">
         {{ else }}
             <span class="identicon-{{ .Post.Memo.GetAddressString }}">
                 <img class="identicon"/>
@@ -63,8 +63,8 @@
 {{ if .Post.Parent }}
     <div class="reply">
         Replying to
-        {{ if .Post.Parent.HasProfilePic }}
-            <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Parent.Memo.GetAddressString }}-24x24.{{ .Post.Parent.PicExtension }}"/>
+        {{ if .Post.Parent.ProfilePic }}
+            <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Parent.Memo.GetAddressString }}-24x24.{{ .Post.Parent.ProfilePic.GetExtension }}?id={{ .Post.Parent.ProfilePic.Id }}"/>
         {{ else }}
             <span class="identicon-{{ .Post.Parent.Memo.GetAddressString }}">
                     <img class="identicon"/>

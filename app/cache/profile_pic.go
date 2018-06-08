@@ -8,6 +8,7 @@ import (
 
 type ProfilePic struct {
 	Has       bool
+	Id        uint
 	Extension string
 }
 
@@ -23,7 +24,8 @@ func GetProfilePic(pkHash []byte) (ProfilePic, error) {
 	}
 	if setPic != nil {
 		profilePic = ProfilePic{
-			Has: true,
+			Has:       true,
+			Id:        setPic.Id,
 			Extension: setPic.GetExtension(),
 		}
 	}

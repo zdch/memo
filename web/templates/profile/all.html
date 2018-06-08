@@ -31,8 +31,8 @@
     {{ range .Profiles }}
     {{ if .NameSet }}
         <p data-address="{{ .Name }} {{ .GetAddressString }}">
-            {{ if .HasPic }}
-                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .GetAddressString }}-24x24.{{ .PicExtension }}"/>
+            {{ if .Pic }}
+                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .GetAddressString }}-24x24.{{ .Pic.GetExtension }}?id={{ .Pic.Id }}"/>
             {{ else }}
                 <span class="identicon-{{ .GetAddressString }}">
                     <img class="identicon"/>
@@ -42,8 +42,8 @@
         </p>
     {{ else }}
         <p data-address="{{ .GetAddressString }}">
-            {{ if .HasPic }}
-                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .GetAddressString }}-24x24.{{ .PicExtension }}"/>
+            {{ if .Pic }}
+                <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .GetAddressString }}-24x24.{{ .Pic.GetExtension }}?id={{ .Pic.Id }}"/>
             {{ else }}
                 <span class="identicon-{{ .GetAddressString }}">
                     <img class="identicon"/>

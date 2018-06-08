@@ -83,7 +83,7 @@
                 <li {{ if eq $nav "login" }}class="active"{{ end }}><a href="login">{{ T "Login" }}</a></li>
             {{ end }}
             </ul>
-        {{ if .Username }}
+        {{ if .IsLoggedIn }}
             <ul class="nav navbar-nav navbar-right">
                 <li class="hidden-xs nav-item notifications"><a href="notifications">
                 {{ formatUInt .UnreadNotifications }}
@@ -93,9 +93,9 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ .Username }}
-                    {{ if .HasProfilePic }}
+                    {{ if .ProfilePic.Has }}
                         <img class="profile-pic profile-pic-24"
-                             src="/img/profilepics/{{ .UserAddress }}-24x24.{{ .ProfilePicExtension }}"/>
+                             src="/img/profilepics/{{ .UserAddress }}-24x24.{{ .ProfilePic.Extension }}?id={{ .ProfilePic.Id }}"/>
                     {{ else }}
                         <img src="img/profile.png"/>
                     {{ end }}

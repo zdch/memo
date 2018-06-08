@@ -27,8 +27,7 @@ type Post struct {
 	Poll          *Poll
 	VoteQuestion  *db.MemoPost
 	VoteOption    *db.MemoPollOption
-	HasProfilePic bool
-	PicExtension  string
+	ProfilePic    *db.MemoSetPic
 }
 
 func (p Post) IsSelf() bool {
@@ -234,8 +233,7 @@ func GetPostsForHash(pkHash []byte, selfPkHash []byte, offset uint) ([]*Post, er
 			ReplyCount: cnt,
 		}
 		if setPic != nil {
-			post.HasProfilePic = true
-			post.PicExtension = setPic.GetExtension()
+			post.ProfilePic = setPic
 		}
 		posts = append(posts, post)
 	}
@@ -270,8 +268,7 @@ func GetPostByTxHashWithReplies(txHash []byte, selfPkHash []byte, offset uint) (
 		ReplyCount: cnt,
 	}
 	if setPic != nil {
-		post.HasProfilePic = true
-		post.PicExtension = setPic.GetExtension()
+		post.ProfilePic = setPic
 	}
 	err = AttachRepliesToPost(post, offset)
 	if err != nil {
@@ -336,8 +333,7 @@ func AttachRepliesToPost(post *Post, offset uint) error {
 			ReplyCount: cnt,
 		}
 		if setPic != nil {
-			post.HasProfilePic = true
-			post.PicExtension = setPic.GetExtension()
+			post.ProfilePic = setPic
 		}
 		replies = append(replies, post)
 	}
@@ -478,8 +474,7 @@ func AttachProfilePicsToPosts(posts []*Post) error {
 	for _, setPic := range setPics {
 		for _, post := range posts {
 			if bytes.Equal(post.Memo.PkHash, setPic.PkHash) {
-				post.HasProfilePic = true
-				post.PicExtension = setPic.GetExtension()
+				post.ProfilePic = setPic
 			}
 		}
 	}
@@ -597,13 +592,12 @@ func AttachParentToPosts(posts []*Post) error {
 			return jerr.Get("error getting profile pic for hash", err)
 		}
 		post.Parent = &Post{
-			Name:          name,
-			Memo:          parentPost,
-			SelfPkHash:    post.SelfPkHash,
+			Name:       name,
+			Memo:       parentPost,
+			SelfPkHash: post.SelfPkHash,
 		}
 		if setPic != nil {
-			post.Parent.HasProfilePic = true
-			post.Parent.PicExtension = setPic.GetExtension()
+			post.ProfilePic = setPic
 		}
 	}
 	return nil
