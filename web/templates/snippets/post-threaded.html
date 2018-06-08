@@ -4,7 +4,7 @@
     <div class="post-header">
         <p class="name">
         {{ if .Post.ProfilePic }}
-            <a href="profile/{{ .Post.Memo.GetAddressString }}">
+            <a class="image-link" href="profile/{{ .Post.Memo.GetAddressString }}">
                 <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Memo.GetAddressString }}-24x24.{{ .Post.ProfilePic.GetExtension }}?id={{ .Post.ProfilePic.Id }}">
             </a>
         {{ else }}
@@ -66,7 +66,7 @@
     <div class="reply">
         Replying to
         {{ if .Post.Parent.ProfilePic }}
-            <a href="profile/{{ .Post.Parent.Memo.GetAddressString }}">
+            <a class="image-link" href="profile/{{ .Post.Parent.Memo.GetAddressString }}">
                 <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Parent.Memo.GetAddressString }}-24x24.{{ .Post.Parent.ProfilePic.GetExtension }}?id={{ .Post.Parent.ProfilePic.Id }}"/>
             </a>
         {{ else }}

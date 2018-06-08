@@ -2,7 +2,7 @@
     <a href="profile/{{ .Post.Memo.GetAddressString }}">
 
     {{ if .Post.ProfilePic }}
-        <a href="profile/{{ .Post.Memo.GetAddressString }}">
+        <a class="image-link" href="profile/{{ .Post.Memo.GetAddressString }}">
             <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Memo.GetAddressString }}-24x24.{{ .Post.ProfilePic.GetExtension }}?id={{ .Post.ProfilePic.Id }}"/>
         </a>
     {{ else }}
