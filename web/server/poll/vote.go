@@ -100,7 +100,7 @@ var voteSubmitRoute = web.Route{
 				r.Error(jerr.New("not enough funds"), http.StatusUnprocessableEntity)
 				return
 			}
-			fee += memo.AdditionalOutputFee
+			fee += memo.OutputFeeP2PKH
 		}
 		transactions = append(transactions, transaction.SpendOutput{
 			Type:    transaction.SpendOutputTypeP2PK,
