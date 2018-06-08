@@ -3,12 +3,11 @@ package memo
 import (
 	"fmt"
 	"github.com/jchavannes/btcd/chaincfg/chainhash"
-	"github.com/jchavannes/btcd/wire"
 	"github.com/jchavannes/jgo/jerr"
 	"github.com/jchavannes/jgo/web"
 	"github.com/memocash/memo/app/auth"
-	"github.com/memocash/memo/app/bitcoin/memo"
 	"github.com/memocash/memo/app/bitcoin/transaction"
+	"github.com/memocash/memo/app/bitcoin/transaction/build"
 	"github.com/memocash/memo/app/db"
 	"github.com/memocash/memo/app/mutex"
 	"github.com/memocash/memo/app/profile"
@@ -81,11 +80,6 @@ var likeSubmitRoute = web.Route{
 			r.Error(jerr.Get("error getting transaction hash", err), http.StatusInternalServerError)
 			return
 		}
-		memoPost, err := db.GetMemoPost(txHash.CloneBytes())
-		if err != nil {
-			r.Error(jerr.Get("error getting memo_post", err), http.StatusInternalServerError)
-			return
-		}
 
 		password := r.Request.GetFormValue("password")
 		user, err := auth.GetSessionUser(r.Session.CookieId)
@@ -105,62 +99,17 @@ var likeSubmitRoute = web.Route{
 			return
 		}
 
-		userAddress := key.GetAddress()
-		postAddress := memoPost.GetAddress()
+		var likeTxBytes = txHash.CloneBytes()
+		var tip = int64(r.Request.GetFormValueInt("tip"))
 
-		var tx *wire.MsgTx
+		pkHash := privateKey.GetPublicKey().GetAddress().GetScriptAddress()
 
-		var fee = int64(memo.MaxTxFee - memo.MaxPostSize + len(txHash.CloneBytes()))
-		tip := int64(r.Request.GetFormValueInt("tip"))
-		var minInput = fee + transaction.DustMinimumOutput + tip
+		mutex.Lock(pkHash)
 
-		transactions := []transaction.SpendOutput{{
-			Type: transaction.SpendOutputTypeMemoLike,
-			Data: txHash.CloneBytes(),
-		}}
-
-		mutex.Lock(key.PkHash)
-		txOut, err := db.GetSpendableTxOut(key.PkHash, minInput)
+		tx, err := build.Like(likeTxBytes, tip, privateKey)
 		if err != nil {
-			mutex.Unlock(key.PkHash)
-			r.Error(jerr.Get("error getting spendable tx out", err), http.StatusPaymentRequired)
-			return
-		}
-		remaining := txOut.Value
-
-		if tip != 0 {
-			if tip < transaction.DustMinimumOutput {
-				mutex.Unlock(key.PkHash)
-				r.Error(jerr.Get("error tip not above dust limit", err), http.StatusUnprocessableEntity)
-				return
-			}
-			if tip > 1e8 {
-				mutex.Unlock(key.PkHash)
-				r.Error(jerr.Get("error trying to tip too much", err), http.StatusUnprocessableEntity)
-				return
-			}
-			transactions = append(transactions, transaction.SpendOutput{
-				Type:    transaction.SpendOutputTypeP2PK,
-				Address: postAddress,
-				Amount:  tip,
-			})
-			remaining -= tip
-			if remaining < transaction.DustMinimumOutput {
-				mutex.Unlock(key.PkHash)
-				r.Error(jerr.New("not enough funds"), http.StatusUnprocessableEntity)
-				return
-			}
-			fee += memo.AdditionalOutputFee
-		}
-		transactions = append(transactions, transaction.SpendOutput{
-			Type:    transaction.SpendOutputTypeP2PK,
-			Address: userAddress,
-			Amount:  remaining - fee,
-		})
-		tx, err = transaction.Create([]*db.TransactionOut{txOut}, privateKey, transactions)
-		if err != nil {
-			mutex.Unlock(key.PkHash)
-			r.Error(jerr.Get("error creating tx", err), http.StatusInternalServerError)
+			mutex.Unlock(pkHash)
+			r.Error(jerr.Get("error building like tx", err), http.StatusInternalServerError)
 			return
 		}
 

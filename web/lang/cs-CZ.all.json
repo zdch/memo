@@ -1,7 +1,7 @@
 [
   {
     "id": "home",
-    "translation": "Hem"
+    "translation": "Doma"
   },
   {
     "id": "dashboard",
@@ -9,59 +9,59 @@
   },
   {
     "id": "new_memo",
-    "translation": "Ny Memo"
+    "translation": "Nové memo"
   },
   {
     "id": "posts",
-    "translation": "Inlägg"
+    "translation": "Příspěvky"
   },
   {
     "id": "profiles",
-    "translation": "Profiler"
+    "translation": "Profily"
   },
   {
     "id": "login",
-    "translation": "Logga in"
+    "translation": "Přihlásit se"
   },
   {
     "id": "logout",
-    "translation": "Logga ut <b>{{.Username}}</b>"
+    "translation": "Odhlásit se"
   },
   {
     "id": "about",
-    "translation": "Om"
+    "translation": "Info"
   },
   {
     "id": "protocol",
-    "translation": "Protokoll"
+    "translation": "protokol"
   },
   {
     "id": "disclaimer",
-    "translation": "Disclaimer"
+    "translation": "Odmítnutí odpovědnosti"
   },
   {
     "id": "statistics",
-    "translation": "Statistik"
+    "translation": "Statistiky"
   },
   {
     "id": "name",
-    "translation": "Namn"
+    "translation": "Jméno"
   },
   {
     "id": "address",
-    "translation": "Adress"
+    "translation": "Adresa"
   },
   {
     "id": "followers",
-    "translation": "Följare"
+    "translation": "Sledující"
   },
   {
     "id": "following",
-    "translation": "Följander"
+    "translation": "Sleduje"
   },
   {
     "id": "balance",
-    "translation": "Balans"
+    "translation": "Bilance"
   },
   {
     "id": "profile",
@@ -69,212 +69,212 @@
   },
   {
     "id": "actions",
-    "translation": "Handlingar"
+    "translation": "Akce"
   },
   {
     "id": "view_your_profile",
-    "translation": "Visa Din Profil"
+    "translation": "Prohlídnout profil"
   },
   {
     "id": "set_name",
-    "translation": "Ange Name"
+    "translation": "Nastavit jméno"
   },
   {
     "id": "set_profile",
-    "translation": "Ange din profiltext"
+    "translation": "Nastavit profil"
   },
   {
     "id": "export_key",
-    "translation": "Exportera Key"
+    "translation": "Exportovat klíč"
   },
   {
     "id": "change_password",
-    "translation": "Ändra Lösenord"
+    "translation": "Změnit heslo"
   },
   {
     "id": "reply",
     "translation": {
-      "one": "svar",
-      "other": "svar"
+      "one": "odpověď",
+      "other": "odpovědi"
     }
   },
   {
     "id": "reply_verb",
-    "translation": "svara"
+    "translation": "odpovědět"
   },
   {
     "id": "like",
     "translation": {
-      "one": "gilla",
-      "other": "gillar"
+      "one": "lajk",
+      "other": "lajky"
     }
   },
   {
     "id": "top",
-    "translation": "Topp"
+    "translation": "Nahoru"
   },
   {
     "id": "personalized",
-    "translation": "Personlig"
+    "translation": "Osobní"
   },
   {
     "id": "new",
-    "translation": "Ny"
+    "translation": "nový"
   },
   {
     "id": "archive",
-    "translation": "Arkiv"
+    "translation": "Archiv"
   },
   {
     "id": "last_hour",
-    "translation": "Sista timmen"
+    "translation": "Minulá hodina"
   },
   {
     "id": "last_24_hours",
-    "translation": "Senaste 24 timmarna"
+    "translation": "Minulé 24 hodin"
   },
   {
     "id": "last_7_days",
-    "translation": "Senaste 7 dagarna"
+    "translation": "Minulé 7 dní"
   },
   {
     "id": "all_time",
-    "translation": "Alla tiden"
+    "translation": "Všech dob"
   },
   {
     "id": "message",
-    "translation": "Meddelande"
+    "translation": "Zpráva"
   },
   {
     "id": "password",
-    "translation": "Lösenord"
+    "translation": "Heslo"
   },
   {
     "id": "save_password",
-    "translation": "Spara lösenord"
+    "translation": "Uložit heslo"
   },
   {
     "id": "post",
-    "translation": "Posta"
+    "translation": "Napsat příspěvek"
   },
   {
     "id": "profile_text",
-    "translation": "Profiltext"
+    "translation": "Text profilu"
   },
   {
     "id": "feed",
-    "translation": "Feed"
+    "translation": "Přívod"
   },
   {
     "id": "posted_at",
-    "translation": "postat på"
+    "translation": "napsáno v"
   },
   {
     "id": "posted",
-    "translation": "postat"
+    "translation": "napsáno"
   },
   {
     "id": "view_on_block_explorer",
-    "translation": "Visa på Block Explorer"
+    "translation": "Prohlídnout na prohlížeči blocků"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": "Visa Adress på Block Explorer"
+    "translation": "Prohlídnout adresu na prohlížeči blocků"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": "Visa Namn på Block Explorer"
+    "translation": "Prohlídnout jméno na prohlížeči blocků"
   },
   {
     "id": "page",
-    "translation": "Sida"
+    "translation": "Stránka"
   },
   {
     "id": "previous",
-    "translation": "Föregående"
+    "translation": "Minulý"
   },
   {
     "id": "next",
-    "translation": "Nästa"
+    "translation": "Příští"
   },
   {
     "id": "connections",
-    "translation": "Anslutningar"
+    "translation": "Spoje"
   },
   {
     "id": "follow",
     "translation": {
-      "one": "Följ",
-      "other": "Följer"
+      "one": "Sledování",
+      "other": "Sledování"
     }
   },
   {
     "id": "unfollow",
-    "translation": "Sluta Följa"
+    "translation": "Přestat sledovat"
   },
   {
     "id": "next_day",
-    "translation": "Nästa Dag"
+    "translation": "Příští den"
   },
   {
     "id": "previous_day",
-    "translation": "Föregående Dag"
+    "translation": "Minulý den"
   },
   {
     "id": "Topic",
-    "translation": "Ämne"
+    "translation": "Téma"
   },
   {
     "id": "Topics",
-    "translation": "Ämnen"
+    "translation": "Témata"
   },
   {
     "id": "Send",
-    "translation": "Skicka"
+    "translation": "Poslat"
   },
   {
     "id": "Existing_Topics",
-    "translation": "Existerande Ämnen"
+    "translation": "Stávající témata"
   },
   {
     "id": "Create_new_topic",
-    "translation": "Skapa nytt ämne"
+    "translation": "Vytvořit nový téma"
   },
   {
     "id": "Most_recent_post",
-    "translation": "Senaste inlägget"
+    "translation": "Nejnovější příspěvek"
   },
   {
     "id": "Total_posts",
-    "translation": "Alla inlägg"
+    "translation": "Součet příspěvků"
   },
   {
     "id": "Back_to_topics",
-    "translation": "Tillbaka till ämnen"
+    "translation": "Zpátky na témata"
   },
   {
     "id": "Forget_password",
-    "translation": "Uncache lösenord"
+    "translation": "Zapomenout heslo"
   },
   {
     "id": "Names_set",
-    "translation": "Namn set"
+    "translation": "Jména nastavené"
   },
   {
     "id": "Total",
-    "translation": "Total"
+    "translation": "Součet"
   },
   {
     "id": "Delete_Account",
-    "translation": "Radera Konto"
+    "translation": "Vymazat ůčet"
   },
   {
     "id": "Guides",
-    "translation": "Guider"
+    "translation": "Návody"
   },
   {
     "id": "Signup",
-    "translation": "Skapa Konto"
+    "translation": "Zapsat se"
   },
   {
     "id": "Memo",
@@ -282,19 +282,19 @@
   },
   {
     "id": "Poll",
-    "translation": "Röstning"
+    "translation": "Anketa"
   },
   {
     "id": "Notifications",
-    "translation": "Aviseringar"
+    "translation": "Notifikace"
   },
   {
     "id": "Settings",
-    "translation": "Inställningar"
+    "translation": "Nastavení"
   },
   {
     "id": "new_poll",
-    "translation": "ny omröstning"
+    "translation": "nová anketa"
   },
   {
     "id": "type",
@@ -302,38 +302,38 @@
   },
   {
     "id": "select_one_option",
-    "translation": "En röst"
+    "translation": "Vybrat jednu možnost"
   },
   {
     "id": "select_multiple_options",
-    "translation": "Flera omröstningar"
+    "translation": "Vybrat víc možností"
   },
   {
     "id": "question",
-    "translation": "fråga"
+    "translation": "otázka"
   },
   {
     "id": "option",
     "translation": {
-      "one": "option",
-      "other": "options"
+      "one": "možnost",
+      "other": "možnosti"
     }
   },
   {
     "id": "add_option",
-    "translation": "lägg till option"
+    "translation": "přidat možnost"
   },
   {
     "id": "create_poll",
-    "translation": "skapa röstning"
+    "translation": "vytvořit anketu"
   },
   {
     "id": "view_topic",
-    "translation": "visa ämne"
+    "translation": "prohlídnout téma"
   },
   {
     "id": "search",
-    "translation": "söka"
+    "translation": "hledat"
   },
   {
     "id": "all",
@@ -352,16 +352,12 @@
     "translation": "start thread"
   },
   {
-    "id": "set_profile_pic",
-    "translation": "set profile picture"
-  },
-  {
     "id": "show",
-    "translation": "visa"
+    "translation": "ukázat"
   },
   {
     "id": "replied_to",
-    "translation": "svarade på"
+    "translation": "odpověděl"
   },
   {
     "id": "topics_following",

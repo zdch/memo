@@ -1,165 +1,165 @@
 [
   {
     "id": "home",
-    "translation": "Hem"
+    "translation": "Página inicial"
   },
   {
     "id": "dashboard",
-    "translation": "Dashboard"
+    "translation": "Tainel de controle"
   },
   {
-    "id": "new_memo",
-    "translation": "Ny Memo"
+    "id": "new memo",
+    "translation": "Novo Memorando"
   },
   {
     "id": "posts",
-    "translation": "Inlägg"
+    "translation": "Posts"
   },
   {
     "id": "profiles",
-    "translation": "Profiler"
+    "translation": "Perfis"
   },
   {
     "id": "login",
-    "translation": "Logga in"
+    "translation": "Entrar"
   },
   {
     "id": "logout",
-    "translation": "Logga ut <b>{{.Username}}</b>"
+    "translation": "Cair <b>{{.Username}}</b>"
   },
   {
     "id": "about",
-    "translation": "Om"
+    "translation": "Sobre"
   },
   {
     "id": "protocol",
-    "translation": "Protokoll"
+    "translation": "Protocolo"
   },
   {
     "id": "disclaimer",
-    "translation": "Disclaimer"
+    "translation": "Isenção de responsabilidade"
   },
   {
     "id": "statistics",
-    "translation": "Statistik"
+    "translation": "Estatísticas"
   },
   {
     "id": "name",
-    "translation": "Namn"
+    "translation": "Nome"
   },
   {
     "id": "address",
-    "translation": "Adress"
+    "translation": "Endereço"
   },
   {
     "id": "followers",
-    "translation": "Följare"
+    "translation": "Seguidores"
   },
   {
     "id": "following",
-    "translation": "Följander"
+    "translation": "Seguindo"
   },
   {
     "id": "balance",
-    "translation": "Balans"
+    "translation": "Saldo"
   },
   {
     "id": "profile",
-    "translation": "Profil"
+    "translation": "Perfil"
   },
   {
     "id": "actions",
-    "translation": "Handlingar"
+    "translation": "Atividade"
   },
   {
     "id": "view_your_profile",
-    "translation": "Visa Din Profil"
+    "translation": "Ver Perfil"
   },
   {
     "id": "set_name",
-    "translation": "Ange Name"
+    "translation": "Escolha apelido"
   },
   {
     "id": "set_profile",
-    "translation": "Ange din profiltext"
+    "translation": "Crie seu perfil"
   },
   {
     "id": "export_key",
-    "translation": "Exportera Key"
+    "translation": "Exportar Chave"
   },
   {
     "id": "change_password",
-    "translation": "Ändra Lösenord"
+    "translation": "trocar senha"
   },
   {
     "id": "reply",
     "translation": {
-      "one": "svar",
-      "other": "svar"
+      "one": "resposta",
+      "other": "respostas"
     }
   },
   {
     "id": "reply_verb",
-    "translation": "svara"
+    "translation": "responder"
   },
   {
     "id": "like",
     "translation": {
-      "one": "gilla",
-      "other": "gillar"
+      "one": "convir",
+      "other": "convindos"
     }
   },
   {
     "id": "top",
-    "translation": "Topp"
+    "translation": "Popular"
   },
   {
     "id": "personalized",
-    "translation": "Personlig"
+    "translation": "Personalizado"
   },
   {
     "id": "new",
-    "translation": "Ny"
+    "translation": "novo"
   },
   {
     "id": "archive",
-    "translation": "Arkiv"
+    "translation": "Arquivo"
   },
   {
     "id": "last_hour",
-    "translation": "Sista timmen"
+    "translation": "Última hora"
   },
   {
     "id": "last_24_hours",
-    "translation": "Senaste 24 timmarna"
+    "translation": "Últimas 24 horas"
   },
   {
     "id": "last_7_days",
-    "translation": "Senaste 7 dagarna"
+    "translation": "Últimos 7 dias"
   },
   {
     "id": "all_time",
-    "translation": "Alla tiden"
+    "translation": "Desde o início"
   },
   {
     "id": "message",
-    "translation": "Meddelande"
+    "translation": "Mensagem"
   },
   {
     "id": "password",
-    "translation": "Lösenord"
+    "translation": "Senha"
   },
   {
     "id": "save_password",
-    "translation": "Spara lösenord"
+    "translation": "Salvar senha"
   },
   {
     "id": "post",
-    "translation": "Posta"
+    "translation": "Post"
   },
   {
     "id": "profile_text",
-    "translation": "Profiltext"
+    "translation": "Texto de perfil"
   },
   {
     "id": "feed",
@@ -167,98 +167,98 @@
   },
   {
     "id": "posted_at",
-    "translation": "postat på"
+    "translation": "postado às"
   },
   {
     "id": "posted",
-    "translation": "postat"
+    "translation": "postado"
   },
   {
     "id": "view_on_block_explorer",
-    "translation": "Visa på Block Explorer"
+    "translation": "Ver no explorador de blocos"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": "Visa Adress på Block Explorer"
+    "translation": "Ver endereço"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": "Visa Namn på Block Explorer"
+    "translation": "Ver nome no explorador de blocos"
   },
   {
     "id": "page",
-    "translation": "Sida"
+    "translation": "Página"
   },
   {
     "id": "previous",
-    "translation": "Föregående"
+    "translation": "Anterior"
   },
   {
     "id": "next",
-    "translation": "Nästa"
+    "translation": "Próximo"
   },
   {
     "id": "connections",
-    "translation": "Anslutningar"
+    "translation": "Conexões"
   },
   {
     "id": "follow",
     "translation": {
-      "one": "Följ",
-      "other": "Följer"
-    }
+      "one": "Seguimento",
+      "other": "Seguimentos"
+  }
   },
   {
     "id": "unfollow",
-    "translation": "Sluta Följa"
+    "translation": "Deixar"
   },
   {
     "id": "next_day",
-    "translation": "Nästa Dag"
+    "translation": "Próximo dia"
   },
   {
     "id": "previous_day",
-    "translation": "Föregående Dag"
+    "translation": "Dia anterior"
   },
   {
     "id": "Topic",
-    "translation": "Ämne"
+    "translation": "Tópico"
   },
   {
     "id": "Topics",
-    "translation": "Ämnen"
+    "translation": "Tópicos"
   },
   {
     "id": "Send",
-    "translation": "Skicka"
+    "translation": "Enviar"
   },
   {
     "id": "Existing_Topics",
-    "translation": "Existerande Ämnen"
+    "translation": "Tópicos Existentes"
   },
   {
     "id": "Create_new_topic",
-    "translation": "Skapa nytt ämne"
+    "translation": "Criar novo tópico"
   },
   {
     "id": "Most_recent_post",
-    "translation": "Senaste inlägget"
+    "translation": "Posts mais recentes"
   },
   {
     "id": "Total_posts",
-    "translation": "Alla inlägg"
+    "translation": "Todos os posts"
   },
   {
     "id": "Back_to_topics",
-    "translation": "Tillbaka till ämnen"
+    "translation": "Voltar nos Tópicos"
   },
   {
     "id": "Forget_password",
-    "translation": "Uncache lösenord"
+    "translation": "Esqueci a senha"
   },
   {
     "id": "Names_set",
-    "translation": "Namn set"
+    "translation": "Conjunto de nomes"
   },
   {
     "id": "Total",
@@ -266,15 +266,15 @@
   },
   {
     "id": "Delete_Account",
-    "translation": "Radera Konto"
+    "translation": "Deletar Conta"
   },
   {
     "id": "Guides",
-    "translation": "Guider"
+    "translation": "Guias"
   },
   {
     "id": "Signup",
-    "translation": "Skapa Konto"
+    "translation": "Cadastrar-se"
   },
   {
     "id": "Memo",
@@ -282,89 +282,85 @@
   },
   {
     "id": "Poll",
-    "translation": "Röstning"
+    "translation": "Votação"
   },
   {
     "id": "Notifications",
-    "translation": "Aviseringar"
+    "translation": "Notificações"
   },
   {
     "id": "Settings",
-    "translation": "Inställningar"
+    "translation": "Configurações"
   },
   {
     "id": "new_poll",
-    "translation": "ny omröstning"
+    "translation": "nova votação"
   },
   {
     "id": "type",
-    "translation": "typ"
+    "translation": "tipo"
   },
   {
     "id": "select_one_option",
-    "translation": "En röst"
+    "translation": "selecionar uma opção"
   },
   {
     "id": "select_multiple_options",
-    "translation": "Flera omröstningar"
+    "translation": "selecionar múltiplas opções"
   },
   {
     "id": "question",
-    "translation": "fråga"
+    "translation": "pergunta"
   },
   {
     "id": "option",
     "translation": {
-      "one": "option",
-      "other": "options"
+      "one": "um",
+      "other": "outro"
     }
   },
   {
     "id": "add_option",
-    "translation": "lägg till option"
+    "translation": "adicionar opção"
   },
   {
     "id": "create_poll",
-    "translation": "skapa röstning"
+    "translation": "criar votação"
   },
   {
     "id": "view_topic",
-    "translation": "visa ämne"
+    "translation": "ver-tópico"
   },
   {
     "id": "search",
-    "translation": "söka"
+    "translation": "busca"
   },
   {
     "id": "all",
-    "translation": "all"
+    "translation": "todos"
   },
   {
     "id": "most_posts",
-    "translation": "most posts"
+    "translation": "mais posts"
   },
   {
     "id": "most_followed",
-    "translation": "most followed"
+    "translation": "most popular"
   },
   {
     "id": "start_thread",
-    "translation": "start thread"
-  },
-  {
-    "id": "set_profile_pic",
-    "translation": "set profile picture"
+    "translation": "iniciar discussão"
   },
   {
     "id": "show",
-    "translation": "visa"
+    "translation": "mostrar"
   },
   {
     "id": "replied_to",
-    "translation": "svarade på"
+    "translation": "respondeu a"
   },
   {
     "id": "topics_following",
-    "translation": "topics following"
+    "translation": "tópicos seguindo"
   }
 ]

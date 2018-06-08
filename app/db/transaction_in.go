@@ -20,7 +20,7 @@ var transactionInColumns = []string{
 type TransactionIn struct {
 	Id                    uint            `gorm:"primary_key"`
 	Index                 uint            `gorm:"unique_index:transaction_in_index;"`
-	HashString            string
+	HashString            string          `gorm:"index:hash_string"`
 	TransactionHash       []byte          `gorm:"unique_index:transaction_in_index;"`
 	Transaction           *Transaction    `gorm:"foreignkey:TransactionHash"`
 	KeyPkHash             []byte          `gorm:"index:pk_hash"`

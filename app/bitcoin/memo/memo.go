@@ -9,10 +9,13 @@ const (
 	MaxVoteCommentSize  = 184
 )
 
+// https://bitcoin.stackexchange.com/questions/1195/how-to-calculate-transaction-size-before-sending-legacy-non-segwit-p2pkh-p2sh
 const (
-	MaxTxFee            = 425
-	AdditionalOutputFee = 34
-	AdditionalInputFee  = 181
+	MaxTxFee          = 425
+	OutputFeeP2PKH    = 34
+	OutputFeeOpReturn = 20
+	InputFeeP2PKH     = 148
+	BaseTxFee         = 10
 )
 
 const (

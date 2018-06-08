@@ -1,7 +1,7 @@
 [
   {
     "id": "home",
-    "translation": "Hem"
+    "translation": "Startpagina"
   },
   {
     "id": "dashboard",
@@ -9,31 +9,31 @@
   },
   {
     "id": "new_memo",
-    "translation": "Ny Memo"
+    "translation": "Nieuw bericht"
   },
   {
     "id": "posts",
-    "translation": "Inlägg"
+    "translation": "Berichten"
   },
   {
     "id": "profiles",
-    "translation": "Profiler"
+    "translation": "Profielen"
   },
   {
     "id": "login",
-    "translation": "Logga in"
+    "translation": "Inloggen"
   },
   {
     "id": "logout",
-    "translation": "Logga ut <b>{{.Username}}</b>"
+    "translation": "Uitloggen"
   },
   {
     "id": "about",
-    "translation": "Om"
+    "translation": "Info"
   },
   {
     "id": "protocol",
-    "translation": "Protokoll"
+    "translation": "Protocol"
   },
   {
     "id": "disclaimer",
@@ -41,23 +41,23 @@
   },
   {
     "id": "statistics",
-    "translation": "Statistik"
+    "translation": "Statistische gegevens"
   },
   {
     "id": "name",
-    "translation": "Namn"
+    "translation": "Naam"
   },
   {
     "id": "address",
-    "translation": "Adress"
+    "translation": "Adres"
   },
   {
     "id": "followers",
-    "translation": "Följare"
+    "translation": "Gevolgd door"
   },
   {
     "id": "following",
-    "translation": "Följander"
+    "translation": "Volgen"
   },
   {
     "id": "balance",
@@ -65,216 +65,216 @@
   },
   {
     "id": "profile",
-    "translation": "Profil"
+    "translation": "Profiel"
   },
   {
     "id": "actions",
-    "translation": "Handlingar"
+    "translation": "Acties"
   },
   {
     "id": "view_your_profile",
-    "translation": "Visa Din Profil"
+    "translation": "Profiel bekijken"
   },
   {
     "id": "set_name",
-    "translation": "Ange Name"
+    "translation": "Instellen naam"
   },
   {
     "id": "set_profile",
-    "translation": "Ange din profiltext"
+    "translation": "Instellen profiel"
   },
   {
     "id": "export_key",
-    "translation": "Exportera Key"
+    "translation": "Exporteren sleutel"
   },
   {
     "id": "change_password",
-    "translation": "Ändra Lösenord"
+    "translation": "Wachtwoord wijzigen"
   },
   {
     "id": "reply",
     "translation": {
-      "one": "svar",
-      "other": "svar"
+      "one": "reactie",
+      "other": "reacties"
     }
   },
   {
     "id": "reply_verb",
-    "translation": "svara"
+    "translation": "reageren"
   },
   {
     "id": "like",
     "translation": {
-      "one": "gilla",
-      "other": "gillar"
+      "one": "leuk",
+      "other": "leuk"
     }
   },
   {
     "id": "top",
-    "translation": "Topp"
+    "translation": "Top"
   },
   {
     "id": "personalized",
-    "translation": "Personlig"
+    "translation": "Gepersonaliseerd"
   },
   {
     "id": "new",
-    "translation": "Ny"
+    "translation": "Nieuw"
   },
   {
     "id": "archive",
-    "translation": "Arkiv"
+    "translation": "Archief"
   },
   {
     "id": "last_hour",
-    "translation": "Sista timmen"
+    "translation": "Afgelopen uur"
   },
   {
     "id": "last_24_hours",
-    "translation": "Senaste 24 timmarna"
+    "translation": "Afgelopen 24 uur"
   },
   {
     "id": "last_7_days",
-    "translation": "Senaste 7 dagarna"
+    "translation": "Afgelopen 7 dagen"
   },
   {
     "id": "all_time",
-    "translation": "Alla tiden"
+    "translation": "Alles"
   },
   {
     "id": "message",
-    "translation": "Meddelande"
+    "translation": "Bericht"
   },
   {
     "id": "password",
-    "translation": "Lösenord"
+    "translation": "Wachtwoord"
   },
   {
     "id": "save_password",
-    "translation": "Spara lösenord"
+    "translation": "Wachtwoord opslaan"
   },
   {
     "id": "post",
-    "translation": "Posta"
+    "translation": "Plaats bericht"
   },
   {
     "id": "profile_text",
-    "translation": "Profiltext"
+    "translation": "Profiel tekst"
   },
   {
     "id": "feed",
-    "translation": "Feed"
+    "translation": "Berichten overzicht"
   },
   {
     "id": "posted_at",
-    "translation": "postat på"
+    "translation": "geplaatst bij"
   },
   {
     "id": "posted",
-    "translation": "postat"
+    "translation": "geplaatst"
   },
   {
     "id": "view_on_block_explorer",
-    "translation": "Visa på Block Explorer"
+    "translation": "bekijken op block explorer"
   },
   {
     "id": "view_address_on_block_explorer",
-    "translation": "Visa Adress på Block Explorer"
+    "translation": "bekijk adres op block explorer"
   },
   {
     "id": "view_name_on_block_explorer",
-    "translation": "Visa Namn på Block Explorer"
+    "translation": "bekijk naam op block explorer"
   },
   {
     "id": "page",
-    "translation": "Sida"
+    "translation": "Pagina"
   },
   {
     "id": "previous",
-    "translation": "Föregående"
+    "translation": "Vorige"
   },
   {
     "id": "next",
-    "translation": "Nästa"
+    "translation": "Volgende"
   },
   {
     "id": "connections",
-    "translation": "Anslutningar"
+    "translation": "Connecties"
   },
   {
     "id": "follow",
     "translation": {
-      "one": "Följ",
-      "other": "Följer"
+      "one": "Volg",
+      "other": "Volgen"
     }
   },
   {
     "id": "unfollow",
-    "translation": "Sluta Följa"
+    "translation": "Untvolgen"
   },
   {
     "id": "next_day",
-    "translation": "Nästa Dag"
+    "translation": "Volgende dag"
   },
   {
     "id": "previous_day",
-    "translation": "Föregående Dag"
+    "translation": "Vorige dag"
   },
   {
     "id": "Topic",
-    "translation": "Ämne"
+    "translation": "Onderwerp"
   },
   {
     "id": "Topics",
-    "translation": "Ämnen"
+    "translation": "Onderwerpen"
   },
   {
     "id": "Send",
-    "translation": "Skicka"
+    "translation": "Verstuur"
   },
   {
     "id": "Existing_Topics",
-    "translation": "Existerande Ämnen"
+    "translation": "Huidige onderwerpen"
   },
   {
     "id": "Create_new_topic",
-    "translation": "Skapa nytt ämne"
+    "translation": "Aanmaken nieuw onderwerp"
   },
   {
     "id": "Most_recent_post",
-    "translation": "Senaste inlägget"
+    "translation": "Meest recente bericht"
   },
   {
     "id": "Total_posts",
-    "translation": "Alla inlägg"
+    "translation": "Totaal aantal berichten"
   },
   {
     "id": "Back_to_topics",
-    "translation": "Tillbaka till ämnen"
+    "translation": "Terug naar onderwerpen"
   },
   {
     "id": "Forget_password",
-    "translation": "Uncache lösenord"
+    "translation": "Vergeet wachtwoord"
   },
   {
     "id": "Names_set",
-    "translation": "Namn set"
+    "translation": "Naam instelling"
   },
   {
     "id": "Total",
-    "translation": "Total"
+    "translation": "Totaal"
   },
   {
     "id": "Delete_Account",
-    "translation": "Radera Konto"
+    "translation": "Verwijderen account"
   },
   {
     "id": "Guides",
-    "translation": "Guider"
+    "translation": "Instructies"
   },
   {
     "id": "Signup",
-    "translation": "Skapa Konto"
+    "translation": "Registreren"
   },
   {
     "id": "Memo",
@@ -282,58 +282,58 @@
   },
   {
     "id": "Poll",
-    "translation": "Röstning"
+    "translation": "Poll"
   },
   {
     "id": "Notifications",
-    "translation": "Aviseringar"
+    "translation": "Notificaties"
   },
   {
     "id": "Settings",
-    "translation": "Inställningar"
+    "translation": "Instellingen"
   },
   {
     "id": "new_poll",
-    "translation": "ny omröstning"
+    "translation": "nieuwe poll"
   },
   {
     "id": "type",
-    "translation": "typ"
+    "translation": "soort"
   },
   {
     "id": "select_one_option",
-    "translation": "En röst"
+    "translation": "Selecteer een keuze"
   },
   {
     "id": "select_multiple_options",
-    "translation": "Flera omröstningar"
+    "translation": "Melecteer meerdere keuzes"
   },
   {
     "id": "question",
-    "translation": "fråga"
+    "translation": "vraag"
   },
   {
     "id": "option",
     "translation": {
-      "one": "option",
-      "other": "options"
+      "one": "optie",
+      "other": "opties"
     }
   },
   {
     "id": "add_option",
-    "translation": "lägg till option"
+    "translation": "toevoegen optie"
   },
   {
     "id": "create_poll",
-    "translation": "skapa röstning"
+    "translation": "Creeren poll"
   },
   {
     "id": "view_topic",
-    "translation": "visa ämne"
+    "translation": "bekijk topic"
   },
   {
     "id": "search",
-    "translation": "söka"
+    "translation": "search"
   },
   {
     "id": "all",
@@ -352,16 +352,12 @@
     "translation": "start thread"
   },
   {
-    "id": "set_profile_pic",
-    "translation": "set profile picture"
-  },
-  {
     "id": "show",
-    "translation": "visa"
+    "translation": "show"
   },
   {
     "id": "replied_to",
-    "translation": "svarade på"
+    "translation": "replied to"
   },
   {
     "id": "topics_following",

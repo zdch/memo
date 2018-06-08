@@ -94,9 +94,13 @@
   {
     "id": "reply",
     "translation": {
-      "one": "回复",
-      "other": "回复"
+      "one": "响应",
+      "other": "响应"
     }
+  },
+  {
+    "id": "reply_verb",
+    "translation": "回复"
   },
   {
     "id": "like",

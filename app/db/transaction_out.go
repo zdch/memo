@@ -36,7 +36,7 @@ type TransactionOut struct {
 	LockString      string
 	RequiredSigs    uint
 	ScriptClass     uint
-	TxnInHashString string
+	TxnInHashString string         `gorm:"index:txn_in_hash_string"`
 	TxnIn           *TransactionIn `gorm:"foreignkey:TxnInHashString"`
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
@@ -142,6 +142,22 @@ func GetTransactionOutputsForPkHash(pkHash []byte) ([]*TransactionOut, error) {
 	return transactionOuts, nil
 }
 
+func GetSpendableTransactionOutputsForPkHash(pkHash []byte) ([]*TransactionOut, error) {
+	var transactionOuts []*TransactionOut
+	db, err := getDb()
+	if err != nil {
+		return nil, jerr.Get("error getting db", err)
+	}
+	result := db.
+		Where("txn_in_hash_string = ''").
+		Where("value > 0").
+		Find(&transactionOuts, TransactionOut{KeyPkHash: pkHash})
+	if result.Error != nil {
+		return nil, jerr.Get("error getting transaction outputs", result.Error)
+	}
+	return transactionOuts, nil
+}
+
 func GetSpendableTxOut(pkHash []byte, fee int64) (*TransactionOut, error) {
 	transactions, err := GetTransactionsForPkHash(pkHash)
 	if err != nil {
@@ -191,7 +207,7 @@ func GetSpendableTxOuts(pkHash []byte, fee int64) ([]*TransactionOut, error) {
 		if totalValue > fee {
 			break
 		}
-		fee += memo.AdditionalInputFee
+		fee += memo.InputFeeP2PKH
 	}
 
 	if totalValue < fee {

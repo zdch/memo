@@ -167,7 +167,7 @@ func notFoundHandler(r *web.Response) {
 }
 
 func isValidLang(lang string) bool {
-	for _, item := range []string{"en-US", "es-LA", "zh-CN", "ja-JP", "fr-FR", "sv-SE", "ko-KR", "el-GR", "pl-PL"} {
+	for _, item := range []string{"en-US", "es-LA", "zh-CN", "ja-JP", "fr-FR", "sv-SE", "ko-KR", "el-GR", "pl-PL", "pt-BR", "cs-CZ", "nl-NL"} {
 		if item == lang {
 			return true
 		}

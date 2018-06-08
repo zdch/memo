@@ -94,9 +94,13 @@
   {
     "id": "reply",
     "translation": {
-      "one": "répondre",
+      "one": "réponse",
       "other": "réponses"
     }
+  },
+  {
+    "id": "reply_verb",
+    "translation": "répondre"
   },
   {
     "id": "like",

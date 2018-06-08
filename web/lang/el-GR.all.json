@@ -99,6 +99,10 @@
     }
   },
   {
+    "id": "reply_verb",
+    "translation": "απαντώ"
+  },
+  {
     "id": "like",
     "translation": {
       "one": "μου αρέσει",
