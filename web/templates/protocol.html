@@ -29,7 +29,7 @@
     <tr>
         <td>Set name</td>
         <td>0x6d01</td>
-        <td>name(77)</td>
+        <td>name(217)</td>
         <td>Implemented</td>
         <td>
             <a class="btn btn-leave" target="_blank"
@@ -41,7 +41,7 @@
     <tr>
         <td>Post memo</td>
         <td>0x6d02</td>
-        <td>message(77)</td>
+        <td>message(217)</td>
         <td>Implemented</td>
         <td>
             <a class="btn btn-leave" target="_blank"
@@ -53,7 +53,7 @@
     <tr>
         <td>Reply to memo</td>
         <td>0x6d03</td>
-        <td>txhash(30), message(45)</td>
+        <td>txhash(30), message(184)</td>
         <td>Implemented</td>
         <td>
             <a class="btn btn-leave" target="_blank"
@@ -77,7 +77,7 @@
     <tr>
         <td>Set profile text</td>
         <td>0x6d05</td>
-        <td>message(77)</td>
+        <td>message(217)</td>
         <td>Implemented</td>
         <td>
             <a class="btn btn-leave" target="_blank"
@@ -110,55 +110,88 @@
             </a>
         </td>
     </tr>
-    <tr>
-        <td>Set image base url</td>
-        <td>0x6d08</td>
-        <td>url(77)</td>
-        <td>Planned</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Attach picture</td>
-        <td>0x6d09</td>
-        <td>txhash(20), imghash(20), url(34)</td>
-        <td>Planned</td>
-        <td></td>
-    </tr>
+    <!--    <tr>
+            <td>Set image base url</td>
+            <td>0x6d08</td>
+            <td>url(217)</td>
+            <td>Planned</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Attach picture</td>
+            <td>0x6d09</td>
+            <td>txhash(20), imghash(20), url(34)</td>
+            <td>Planned</td>
+            <td></td>
+        </tr>
+        -->
     <tr>
         <td>Set profile picture</td>
-        <td>0x6d0A</td>
-        <td>imghash(16), url(61)</td>
-        <td>Planned</td>
-        <td></td>
+        <td>0x6d0a</td>
+        <td>url(217)</td>
+        <td>Implemented</td>
+        <td>
+            <a class="btn btn-leave" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/71b69cf5872a3c13f3505f3261d715cc9cd3b5766f1849c830ce1d3741ef947e">
+                Block Explorer
+            </a>
+        </td>
     </tr>
     <tr>
         <td>Repost memo</td>
-        <td>0x6d0B</td>
-        <td>txhash(20), message(63)</td>
+        <td>0x6d0b</td>
+        <td>txhash(30), message(184)</td>
         <td>Planned</td>
         <td></td>
     </tr>
     <tr>
         <td>Post topic message</td>
-        <td>0x6d0C</td>
-        <td>topic(variable), message(74 - topic length)</td>
+        <td>0x6d0c</td>
+        <td>topic(variable), message(214 - topic length)</td>
         <td>Implemented</td>
         <td>
             <a class="btn btn-leave" target="_blank"
-               href="https://explorer.bitcoin.com/bch/tx/30b38902b9e5e5f79845e15ad56e2d7b8d6b88101a5fbd297d8cc2442eb55260">
+               href="https://explorer.bitcoin.com/bch/tx/30b38902b9e5e5f798184e15ad56e2d7b8d6b88101a5fbd297d8cc2442eb55260">
                 Block Explorer
             </a>
         </td>
     </tr>
-    <!--
     <tr>
-        <td>Testing</td>
-        <td>0x6d00</td>
-        <td>data(76)</td>
-        <td></td>
-        <td></td>
+        <td>Create poll</td>
+        <td>0x6d10</td>
+        <td>poll_type(1), option_count(1), question(209)</td>
+        <td>Implemented</td>
+        <td>
+            <a class="btn btn-leave" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/59bcb42861a826d273d56829824fe37a1d1015a5d081805005cf945c52d922e0">
+                Block Explorer
+            </a>
+        </td>
     </tr>
-    -->
+    <tr>
+        <td>Add poll option</td>
+        <td>0x6d13</td>
+        <td>poll_txhash(30), option(184)</td>
+        <td>Implemented</td>
+        <td>
+            <a class="btn btn-leave" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/3ca6715410679041a8308876de34dee369401b958b1395a3e911a74a5cecbb17">
+                Block Explorer
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Poll vote</td>
+        <td>0x6d14</td>
+        <td>poll_txhash(30), comment(184)</td>
+        <td>Implemented</td>
+        <td>
+            <a class="btn btn-leave" target="_blank"
+               href="https://explorer.bitcoin.com/bch/tx/f190a04fe20546c665155a3893359c9cea81ceeee9b08b7e20be9e13e46be7bc">
+                Block Explorer
+            </a>
+        </td>
+    </tr>
     </tbody>
 </table>
 
@@ -168,7 +201,6 @@
 
 <ul>
     <li>Tagging users in posts</li>
-    <li>Voting</li>
     <li>Issue and revoke delegated addresses</li>
     <li>Dislike and/or flag posts/users</li>
 </ul>
