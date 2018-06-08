@@ -1,0 +1,28 @@
+{{ template "snippets/header.html" . }}
+
+<h2>Coins</h2>
+
+<br/>
+
+<p>
+    Total Value: {{ formatBigInt .TotalValue }}
+</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Hash</th>
+        <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ range .TxOuts }}
+    <tr>
+        <td>{{ .GetHashString }}</td>
+        <td>{{ formatBigInt .Value }}</td>
+    </tr>
+    {{ end }}
+    </tbody>
+</table>
+
+{{ template "snippets/footer.html" . }}
