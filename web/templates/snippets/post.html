@@ -2,7 +2,7 @@
     <div class="post-header">
         <p class="name">
         {{ if .Post.HasProfilePic }}
-            <img class="profile-pic profile-pic-24" src="/memo/get-profile-pic?address={{ .Post.Memo.GetAddressString }}&height=24">
+            <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Memo.GetAddressString }}-24x24.{{ .Post.PicExtension }}">
         {{ else }}
             <span class="identicon-{{ .Post.Memo.GetAddressString }}">
                 <img class="identicon"/>
@@ -62,7 +62,7 @@
     <div class="reply">
         Replying to
         {{ if .Post.Parent.HasProfilePic }}
-            <img class="profile-pic profile-pic-24" src="/memo/get-profile-pic?address={{ .Post.Parent.Memo.GetAddressString }}&height=24">
+            <img class="profile-pic profile-pic-24" src="/img/profilepics/{{ .Post.Parent.Memo.GetAddressString }}-24x24.{{ .Post.Parent.PicExtension }}"/>
         {{ else }}
             <span class="identicon-{{ .Post.Parent.Memo.GetAddressString }}">
                 <img class="identicon"/>

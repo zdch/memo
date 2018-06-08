@@ -9,6 +9,7 @@ import (
 	"github.com/memocash/memo/app/bitcoin/wallet"
 	"html"
 	"sort"
+	"strings"
 	"time"
 )
 
@@ -61,6 +62,14 @@ func (m MemoSetPic) GetTimeString() string {
 		return m.Block.Timestamp.Format("2006-01-02 15:04:05")
 	}
 	return "Unconfirmed"
+}
+
+func (m MemoSetPic) GetExtension() string {
+	if strings.HasSuffix(m.Url, "jpg") {
+		return "jpg"
+	} else {
+		return "png"
+	}
 }
 
 func GetMemoSetPicById(id uint) (*MemoSetPic, error) {

@@ -1,6 +1,6 @@
 /config.yaml
 .idea
 .DS_Store
-web/public/img/profilepics/*
+/web/public/img/profilepics/*
 /memo.exe~
 /memo

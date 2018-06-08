@@ -12,6 +12,7 @@ import (
 	"github.com/memocash/memo/app/db"
 	"github.com/memocash/memo/app/html-parser"
 	"github.com/memocash/memo/app/notify"
+	"github.com/memocash/memo/app/profile/pic"
 )
 
 func GetMemoOutputIfExists(txn *db.Transaction) (*db.TransactionOut, error) {
@@ -281,6 +282,12 @@ func saveMemoSetPic(txn *db.Transaction, out *db.TransactionOut, blockId uint, i
 	if err != nil {
 		return jerr.Get("error clearing has pic cache", err)
 	}
+	go func() {
+		err = pic.FetchProfilePic(memoSetPic.Url, memoSetPic.GetAddressString())
+		if err != nil {
+			jerr.Get("could not save profile pic", err).Print()
+		}
+	}()
 	return nil
 }
 

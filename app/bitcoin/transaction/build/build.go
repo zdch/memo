@@ -76,6 +76,8 @@ func getMemoOutputFee(spendOutput transaction.SpendOutput) (int64, error) {
 	switch spendOutput.Type {
 	case transaction.SpendOutputTypeMemoLike:
 		return int64(memo.OutputFeeOpReturn + len(spendOutput.Data)), nil
+	case transaction.SpendOutputTypeMemoSetProfilePic:
+		return int64(memo.OutputFeeOpReturn + len(spendOutput.Data)), nil
 	}
 	return 0, jerr.New("unable to get fee for output type")
 }

@@ -33,7 +33,7 @@ const (
 	SpendOutputTypeMemoPollQuestionMulti
 	SpendOutputTypeMemoPollOption
 	SpendOutputTypeMemoPollVote
-	SpendOutputTypeMemoSetPic
+	SpendOutputTypeMemoSetProfilePic
 )
 
 func Create(spendOuts []*db.TransactionOut, privateKey *wallet.PrivateKey, spendOutputs []SpendOutput) (*wire.MsgTx, error) {
@@ -306,7 +306,7 @@ func Create(spendOuts []*db.TransactionOut, privateKey *wallet.PrivateKey, spend
 			}
 			fmt.Printf("pkScript: %x\n", pkScript)
 			txOuts = append(txOuts, wire.NewTxOut(spendOutput.Amount, pkScript))
-		case SpendOutputTypeMemoSetPic:
+		case SpendOutputTypeMemoSetProfilePic:
 			if len(spendOutput.Data) > memo.MaxPostSize {
 				return nil, jerr.New("url too large")
 			}

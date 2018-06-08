@@ -93,11 +93,12 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ .Username }}
-                        {{ if .HasProfilePic }}
-                            <img class="profile-pic profile-pic-24" src="/memo/get-profile-pic?address={{ .UserAddress }}&height=24">
-                        {{ else }}
-                            <img src="img/profile.png"/>
-                        {{ end }}
+                    {{ if .HasProfilePic }}
+                        <img class="profile-pic profile-pic-24"
+                             src="/img/profilepics/{{ .UserAddress }}-24x24.{{ .ProfilePicExtension }}"/>
+                    {{ else }}
+                        <img src="img/profile.png"/>
+                    {{ end }}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
