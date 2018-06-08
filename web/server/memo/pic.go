@@ -13,6 +13,7 @@ import (
 	"github.com/memocash/memo/app/util"
 	"net/http"
 	"regexp"
+	"strings"
 )
 
 var setPicRoute = web.Route{
@@ -44,17 +45,16 @@ var setPicRoute = web.Route{
 
 // Transform https://imgur.com/xSSV7Sg into https://i.imgur.com/xSSV7Sg.jpg and return the string.
 func processImgurUrl(url string) (string, error) {
-
 	// Nothing to do.
-	if util.ValidateImgurDirectJpg(url) {
+	if util.ValidateImgurDirectLink(url) {
 		return url, nil
 	}
 
 	// Transform to direct link and validate.
-	var re = regexp.MustCompile(`(https://([a-z]+\.)?imgur\.com/)([^\s]*).(jpg|png)`)
-	url = re.ReplaceAllString(url, `https://i.imgur.com/$3.$4`)
+	var re = regexp.MustCompile(`(https://([a-z]+\.)?imgur\.com/)([^\s]*)`)
+	url = re.ReplaceAllString(url, `https://i.imgur.com/$3.jpg`)
 
-	if util.ValidateImgurDirectJpg(url) {
+	if util.ValidateImgurDirectLink(url) {
 		return url, nil
 	} else {
 		return "", jerr.New("invalid imgur link")
@@ -102,6 +102,10 @@ var setPicSubmitRoute = web.Route{
 		if err != nil {
 			r.Error(jerr.Get("couldn't fetch remote image", err), http.StatusInternalServerError)
 			return
+		}
+		contentType := response.Header.Get("content-type")
+		if contentType == "image/png" && strings.HasSuffix(url, "jpg") {
+			url = strings.TrimSuffix(url, "jpg") + "png"
 		}
 		response.Body.Close()
 
